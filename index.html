@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Privacy center dracXterm. Daftar dan pembaca dokumen Privacy Policy untuk project dracxterm.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230A0A0C'/%3E%3Cpath d='M3 5l2.5 3L3 11M7.5 11h5.5' stroke='%238A5CF6' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>Privacy Center dracXterm</title>
+<style>
+  :root {
+    --bg: #0A0A0C;
+    --surface: #141419;
+    --elevated: #1E1E26;
+    --text: #E6E6E6;
+    --text-2: #CFCFD6;
+    --muted: #9A9AA6;
+    --accent: #8A5CF6;
+    --accent-text: #A98BF9;
+    --wordmark: #008B8B;
+    --divider: #22222A;
+    --danger: #FF9B9B;
+    --amber: #F0B866;
+    --mint: #7BE0B0;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+
+    --radius: 10px;
+    --tap: 44px;
+
+    --z-skip: 50;
+    --z-header: 30;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: break-word;
+  }
+
+  a { color: var(--accent-text); }
+  a:hover { color: #C3AEFB; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .skip {
+    position: absolute;
+    left: var(--space-4);
+    top: -100px;
+    z-index: var(--z-skip);
+    background: var(--elevated);
+    color: var(--text);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    text-decoration: none;
+    transition: top 120ms ease;
+  }
+  .skip:focus { top: var(--space-4); }
+
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: rgba(10, 10, 12, 0.94);
+    border-bottom: 1px solid var(--divider);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .head-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .wordmark {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--wordmark);
+    margin: 0;
+  }
+  .wordmark .x { color: var(--accent-text); }
+
+  .head-sub {
+    margin: 0;
+    color: var(--text-2);
+    font-size: 0.95rem;
+  }
+
+  .layout {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-5);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .layout {
+      grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+    nav.index { position: sticky; top: 88px; }
+  }
+
+  nav.index {
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    min-width: 0;
+  }
+
+  .index-title {
+    margin: 0 0 var(--space-3);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  ul.policy-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  ul.policy-list a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: var(--tap);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--divider);
+    border-left: 3px solid transparent;
+    border-radius: var(--radius);
+    background: var(--elevated);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  ul.policy-list a::before {
+    content: "\2022";
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1;
+    width: 1ch;
+    flex: none;
+    text-align: center;
+  }
+
+  ul.policy-list a:hover { border-color: var(--accent); color: #FFFFFF; }
+
+  /* Item aktif ditandai tiga cara sekaligus: glyph penunjuk, huruf tebal, dan
+     garis kiri. Warna bukan satu-satunya pembeda. */
+  ul.policy-list a[aria-current="true"] {
+    border-left-color: var(--accent);
+    border-color: var(--accent);
+    background: #241D3B;
+    font-weight: 700;
+  }
+  ul.policy-list a[aria-current="true"]::before {
+    content: "\25B8";
+    color: var(--accent-text);
+  }
+
+  .reader {
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    min-width: 0;
+    transition: opacity 160ms ease;
+  }
+
+  /* Peredupan diikat ke indikator tunda, bukan ke aria-busy. Muatan yang selesai
+     di bawah ambang tunda tidak pernah menyentuh opacity, jadi tidak ada kedipan.
+     Blok prefers-reduced-motion di bawah mematikan transisinya. */
+  .reader.is-pending { opacity: 0.75; }
+
+  .msg {
+    margin: 0;
+    padding: var(--space-4);
+    border: 1px solid var(--divider);
+    border-left: 4px solid var(--muted);
+    border-radius: var(--radius);
+    background: var(--elevated);
+    color: var(--text-2);
+  }
+  .msg.is-error { border-left-color: var(--danger); }
+  .msg.is-busy { border-left-color: var(--accent); }
+  .msg strong { display: block; color: var(--text); margin-bottom: var(--space-1); }
+  .msg code {
+    display: inline-block;
+    margin-top: var(--space-2);
+    background: #0F0F14;
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    padding: 2px 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    color: var(--text);
+  }
+  .msg ul { margin: var(--space-2) 0 0; padding-left: 1.2em; }
+
+  button.retry {
+    display: block;
+    margin-top: var(--space-3);
+    min-height: var(--tap);
+    padding: var(--space-2) var(--space-5);
+    background: var(--accent);
+    color: #0A0A0C;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  button.retry:hover { background: #9C74F8; }
+
+  /* --- Gaya untuk artikel policy yang disuntikkan ---
+     Hanya elemen <article> yang diimpor ke sini, tanpa <style> milik dokumennya,
+     jadi gaya artikel harus ada di halaman ini juga. */
+  .reader article { max-width: 70ch; }
+  .reader h1 { font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2.1rem); line-height: 1.22; letter-spacing: -0.01em; margin: 0 0 var(--space-2); color: var(--text); }
+  .reader h2 { font-size: 1.28rem; line-height: 1.3; letter-spacing: -0.005em; margin: var(--space-7) 0 var(--space-3); padding-top: var(--space-4); border-top: 1px solid var(--divider); color: var(--text); }
+  .reader h3 { font-size: 1.02rem; line-height: 1.4; margin: var(--space-5) 0 var(--space-2); color: var(--text); }
+  /* Header lengket di atas, jadi lompatan anchor perlu ruang agar judul tidak tertutup. */
+  .reader [id] { scroll-margin-top: 96px; }
+  .reader p, .reader li { color: var(--text-2); line-height: 1.7; }
+  .reader p { margin: 0 0 var(--space-4); }
+  .reader ul, .reader ol { padding-left: 1.25em; margin: 0 0 var(--space-4); }
+  .reader li { margin-bottom: var(--space-2); }
+  .reader li:last-child { margin-bottom: 0; }
+  .reader .lead { color: var(--text); font-size: 1.06rem; }
+  .reader .doc-meta { color: var(--muted); font-size: 0.92rem; margin-bottom: var(--space-5); }
+
+  .reader .summary {
+    background: var(--bg);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    margin: var(--space-5) 0 var(--space-6);
+  }
+  .reader .summary h2,
+  .reader .toc h2 {
+    margin: 0 0 var(--space-3);
+    padding-top: 0;
+    border-top: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .reader .summary ul { margin: 0; padding-left: 1.1em; }
+  .reader .summary li { color: var(--text); margin-bottom: var(--space-3); }
+
+  /* Penanda jenis informasi. Arti dibawa oleh teksnya, bukan warnanya. */
+  .reader .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0 0 var(--space-4); padding: 0; list-style: none; }
+  .reader .tag {
+    display: inline-block;
+    min-width: 0;
+    white-space: nowrap;
+    margin: 0;
+    padding: 3px 10px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: var(--elevated);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+  }
+  .reader .t-lokal { color: var(--accent-text); }
+  .reader .t-luar { color: var(--amber); }
+  .reader .t-kontrol { color: var(--mint); }
+
+  .reader .callout {
+    background: var(--elevated);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+    margin: var(--space-5) 0;
+  }
+  .reader .callout > :last-child { margin-bottom: 0; }
+  .reader .callout p:first-child { color: var(--text); }
+
+  .reader .toc {
+    background: var(--bg);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+  .reader .toc ol { margin: 0; padding-left: 1.4em; }
+  .reader .toc li { margin-bottom: var(--space-1); }
+  .reader .toc a { display: inline-block; max-width: 100%; overflow-wrap: anywhere; padding: 6px 0; }
+
+  .reader .scroll-x { overflow-x: auto; margin: 0 0 var(--space-4); }
+  .reader table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .reader caption { text-align: left; color: var(--muted); font-size: 0.9rem; padding-bottom: var(--space-2); }
+  .reader th, .reader td { border: 1px solid var(--divider); padding: var(--space-2) var(--space-3); text-align: left; vertical-align: top; }
+  .reader th { color: var(--text); background: var(--elevated); font-weight: 600; }
+
+  .reader code {
+    background: #0F0F14;
+    border: 1px solid var(--divider);
+    border-radius: 5px;
+    padding: 1px 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.88em;
+    color: var(--text);
+  }
+
+  .reader .sign-off {
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--divider);
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .reader .doc-nav { display: none; }
+
+  @media (max-width: 520px) {
+    .layout { padding: var(--space-4); gap: var(--space-4); }
+    .reader, nav.index { padding: var(--space-4); }
+  }
+
+  /* Penanda dijaga satu baris di lebar normal. Pada lebar ekstrem (zoom tinggi di
+     layar kecil) membungkus lebih baik daripada memaksa seluruh halaman menggeser. */
+  @media (max-width: 380px) {
+    .reader .tag { white-space: normal; overflow-wrap: anywhere; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#reader">Lompat ke isi dokumen</a>
+
+<header class="site">
+  <div class="head-inner">
+    <p class="wordmark">E<span class="x">x</span>so Kamabay</p>
+    <p class="head-sub">Privacy Center</p>
+  </div>
+</header>
+
+<div class="layout">
+
+  <nav class="index" aria-labelledby="index-title">
+    <h2 class="index-title" id="index-title">Privacy Policy</h2>
+    <div id="index-state" role="status" aria-live="polite">
+      <p class="msg is-busy"><strong>Memuat daftar</strong>Mengambil config.json.</p>
+    </div>
+    <ul class="policy-list" id="policy-list" hidden></ul>
+  </nav>
+
+  <main class="reader" id="reader" tabindex="-1" aria-busy="false" aria-label="Pembaca dokumen">
+    <div id="reader-state" role="status" aria-live="polite"></div>
+    <div id="reader-content"></div>
+  </main>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var PATH_RE = /^Privacy-Policy\/[A-Za-z0-9._-]+\.html$/;
+
+  var listEl = document.getElementById("policy-list");
+  var indexState = document.getElementById("index-state");
+  var readerState = document.getElementById("reader-state");
+  var readerContent = document.getElementById("reader-content");
+  var readerEl = document.getElementById("reader");
+
+  var activeLink = null;
+  var docController = null;   // AbortController untuk dokumen yang sedang berjalan
+  var docToken = 0;           // penanda urutan, supaya respons lama tidak menimpa pilihan terbaru
+  var pendingTimer = null;    // penunda indikator muat
+  var PENDING_DELAY = 180;    // ms; di bawah ambang ini indikator tidak pernah tampil
+  var isFileProtocol = location.protocol === "file:";
+
+  // ---------------------------------------------------------------- utilitas
+
+  function clear(node) {
+    while (node.firstChild) node.removeChild(node.firstChild);
+  }
+
+  function el(tag, className, text) {
+    var n = document.createElement(tag);
+    if (className) n.className = className;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  /**
+   * Satu panel pesan: judul, penjelasan, contoh perintah opsional, dan tombol
+   * "Coba lagi" opsional. Semua teks lewat textContent, tidak pernah innerHTML.
+   */
+  function showMessage(target, opts) {
+    clear(target);
+    var box = el("p", "msg" + (opts.kind ? " is-" + opts.kind : ""));
+    box.appendChild(el("strong", null, opts.title));
+    box.appendChild(document.createTextNode(opts.body || ""));
+
+    if (opts.code) {
+      box.appendChild(document.createElement("br"));
+      box.appendChild(el("code", null, opts.code));
+    }
+    target.appendChild(box);
+
+    if (opts.onRetry) {
+      var btn = el("button", "retry", "Coba lagi");
+      btn.type = "button";
+      btn.addEventListener("click", opts.onRetry);
+      box.appendChild(btn);
+    }
+    return box;
+  }
+
+  function networkHint(err) {
+    if (isFileProtocol) {
+      return "Halaman ini dibuka lewat file://, dan peramban memblokir fetch pada protokol itu. " +
+             "Jalankan folder project lewat HTTP server lokal, lalu buka http://localhost:8000/.";
+    }
+    return "Permintaan jaringan gagal: " + (err && err.message ? err.message : "sebab tidak diketahui") + ".";
+  }
+
+  // ------------------------------------------------------- validasi entri config
+
+  function validateEntry(entry) {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) return null;
+
+    var name = entry["project name"];
+    var path = entry.path;
+
+    if (typeof name !== "string" || name.trim() === "") return null;
+    if (typeof path !== "string") return null;
+
+    if (path.indexOf("\\") !== -1) return null;      // backslash
+    if (path.charAt(0) === "/") return null;         // leading slash
+    if (path.indexOf("..") !== -1) return null;      // traversal
+    if (path.indexOf(":") !== -1) return null;       // protocol atau URL lintas-origin
+    if (!PATH_RE.test(path)) return null;            // hanya .html di dalam Privacy-Policy/
+
+    return { name: name.trim(), path: path };
+  }
+
+  // ---------------------------------------------------------- sanitasi dokumen
+
+  var FORBIDDEN = "script,iframe,object,embed,noscript,base,form,link,meta,template,frame,frameset,portal";
+  var URL_ATTRS = ["href", "src", "xlink:href", "action", "formaction", "data", "srcdoc", "poster", "background"];
+  var BAD_SCHEME = /^(javascript|vbscript|data):/i;
+  var CONTROL_CHARS = /[\u0000-\u0020]/g;
+
+  function sanitize(root) {
+    Array.prototype.forEach.call(root.querySelectorAll(FORBIDDEN), function (node) {
+      node.parentNode.removeChild(node);
+    });
+
+    var all = root.querySelectorAll("*");
+    for (var i = 0; i < all.length; i++) {
+      var node = all[i];
+      var attrs = Array.prototype.slice.call(node.attributes);
+      for (var j = 0; j < attrs.length; j++) {
+        var name = attrs[j].name;
+        var lower = name.toLowerCase();
+        var raw = attrs[j].value || "";
+        // Karakter kendali dibuang dulu, supaya "java\tscript:" tidak lolos.
+        var value = raw.replace(CONTROL_CHARS, "");
+
+        if (lower.indexOf("on") === 0) {
+          node.removeAttribute(name);
+        } else if (URL_ATTRS.indexOf(lower) !== -1 && BAD_SCHEME.test(value)) {
+          node.removeAttribute(name);
+        } else if (lower === "style" && /url\s*\(|expression|@import/i.test(raw)) {
+          node.removeAttribute(name);
+        }
+      }
+      if (node.tagName === "A") {
+        var href = node.getAttribute("href");
+        if (href && href.charAt(0) !== "#") node.setAttribute("rel", "noopener noreferrer");
+      }
+    }
+    return root;
+  }
+
+  // ------------------------------------------------------------ memuat dokumen
+
+  function setBusy(on) {
+    readerEl.setAttribute("aria-busy", on ? "true" : "false");
+  }
+
+  // Status untuk pembaca layar (aria-busy) dipisah dari indikator visual. Panel
+  // "Memuat" dan peredupan baru dipasang setelah ambang tunda; dokumen lokal
+  // hampir selalu selesai sebelum itu, jadi tidak ada yang sempat berkedip.
+  function stopPending() {
+    if (pendingTimer !== null) {
+      clearTimeout(pendingTimer);
+      pendingTimer = null;
+    }
+    readerEl.classList.remove("is-pending");
+  }
+
+  function startPending(entry) {
+    stopPending();
+    pendingTimer = window.setTimeout(function () {
+      pendingTimer = null;
+      readerEl.classList.add("is-pending");
+      showMessage(readerState, {
+        kind: "busy",
+        title: "Memuat dokumen",
+        body: entry.name + " (" + entry.path + ")"
+      });
+    }, PENDING_DELAY);
+  }
+
+  function markActive(link) {
+    if (activeLink) activeLink.removeAttribute("aria-current");
+    activeLink = link || null;
+    if (activeLink) activeLink.setAttribute("aria-current", "true");
+  }
+
+  function loadPolicy(entry, link) {
+    // Klik beruntun: batalkan permintaan sebelumnya dan naikkan token, supaya
+    // respons yang datang terlambat tidak menimpa pilihan terbaru.
+    if (docController) docController.abort();
+    var controller = new AbortController();
+    var token = ++docToken;
+    docController = controller;
+
+    // Isi lama dibiarkan tampil sampai penggantinya siap. Mengosongkannya lebih
+    // dulu membuat panel mengerut dan tinggi halaman melompat sebelum isi baru
+    // masuk -- itulah yang terlihat sebagai kedipan.
+    markActive(link);
+    setBusy(true);
+    startPending(entry);
+
+    fetch(entry.path, { signal: controller.signal, credentials: "omit" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status + " " + res.statusText);
+        return res.text();
+      })
+      .then(function (html) {
+        if (token !== docToken) return;   // sudah tergantikan klik yang lebih baru
+
+        var parsed = new DOMParser().parseFromString(html, "text/html");
+        var article = parsed.querySelector("[data-policy-content]");
+
+        if (!article) {
+          stopPending();
+          clear(readerContent);
+          setBusy(false);
+          showMessage(readerState, {
+            kind: "error",
+            title: "Dokumen tidak punya bagian yang bisa ditampilkan.",
+            body: entry.path + " berhasil diambil, tetapi di dalamnya tidak ada elemen " +
+                  "[data-policy-content]. Buka berkas itu langsung lewat tautan di daftar untuk membacanya.",
+            onRetry: function () { loadPolicy(entry, link); }
+          });
+          return;
+        }
+
+        var safe = sanitize(document.importNode(article, true));
+        stopPending();
+        clear(readerState);
+        clear(readerContent);
+        readerContent.appendChild(safe);
+        setBusy(false);
+
+        // Penggantian di tempat mempertahankan posisi gulir. Kalau kepala pembaca
+        // sudah tergulir ke atas layar, kembalikan ke sana supaya dokumen baru
+        // dibaca dari awal, bukan dari tengah.
+        if (readerEl.getBoundingClientRect().top < 0) {
+          readerEl.scrollIntoView({ block: "start" });
+        }
+
+        // Di layar sempit, pembaca berada di bawah daftar. Fokus dipindahkan ke judul
+        // artikel supaya pembacaan dimulai dari sana dan Tab berikutnya berjalan dari
+        // posisi itu, bukan kembali ke awal halaman.
+        var heading = safe.querySelector("h1, h2");
+        if (heading && window.matchMedia("(max-width: 899px)").matches) {
+          if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
+          heading.focus();
+        }
+      })
+      .catch(function (err) {
+        if (err && err.name === "AbortError") return;
+        if (token !== docToken) return;
+        stopPending();
+        clear(readerContent);
+        setBusy(false);
+        showMessage(readerState, {
+          kind: "error",
+          title: "Dokumen gagal dimuat.",
+          body: networkHint(err) + " Berkas yang diminta: " + entry.path + ".",
+          code: isFileProtocol ? "python3 -m http.server 8000" : null,
+          onRetry: function () { loadPolicy(entry, link); }
+        });
+      });
+  }
+
+  // -------------------------------------------------------------- render daftar
+
+  function renderList(entries) {
+    clear(listEl);
+    listEl.hidden = false;
+
+    entries.forEach(function (entry) {
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = entry.path;              // satu-satunya sumber URL adalah entry.path
+      a.textContent = entry.name;       // nama dari config, selalu sebagai teks
+      a.addEventListener("click", function (ev) {
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+        ev.preventDefault();
+        loadPolicy(entry, a);
+      });
+      li.appendChild(a);
+      listEl.appendChild(li);
+    });
+
+    // Satu dokumen tidak butuh kotak pencarian, jadi tidak ada. Hitungan hanya
+    // ditampilkan saat daftarnya lebih dari satu.
+    clear(indexState);
+    if (entries.length > 1) {
+      var box = el("p", "msg");
+      box.appendChild(el("strong", null, entries.length + " dokumen tersedia"));
+      box.appendChild(document.createTextNode("Pilih salah satu untuk membacanya."));
+      indexState.appendChild(box);
+    }
+  }
+
+  // ----------------------------------------------------------------- muat config
+
+  function loadConfig() {
+    listEl.hidden = true;
+    clear(listEl);
+    clear(readerState);
+    clear(readerContent);
+    markActive(null);
+    showMessage(indexState, { kind: "busy", title: "Memuat daftar", body: "Mengambil config.json." });
+
+    fetch("./config.json", { cache: "no-cache", credentials: "omit" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status + " " + res.statusText);
+        return res.text();
+      })
+      .then(function (text) {
+        var data;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          throw new SyntaxError("config.json bukan JSON yang valid. " + e.message);
+        }
+
+        // Bentuk resminya array. Satu object dinormalkan jadi array supaya loader
+        // tetap kompatibel dengan config lama.
+        var raw = Array.isArray(data) ? data : (data && typeof data === "object" ? [data] : null);
+        if (!raw) {
+          showMessage(indexState, {
+            kind: "error",
+            title: "Bentuk config.json tidak dikenali.",
+            body: "Isinya harus berupa array entri, atau satu object entri.",
+            onRetry: loadConfig
+          });
+          return;
+        }
+
+        var valid = [];
+        var rejected = 0;
+        raw.forEach(function (item) {
+          var entry = validateEntry(item);
+          if (entry) valid.push(entry); else rejected++;
+        });
+
+        if (valid.length === 0) {
+          showMessage(indexState, {
+            kind: "error",
+            title: rejected > 0 ? "Tidak ada entri yang valid." : "Daftar masih kosong.",
+            body: rejected > 0
+              ? rejected + " entri ditolak. Setiap entri butuh \"project name\" berisi teks dan \"path\" relatif berbentuk:"
+              : "config.json terbaca, tetapi belum berisi satu pun Privacy Policy.",
+            code: rejected > 0 ? "Privacy-Policy/<nama>.html" : null,
+            onRetry: loadConfig
+          });
+          return;
+        }
+
+        renderList(valid);
+
+        if (rejected > 0) {
+          showMessage(readerState, {
+            kind: "error",
+            title: rejected + " entri dilewati.",
+            body: "Entri tersebut tidak lolos pemeriksaan path. Sisanya tetap bisa dibuka dari daftar."
+          });
+        }
+      })
+      .catch(function (err) {
+        var syntax = err instanceof SyntaxError;
+        showMessage(indexState, {
+          kind: "error",
+          title: syntax ? "config.json gagal dibaca." : "Daftar gagal dimuat.",
+          body: syntax ? err.message : networkHint(err),
+          code: isFileProtocol ? "python3 -m http.server 8000" : null,
+          onRetry: loadConfig
+        });
+      });
+  }
+
+  loadConfig();
+})();
+</script>
+
+</body>
+</html>
