@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kebijakan Privasi dracxterm 1.0.1: apa yang berubah dari 1.0.0, apa yang tinggal di perangkat Anda, dan kapan pihak lain ikut terlibat.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230A0A0C'/%3E%3Cpath d='M3 5l2.5 3L3 11M7.5 11h5.5' stroke='%238A5CF6' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>Kebijakan Privasi dracxterm</title>
+<style>
+  :root {
+    --bg: #0A0A0C;
+    --surface: #141419;
+    --elevated: #1E1E26;
+    --text: #E6E6E6;
+    --text-2: #CFCFD6;
+    --muted: #9A9AA6;
+    --accent: #8A5CF6;
+    --accent-text: #A98BF9;
+    --wordmark: #008B8B;
+    --divider: #22222A;
+    --amber: #F0B866;
+    --mint: #7BE0B0;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+
+    --radius: 10px;
+    --tap: 44px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-2);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-wrap: break-word;
+  }
+
+  a { color: var(--accent-text); }
+  a:hover { color: #C3AEFB; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .skip {
+    position: absolute;
+    left: var(--space-4);
+    top: -100px;
+    background: var(--elevated);
+    color: var(--text);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    text-decoration: none;
+    z-index: 50;
+    transition: top 120ms ease;
+  }
+  .skip:focus { top: var(--space-4); }
+
+  header.site {
+    border-bottom: 1px solid var(--divider);
+    padding: var(--space-4) var(--space-5);
+  }
+  .head-inner {
+    max-width: 78ch;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-4);
+  }
+  .wordmark {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--wordmark);
+  }
+  .wordmark .x { color: var(--accent-text); }
+
+  .doc-nav { margin: 0; }
+  .doc-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    background: var(--elevated);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .doc-nav a:hover { border-color: var(--accent); color: #FFFFFF; }
+
+  main.wrap {
+    max-width: 78ch;
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-5) var(--space-7);
+  }
+
+  article { max-width: 70ch; }
+
+  h1 {
+    color: var(--text);
+    font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2.1rem);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--space-2);
+  }
+  h2 {
+    color: var(--text);
+    font-size: 1.28rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    margin: var(--space-7) 0 var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--divider);
+    scroll-margin-top: var(--space-4);
+  }
+  h3 {
+    color: var(--text);
+    font-size: 1.02rem;
+    line-height: 1.4;
+    margin: var(--space-5) 0 var(--space-2);
+    scroll-margin-top: var(--space-4);
+  }
+
+  p { margin: 0 0 var(--space-4); }
+  ul, ol { padding-left: 1.25em; margin: 0 0 var(--space-4); }
+  li { margin-bottom: var(--space-2); }
+  li:last-child { margin-bottom: 0; }
+
+  .doc-meta {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: var(--space-5);
+  }
+
+  .lead { color: var(--text); font-size: 1.06rem; }
+
+  /* Ringkasan pembuka */
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    margin: var(--space-5) 0 var(--space-6);
+  }
+  .summary h2 {
+    margin: 0 0 var(--space-3);
+    padding-top: 0;
+    border-top: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .summary ul { margin: 0; padding-left: 1.1em; }
+  .summary li { color: var(--text); margin-bottom: var(--space-3); }
+
+  /* Penanda jenis informasi. Arti dibawa oleh teksnya, bukan warnanya. */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-4);
+    padding: 0;
+    list-style: none;
+  }
+  .tag {
+    display: inline-block;
+    min-width: 0;
+    white-space: nowrap;
+    padding: 3px 10px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: var(--elevated);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+  }
+  .t-lokal { color: var(--accent-text); }
+  .t-luar { color: var(--amber); }
+  .t-kontrol { color: var(--mint); }
+
+  .callout {
+    background: var(--elevated);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+    margin: var(--space-5) 0;
+  }
+  .callout > :last-child { margin-bottom: 0; }
+  .callout p:first-child { color: var(--text); }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+  .toc h2 {
+    margin: 0 0 var(--space-3);
+    padding-top: 0;
+    border-top: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .toc ol { margin: 0; padding-left: 1.4em; }
+  .toc li { margin-bottom: var(--space-1); }
+  .toc a {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    padding: 6px 0;
+    text-decoration-color: rgba(169, 139, 249, 0.4);
+  }
+
+  .scroll-x { overflow-x: auto; margin: 0 0 var(--space-4); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  caption { text-align: left; color: var(--muted); font-size: 0.9rem; padding-bottom: var(--space-2); }
+  th, td {
+    border: 1px solid var(--divider);
+    padding: var(--space-2) var(--space-3);
+    text-align: left;
+    vertical-align: top;
+  }
+  th { color: var(--text); background: var(--elevated); font-weight: 600; }
+
+  code {
+    background: #0F0F14;
+    border: 1px solid var(--divider);
+    border-radius: 5px;
+    padding: 1px 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.88em;
+    color: var(--text);
+  }
+
+  .sign-off {
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--divider);
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 520px) {
+    main.wrap { padding: var(--space-5) var(--space-4) var(--space-6); }
+    .summary, .toc, .callout { padding: var(--space-4); }
+  }
+
+  /* Penanda dijaga satu baris di lebar normal. Pada lebar ekstrem (zoom tinggi di
+     layar kecil) membungkus lebih baik daripada memaksa seluruh halaman menggeser. */
+  @media (max-width: 380px) {
+    .tag { white-space: normal; overflow-wrap: anywhere; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  @media print {
+    body { background: #FFFFFF; color: #1A1A1A; font-size: 10.5pt; line-height: 1.5; }
+    header.site, .skip, .doc-nav { display: none; }
+    main.wrap { max-width: none; padding: 0; }
+    article { max-width: none; }
+    h1, h2, h3 { color: #000000; page-break-after: avoid; }
+    h1 { font-size: 20pt; }
+    h2 { font-size: 13pt; border-top: 1px solid #BBBBBB; margin-top: 22pt; }
+    h3 { font-size: 11pt; }
+    a { color: #000000; text-decoration: underline; }
+    .summary, .toc, .callout { background: #FFFFFF; border: 1px solid #BBBBBB; border-left-width: 3px; page-break-inside: avoid; }
+    .summary li, .callout p:first-child, .lead { color: #000000; }
+    .tag { border: 1px solid #666666; color: #333333; background: #FFFFFF; }
+    .doc-meta, .sign-off, caption { color: #444444; }
+    th { background: #EEEEEE; color: #000000; }
+    th, td { border: 1px solid #999999; }
+    table, .scroll-x { overflow: visible; page-break-inside: avoid; }
+    code { background: #FFFFFF; border: 1px solid #BBBBBB; color: #000000; }
+    p, li { orphans: 3; widows: 3; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#doc">Lompat ke isi kebijakan</a>
+
+<header class="site">
+  <div class="head-inner">
+    <p class="wordmark">drac<span class="x">X</span>term</p>
+    <p class="doc-nav"><a href="../index.html">Kembali ke Privacy Center</a></p>
+  </div>
+</header>
+
+<main class="wrap" id="doc">
+<article data-policy-content>
+
+  <h1>Kebijakan Privasi dracxterm</h1>
+
+  <p class="doc-meta">Terakhir diperbarui: 9 September 2026 &middot; Berlaku untuk versi 1.0.1
+  (<code>versionCode</code> 2, paket <code>com.xdrac</code>), dirilis 7 September 2026</p>
+
+  <p class="lead">dracxterm adalah aplikasi terminal untuk Android. Aplikasi ini bisa memasang
+  sistem Linux di dalam ponsel Anda, lalu memberi Anda tempat untuk mengetik perintah, sama seperti
+  terminal di komputer.</p>
+
+  <p>Halaman ini menjelaskan apa yang terjadi pada data Anda ketika memakainya. Isinya disusun dari
+  pemeriksaan langsung terhadap kode sumber dracxterm versi 1.0.1, bukan dari janji umum. Versi
+  sebelumnya punya halamannya sendiri, dan halaman ini tidak menggantikannya.</p>
+
+  <section class="summary" aria-labelledby="intinya">
+    <h2 id="intinya">Intinya</h2>
+    <ul>
+      <li>Versi 1.0.1 adalah rilis perbaikan. Mesin terminal, antarmuka, dan daftar izin Android
+      tidak disentuh sama sekali.</li>
+      <li>Yang berubah cuma satu hal yang menyentuh privasi: alamat tempat image Debian diambil.
+      Dulu <code>easycli.sh</code>, sekarang <code>images.linuxcontainers.org</code>.</li>
+      <li>Tidak ada akun, iklan, maupun pelacakan. Pengembang dracxterm tidak menerima isi terminal,
+      file, atau informasi perangkat Anda.</li>
+      <li>Hampir semuanya tinggal di ponsel Anda: pengaturan, sistem Linux yang Anda pasang, dan
+      file yang Anda buat sendiri.</li>
+      <li>Aplikasi mengunduh sesuatu hanya setelah Anda memintanya, dan yang diunduh cuma dua hal:
+      sistem Linux dan runtime Ollama.</li>
+      <li>Begitu Anda menjalankan perintah di dalam terminal, program itulah yang menentukan ke mana
+      data Anda pergi. Bagian ini di luar kendali aplikasi.</li>
+      <li>Hampir seluruh data bisa Anda hapus lewat "Hapus penyimpanan" di pengaturan Android atau
+      dengan menghapus aplikasinya.</li>
+    </ul>
+  </section>
+
+  <nav class="toc" aria-labelledby="daftar-isi">
+    <h2 id="daftar-isi">Daftar isi</h2>
+    <ol>
+      <li><a href="#ruang-lingkup">Yang dicakup kebijakan ini</a></li>
+      <li><a href="#perubahan-101">Yang berubah di versi 1.0.1</a></li>
+      <li><a href="#isi-versi">Yang ada di versi ini</a></li>
+      <li><a href="#tidak-dikumpulkan">Yang tidak dikumpulkan pengembang</a></li>
+      <li><a href="#di-perangkat">Data yang diproses dan disimpan di perangkat</a></li>
+      <li><a href="#jaringan">Koneksi jaringan dan unduhan</a></li>
+      <li><a href="#pihak-ketiga">Linux, Ollama, DNS, dan layanan pihak ketiga</a></li>
+      <li><a href="#izin">Izin Android yang diminta</a></li>
+      <li><a href="#penyimpanan">Akses ke penyimpanan ponsel</a></li>
+      <li><a href="#clipboard">Papan klip</a></li>
+      <li><a href="#background">Sesi yang berjalan di latar belakang</a></li>
+      <li><a href="#backup">Backup bawaan Android</a></li>
+      <li><a href="#hapus">Berapa lama data disimpan dan cara menghapusnya</a></li>
+      <li><a href="#keamanan">Keamanan</a></li>
+      <li><a href="#perubahan">Perubahan pada kebijakan ini</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+      <li><a href="#situs">Halaman web ini</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="ruang-lingkup">Yang dicakup kebijakan ini</h2>
+
+  <p>Kebijakan ini berlaku untuk aplikasi dracxterm versi 1.0.1 dan halaman web yang sedang Anda
+  baca.</p>
+
+  <p>Yang tidak tercakup adalah apa pun yang Anda jalankan di dalam terminal. Ini bukan cara
+  menghindar, melainkan kenyataan dari jenis aplikasinya. dracxterm memberi Anda ruang untuk
+  menjalankan program, dan program yang Anda pilih punya perilakunya sendiri. Kalau Anda menjalankan
+  <code>ssh</code> ke server Anda, yang berlaku adalah aturan server itu. Kalau Anda memasang paket
+  lewat <code>apt</code>, yang berlaku adalah aturan penyedia paketnya.</p>
+
+  <p>Karena itu kebijakan ini memisahkan tiga hal sepanjang dokumen: apa yang tinggal di perangkat
+  Anda, apa yang melibatkan pihak lain, dan apa yang Anda kendalikan sendiri. Anda akan melihat
+  penanda bertuliskan itu di bawah setiap judul bagian.</p>
+
+  <h2 id="perubahan-101">Yang berubah di versi 1.0.1</h2>
+
+  <ul class="tags">
+    <li class="tag t-luar">Melibatkan pihak lain</li>
+  </ul>
+
+  <p>Versi 1.0.1 adalah rilis perbaikan, bukan rilis fitur. Yang diperbaiki satu hal: pemasangan
+  Debian yang berhenti bekerja di versi 1.0.0.</p>
+
+  <h3>Kenapa perbaikannya dibuat</h3>
+
+  <p>Sampai versi 1.0.0, image Debian diambil dari <code>easycli.sh</code>. Operator situs itu
+  menghentikan hosting-nya. Alamat yang sudah dipin di dalam APK kini menjawab dengan pengalihan ke
+  halaman pemberitahuan sebesar 43 byte, bukan arsip sistem Linux.</p>
+
+  <p>Pemasangan Debian karena itu gagal di versi 1.0.0, dan gagalnya di tempat yang benar. Sidik
+  jari SHA-256 yang dipin di dalam APK mencocokkan byte yang benar-benar diterima, hasilnya tidak
+  cocok, lalu aplikasi menolak mengekstraknya. Tidak ada yang terpasang dan tidak ada sistem Linux
+  Anda yang tersentuh. Buat Anda hasil akhirnya tetap sama saja: Debian tidak bisa dipasang.</p>
+
+  <h3>Yang diubah</h3>
+
+  <p>Entri Debian di katalog sekarang menunjuk ke <code>images.linuxcontainers.org</code>. Inilah
+  satu-satunya perubahan di versi 1.0.1 yang menyentuh privasi Anda, karena mengubah pihak mana
+  yang melihat permintaan unduhan Anda.</p>
+
+  <p>Kalau Anda memilih Debian, alamat IP dan waktu permintaan Anda dilihat oleh operator server
+  itu, yaitu proyek Linux Containers, bukan lagi oleh operator <code>easycli.sh</code>. Perlakuan
+  atas data tersebut mengikuti kebijakan mereka, bukan kebijakan ini. Kalau Anda memilih salah satu
+  dari tiga image Kali, tidak ada yang berubah: sumbernya tetap <code>kali.download</code>, dengan
+  alamat, sidik jari, dan ukuran yang sama persis seperti 1.0.0.</p>
+
+  <p>Sumber baru itu menerbitkan berkas <code>SHA256SUMS</code> di sebelah tiap build, beserta
+  signature OpenPGP terpisah untuk arsip maupun berkas sums-nya. Artinya sidik jari yang dipin di
+  dalam APK bisa diturunkan ulang dari otoritas independen. Sumber sebelumnya tidak bisa memberikan
+  itu, dan hal tersebut tercatat sebagai keterbatasan di halaman versi 1.0.0.</p>
+
+  <p>Image barunya lebih besar. Yang perlu Anda siapkan sekarang:</p>
+
+  <div class="scroll-x">
+    <table>
+      <caption>Entri Debian 13 (trixie) di katalog</caption>
+      <thead>
+        <tr><th scope="col">&nbsp;</th><th scope="col">Versi 1.0.0</th><th scope="col">Versi 1.0.1</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Sumber</th><td><code>easycli.sh</code></td><td><code>images.linuxcontainers.org</code></td></tr>
+        <tr><th scope="row">Ukuran unduhan</th><td>35 MB</td><td>90 MB</td></tr>
+        <tr><th scope="row">Ruang setelah terpasang</th><td>sekitar 400 MB</td><td>sekitar 520 MB</td></tr>
+        <tr><th scope="row">Sidik jari bisa dicek ke sumber resmi</th><td>tidak</td><td>ya</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Angka itu juga yang sekarang ditampilkan di layar pemilihan distro, jadi yang Anda lihat
+  sebelum menyetujui unduhan sudah angka yang baru.</p>
+
+  <h3>Yang ditambahkan</h3>
+
+  <p>Tidak ada fitur baru di aplikasinya, tidak ada layar baru, dan tidak ada izin baru. Yang
+  bertambah ada di sisi repository dan dokumentasi:</p>
+
+  <ul>
+    <li>Skrip pemeriksa katalog <code>scripts/verify-rootfs-urls.sh</code> sekarang mengenali tata
+    letak <code>SHA256SUMS</code> milik <code>images.linuxcontainers.org</code>, bukan cuma milik
+    <code>kali.download</code>. Sebelumnya entri Debian selalu dilewati dengan peringatan, jadi yang
+    benar-benar dicocokkan hanya tiga dari empat entri katalog. Sekarang keempatnya.</li>
+    <li>Berkas <code>CHANGELOG.md</code> dan catatan rilis untuk toko aplikasi dalam Bahasa
+    Indonesia dan Inggris.</li>
+    <li><code>README.md</code> ditulis ulang di bagian sumber image, ditambah penjelasan alur
+    aplikasi dari layar pertama sampai shell siap, dan tutorial build yang bisa diikuti dari mesin
+    kosong. Screenshot-nya diganti delapan gambar baru.</li>
+  </ul>
+
+  <p>Ketiganya berkas di dalam repository. Tidak ada satu pun yang ikut ke dalam APK dan tidak ada
+  yang mengubah perilaku aplikasi di ponsel Anda.</p>
+
+  <h3>Yang tidak berubah</h3>
+
+  <p>Supaya jelas batasnya, ini yang sama persis dengan versi 1.0.0: mesin terminal dan seluruh kode
+  aplikasinya, tampilan dan dasbor <code>xset</code>, daftar izin Android, tiga entri Kali di
+  katalog, sumber dan versi Ollama yang dipin, pengaturan DNS bawaan, perilaku papan klip, layanan
+  latar belakang, dan status backup Android.</p>
+
+  <div class="callout">
+    <p>Ada satu keterbatasan baru yang perlu Anda tahu, dan ini soal fungsi, bukan privasi.</p>
+    <p>Server image linuxcontainers hanya menyimpan build bertanggal sekitar tiga hari. Alamat
+    Debian di katalog akan berhenti bekerja begitu build itu dirotasi keluar, dan pemasangan Debian
+    gagal lagi sampai katalognya dipindah ke mirror lain. Sidik jarinya tetap berlaku di mana pun
+    byte yang sama disajikan, jadi pemindahan itu tidak mengubah apa yang dipasang ke ponsel
+    Anda.</p>
+    <p>Kalau pemasangan Debian gagal, tiga image Kali tidak terpengaruh, dan terminal BusyBox di
+    dalam APK tetap bisa dipakai tanpa mengunduh apa pun.</p>
+  </div>
+
+  <h2 id="isi-versi">Yang ada di versi ini</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Ringkasan isi versi 1.0.1, supaya Anda tahu bagian mana saja yang menyentuh data Anda sebelum
+  membaca rinciannya di bawah.</p>
+
+  <ul>
+    <li>Terminal dengan warna dan escape sequence ANSI/VT, scrollback, seleksi teks, pencarian isi
+    layar, papan klip, dan mouse tracking. Semuanya berjalan di dalam ponsel.</li>
+    <li>Sampai lima workspace sekaligus, masing-masing dengan shell, direktori kerja, dan riwayat
+    sendiri.</li>
+    <li>Shell BusyBox yang ikut di dalam APK dan langsung jalan tanpa root maupun jaringan.</li>
+    <li>Katalog empat image Linux ARM64: Debian 13 (trixie) sebagai bawaan, serta Kali Linux nano,
+    minimal, dan full pentesting. Katalognya ikut dikemas di dalam APK, jadi membukanya tidak butuh
+    koneksi.</li>
+    <li>Pemasangan Ollama atas permintaan Anda, dari rilis resmi Ollama v0.32.14-rc0 yang dihosting
+    di GitHub.</li>
+    <li>Dasbor pengaturan <code>xset</code> yang digambar di dalam terminal: tema dan warna, font,
+    ukuran teks, bentuk kursor, kedalaman scrollback, padding, sakelar akses penyimpanan, halaman
+    informasi perangkat, serta ekspor dan impor konfigurasi sebagai JSON.</li>
+    <li>Antarmuka dalam Bahasa Indonesia dan Inggris, keduanya selalu ikut terpasang.</li>
+    <li>Layanan latar depan yang menjaga sesi tetap hidup saat Anda pindah aplikasi.</li>
+  </ul>
+
+  <p>Aplikasi hanya untuk perangkat <code>arm64-v8a</code> dengan Android 7.0 (API 24) atau lebih
+  baru. Tidak butuh akun, layanan Google, atau akses root.</p>
+
+  <h2 id="tidak-dikumpulkan">Yang tidak dikumpulkan pengembang</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Pemeriksaan kode menunjukkan aplikasi ini tidak punya saluran untuk mengirim data Anda ke
+  pengembang. Di dalamnya tidak ada:</p>
+
+  <ul>
+    <li>sistem akun atau login, dan tidak ada server milik pengembang tempat data pengguna
+    dikumpulkan;</li>
+    <li>analytics, yaitu perekaman cara Anda memakai aplikasi;</li>
+    <li>iklan atau tracker;</li>
+    <li>pelaporan error otomatis ke server;</li>
+    <li>telemetry, yaitu pengiriman data pemakaian secara berkala di latar belakang.</li>
+  </ul>
+
+  <p>Tidak ditemukan juga kode yang mengirimkan apa yang Anda ketik, apa yang muncul di layar
+  terminal, isi papan klip, file Anda, atau informasi perangkat kepada pengembang.</p>
+
+  <p>Satu-satunya cara pengembang menerima sesuatu dari Anda adalah kalau Anda sendiri yang
+  mengirim email. Itu dibahas di bagian <a href="#kontak">Kontak</a>.</p>
+
+  <h2 id="di-perangkat">Data yang diproses dan disimpan di perangkat</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <h3>Apa yang Anda ketik dan lihat</h3>
+
+  <p>Teks yang Anda ketik dan hasil yang dicetak program mengalir melalui terminal di dalam
+  aplikasi. Riwayat baris yang sudah tergulir ke atas, biasa disebut scrollback, disimpan di memori
+  selama sesi berjalan dan jumlah barisnya dibatasi. Aplikasi tidak menuliskan scrollback itu ke
+  dalam file.</p>
+
+  <p>Tapi ada bagian kedua yang sama pentingnya. Sistem Linux yang Anda pasang punya cara
+  menyimpannya sendiri, dan itu memang permanen. Riwayat perintah, kunci SSH, file kerja, cache
+  paket, dan log program bisa tersimpan di sana persis seperti di komputer biasa. Layar yang bersih
+  setelah sesi ditutup bukan berarti jejaknya ikut hilang.</p>
+
+  <h3>Apa yang tersimpan di ruang aplikasi</h3>
+
+  <p>Hal-hal berikut bisa tersimpan di area penyimpanan milik aplikasi:</p>
+
+  <ul>
+    <li>pengaturan tampilan dan pilihan bahasa dari dasbor <code>xset</code>;</li>
+    <li>catatan sejauh mana pemasangan Linux sudah berjalan, termasuk kalau Anda pernah menolak
+    tawaran mengunduhnya;</li>
+    <li>sistem Linux itu sendiri, biasa disebut rootfs, beserta seluruh isinya;</li>
+    <li>folder home Linux Anda, yang sengaja disimpan terpisah supaya tidak ikut hilang saat Linux
+    dipasang ulang;</li>
+    <li>file konfigurasi yang Anda ekspor lewat menu di <code>xset</code>;</li>
+    <li>unduhan yang belum selesai, supaya bisa dilanjutkan dan bukan diulang dari nol;</li>
+    <li>catatan pemulihan sistem paket;</li>
+    <li>runtime Ollama, model AI yang Anda unduh, dan catatan pemasangannya;</li>
+    <li>file apa pun yang Anda buat sendiri lewat terminal.</li>
+  </ul>
+
+  <h3>Informasi perangkat di halaman About</h3>
+
+  <p>Halaman About di dalam <code>xset</code> menampilkan spesifikasi ponsel Anda: merek, model,
+  versi Android, jenis prosesor, versi kernel, ukuran dan kerapatan layar, jumlah inti prosesor,
+  RAM, sisa penyimpanan, nomor build, tanggal pembaruan keamanan, versi aplikasi, dan nama paket
+  aplikasi.</p>
+
+  <p>Semua itu dibaca saat halaman dibuka dan hanya untuk ditampilkan. Tidak ditemukan kode yang
+  mengirimkannya ke mana pun.</p>
+
+  <h3>Ringkasan jaringan untuk perintah ifconfig</h3>
+
+  <p>Android melarang aplikasi biasa membaca daftar antarmuka jaringan langsung dari sistem, jadi
+  perintah <code>ifconfig</code> di dalam Linux akan mengembalikan hasil kosong. Supaya perintah itu
+  tetap berguna, aplikasi menyusun ringkasan jaringan setiap kali sesi dimulai lalu menaruhnya di
+  dalam Linux.</p>
+
+  <p>Ringkasan itu memuat nama antarmuka, jenis koneksi seperti Wi-Fi atau seluler, status aktif
+  atau tidak, alamat IP lokal, ukuran paket maksimum, dan alamat server DNS. Datanya diperbarui tiap
+  sesi. Tidak ditemukan kode yang mengunggahnya.</p>
+
+  <h3>Catatan diagnostik</h3>
+
+  <p>Selama pemasangan dan perbaikan, aplikasi menulis catatan ke log sistem Android dan ke beberapa
+  file lokal. Isinya berupa lokasi file, jenis prosesor, nama arsip, status pemasangan, informasi
+  jaringan, atau pesan error. Catatan ini membantu menelusuri masalah kalau pemasangan gagal, dan
+  tidak ditemukan kode yang mengunggahnya.</p>
+
+  <h2 id="jaringan">Koneksi jaringan dan unduhan</h2>
+
+  <ul class="tags">
+    <li class="tag t-luar">Melibatkan pihak lain</li>
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Aplikasi ini sendiri hanya mengunduh dua hal, dan keduanya baru berjalan setelah Anda
+  memintanya.</p>
+
+  <h3>Sistem Linux</h3>
+
+  <p>Daftar pilihan distro sudah ikut dikemas di dalam aplikasi, jadi membuka daftarnya tidak
+  memerlukan koneksi. Unduhan baru dimulai setelah Anda memilih satu distro dan menekan tombol
+  setuju. Kalau Anda menolak, tawaran itu tidak muncul lagi setiap kali membuka aplikasi, dan
+  terminal tetap bisa dipakai tanpa Linux.</p>
+
+  <p>Pada versi 1.0.1, file distro diambil dari dua tempat. Debian dari
+  <code>images.linuxcontainers.org</code>, dan tiga varian Kali Linux dari
+  <code>kali.download</code>. Alamat lengkap tiap image bisa Anda baca sendiri di berkas
+  <code>rootfsURLS.json</code> di dalam repository aplikasinya.</p>
+
+  <h3>Runtime Ollama</h3>
+
+  <p>Ollama adalah perangkat lunak untuk menjalankan model AI secara lokal. Runtime-nya tidak ikut
+  dikemas dalam aplikasi karena ukurannya besar, sekitar 1,5 GB. File itu baru diunduh setelah Anda
+  mengetik perintah <code>ollama</code> di terminal dan menjawab pertanyaan konfirmasi. Sumbernya
+  adalah rilis resmi Ollama v0.32.14-rc0 yang dihosting di GitHub. Kalau Anda tidak pernah
+  menjalankan perintah itu, tidak ada yang diunduh.</p>
+
+  <h3>Apa yang diketahui server unduhan</h3>
+
+  <p>Kedua unduhan memakai koneksi terenkripsi HTTPS. Kalau server mencoba mengalihkan ke koneksi
+  biasa yang tidak terenkripsi, aplikasi menolak, bukan mengikuti. File yang selesai diunduh
+  dicocokkan sidik jarinya dengan nilai yang sudah ditetapkan, dan file yang tidak cocok atau belum
+  lengkap tidak diteruskan ke tahap pemasangan.</p>
+
+  <p>Perlu jujur soal batasnya. Pemeriksaan itu memastikan file yang Anda terima tidak diubah di
+  jalan, tetapi tidak menyembunyikan permintaannya. Server unduhan dan jaringan yang dilewati tetap
+  dapat mengetahui alamat IP Anda, waktu permintaan, file yang diminta, jenis aplikasi yang meminta,
+  dan posisi lanjutan kalau unduhan sempat terputus. Data itu ditangani menurut kebijakan pemilik
+  server masing-masing, bukan kebijakan ini. Untuk Debian, pemilik server itu berubah di versi
+  1.0.1, seperti dijelaskan di bagian <a href="#perubahan-101">Yang berubah di versi 1.0.1</a>.</p>
+
+  <p>Pemeriksaan sidik jari juga tidak berkata apa-apa soal isi perangkat lunaknya. Ia hanya
+  memastikan Anda menerima file yang sama dengan yang dimaksud. Apa yang dilakukan perangkat lunak
+  itu setelah berjalan adalah urusan perangkat lunak tersebut.</p>
+
+  <h2 id="pihak-ketiga">Linux, Ollama, DNS, dan layanan pihak ketiga</h2>
+
+  <ul class="tags">
+    <li class="tag t-luar">Melibatkan pihak lain</li>
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <h3>Program yang Anda jalankan</h3>
+
+  <p>Bagian ini yang paling sering disalahpahami pada aplikasi terminal, jadi mari dinyatakan
+  terang-terangan.</p>
+
+  <p>Setelah Linux terpasang, Anda bisa menjalankan apa saja di dalamnya: <code>apt</code> untuk
+  memasang paket, <code>curl</code> untuk mengambil data dari internet, <code>ssh</code> untuk masuk
+  ke server lain, perkakas Kali, Ollama beserta model yang Anda unduh, atau perangkat lunak lain
+  yang Anda pasang sendiri. Program-program itu bisa membuka koneksinya sendiri dan mengirim data,
+  file, atau kredensial ke tujuan yang Anda tentukan atau yang sudah ditentukan program tersebut.</p>
+
+  <p>Lalu lintas seperti itu tidak lewat pengembang dracxterm dan tidak diatur oleh kebijakan ini.
+  Anggap saja seperti terminal di komputer Anda: apa yang Anda jalankan, itulah yang menentukan ke
+  mana data Anda pergi.</p>
+
+  <h3>Penerjemah alamat internet</h3>
+
+  <p>Setiap kali sebuah program menghubungi alamat seperti <code>example.com</code>, alamat itu
+  harus diterjemahkan dulu menjadi nomor IP. Layanan yang melakukannya disebut DNS.</p>
+
+  <p>Linux yang berjalan di dalam dracxterm tidak punya pengatur DNS sendiri, jadi tanpa
+  pengaturan awal semua koneksi akan gagal. Karena itu, saat Linux pertama kali disiapkan, aplikasi
+  mengisinya dengan Google Public DNS dan Cloudflare DNS. Pilihan ini tidak berubah di versi
+  1.0.1.</p>
+
+  <p>Konsekuensinya perlu Anda ketahui: setiap kali program di dalam Linux menerjemahkan sebuah
+  alamat, penyedia DNS tersebut dapat mengetahui alamat yang diminta, waktunya, dan dari IP mana
+  permintaan itu datang, sesuai kebijakan mereka masing-masing. Anda bisa menggantinya kapan saja
+  dengan menyunting file <code>/etc/resolv.conf</code> di dalam Linux Anda.</p>
+
+  <h3>Model AI dan Ollama</h3>
+
+  <p>Ketika Anda mengunduh model lewat Ollama, permintaan itu berjalan ke layanan Ollama, bukan ke
+  pengembang dracxterm. Server Ollama berjalan secara lokal di ponsel Anda dan hanya mendengarkan
+  dari dalam perangkat, jadi percakapan Anda dengan model tidak dikirim ke luar oleh aplikasi ini.
+  Model, log, dan datanya tersimpan di folder home Linux Anda.</p>
+
+  <h2 id="izin">Izin Android yang diminta</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Daftar izin di versi 1.0.1 sama persis dengan versi 1.0.0. Tidak ada yang ditambah dan tidak
+  ada yang dicabut.</p>
+
+  <div class="scroll-x">
+    <table>
+      <caption>Izin yang dideklarasikan aplikasi dan alasannya</caption>
+      <thead>
+        <tr><th scope="col">Izin</th><th scope="col">Untuk apa</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code></th>
+          <td>Mengunduh sistem Linux dan runtime Ollama saat Anda memintanya, dan menyusun ringkasan
+          jaringan untuk <code>ifconfig</code>. Diberikan otomatis saat pemasangan, tanpa dialog.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>MANAGE_EXTERNAL_STORAGE</code></th>
+          <td>Membuka file di penyimpanan bersama dari dalam terminal. Sepenuhnya pilihan Anda,
+          diberikan lewat Setelan Android, dan tidak pernah diminta saat aplikasi dibuka.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>READ_EXTERNAL_STORAGE</code>, <code>WRITE_EXTERNAL_STORAGE</code></th>
+          <td>Jalur lama untuk Android 12L ke bawah. Diabaikan sistem pada Android yang lebih
+          baru.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_SPECIAL_USE</code></th>
+          <td>Menjaga shell Anda tetap hidup ketika Anda pindah ke aplikasi lain.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>POST_NOTIFICATIONS</code></th>
+          <td>Menampilkan notifikasi layanan latar depan. Tidak pernah diminta saat aplikasi dibuka;
+          sesi Anda tetap hidup meski izin ini tidak diberikan.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Tidak ada izin untuk lokasi, kamera, mikrofon, kontak, maupun daftar aplikasi terpasang.</p>
+
+  <h2 id="penyimpanan">Akses ke penyimpanan ponsel</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Secara bawaan, dracxterm hanya menyentuh area penyimpanannya sendiri. Terminal berjalan penuh
+  tanpa izin tambahan apa pun.</p>
+
+  <p>Kalau Anda ingin membuka file di Download atau DCIM dari dalam terminal, Anda bisa
+  mengaktifkan akses penyimpanan dari dasbor <code>xset</code>. Pada Android modern, izin itu
+  bernama "Akses semua file". Izin ini sepenuhnya pilihan Anda dan diberikan lewat layar pengaturan
+  Android, bukan lewat dialog di dalam aplikasi.</p>
+
+  <p>Kalau Anda memberikannya, shell dan semua program Linux yang berjalan di dalamnya dapat
+  membaca, membuat, mengubah, dan menghapus file di penyimpanan bersama serta kartu memori, sebatas
+  yang Android izinkan. Ini bukan efek samping, melainkan memang tujuan izin tersebut. Pertimbangkan
+  dengan sadar sebelum memberikannya.</p>
+
+  <div class="callout">
+    <p>Soal tombol Storage di <code>xset</code>, ada satu hal yang perlu jelas.</p>
+    <p>Mematikan tombol itu menghapus pintasan <code>~/sdcard</code> dari sesi yang sedang berjalan,
+    sehingga nama itu tidak bisa dipakai lagi. Yang tidak dilakukannya adalah mencabut izin Android.
+    Jalur penyimpanan yang mendasarinya dipasang saat sesi dibuat dan baru lepas ketika sesi
+    berakhir, jadi selama sesi masih hidup, lokasi <code>/mnt/sdcard</code> tetap bisa dijangkau.
+    Izin di tingkat sistem juga tetap menempel pada aplikasi.</p>
+    <p>Untuk memastikan aksesnya benar-benar berhenti, cabut izinnya lewat Setelan Android, lalu
+    tutup dan buka ulang aplikasinya.</p>
+  </div>
+
+  <h2 id="clipboard">Papan klip</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Papan klip Android dibaca ketika Anda menekan tombol Paste, dan ditulis ketika Anda menyalin
+  teks yang Anda sorot. Keduanya berjalan karena Anda yang memintanya.</p>
+
+  <p>Ada satu jalur lagi yang sebaiknya Anda tahu. Program di dalam terminal dapat menulis teks ke
+  papan klip Android lewat perintah khusus bernama OSC 52, dan itu terjadi tanpa dialog tambahan.
+  Kemampuan ini standar di emulator terminal dan berguna, misalnya saat Anda menyalin teks dari
+  editor di server yang sedang Anda akses. Sisi lainnya, isi papan klip Anda bisa diganti oleh
+  program yang Anda jalankan. Untuk arah sebaliknya, permintaan program untuk membaca papan klip
+  lewat jalur ini tidak dilayani.</p>
+
+  <h2 id="background">Sesi yang berjalan di latar belakang</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Kalau Anda berpindah ke aplikasi lain, Android biasanya menutup proses yang sedang berjalan.
+  Untuk terminal, itu berarti perintah yang sedang jalan akan mati di tengah jalan. dracxterm
+  mencegahnya dengan menandai dirinya sebagai layanan latar depan, dan Android mewajibkan layanan
+  semacam ini menampilkan notifikasi selama aktif.</p>
+
+  <p>Notifikasi itulah alasan Anda melihatnya, bukan karena ada yang sedang diamati. Layanan ini
+  tidak mengumpulkan apa pun dan bukan fitur pelacakan. Tugasnya hanya menjaga sesi Anda tetap
+  hidup.</p>
+
+  <h2 id="backup">Backup bawaan Android</h2>
+
+  <ul class="tags">
+    <li class="tag t-luar">Melibatkan pihak lain</li>
+  </ul>
+
+  <p>Versi 1.0.1 masih mengizinkan backup bawaan Android dan belum menetapkan daftar pengecualian,
+  sama seperti versi sebelumnya. Artinya, data aplikasi yang memenuhi syarat dapat ikut terbawa saat
+  Android melakukan backup, pemulihan, atau pemindahan ke ponsel baru. Seberapa jauh cakupannya
+  ditentukan oleh versi Android, layanan backup yang Anda pakai, dan pengaturan Anda sendiri.</p>
+
+  <p>Kalau di dalam Linux Anda menyimpan kunci SSH, kata sandi, atau file sensitif lain, ini layak
+  Anda perhitungkan.</p>
+
+  <h2 id="hapus">Berapa lama data disimpan dan cara menghapusnya</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Tidak ada jadwal penghapusan otomatis. Data yang disebut di halaman ini bertahan di ponsel Anda
+  selama aplikasinya terpasang, dan Anda yang menentukan kapan hilang.</p>
+
+  <p>Menghapus penyimpanan aplikasi lewat Setelan Android, atau menghapus aplikasinya, akan
+  membuang sistem Linux, folder home Linux, pengaturan, model Ollama, dan catatan lokal.</p>
+
+  <p>Dua hal tidak ikut terhapus dan perlu Anda urus sendiri: file yang sudah Anda simpan ke
+  penyimpanan bersama ponsel, dan isi papan klip Android.</p>
+
+  <h2 id="keamanan">Keamanan</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Data aplikasi dilindungi oleh dua lapis bawaan Android: pemisahan antar-aplikasi, yang membuat
+  aplikasi lain tidak bisa membaca area penyimpanan dracxterm, dan enkripsi penyimpanan perangkat.
+  Aplikasi ini tidak menambahkan lapisan enkripsi sendiri di atasnya, dan tidak ada kata sandi
+  terpisah untuk membuka sistem Linux Anda.</p>
+
+  <p>Perlindungan itu berhenti di batas area privat aplikasi. File yang Anda tulis ke penyimpanan
+  bersama berada di luar batas tersebut: aplikasi lain bisa membacanya sesuai izin yang mereka
+  punya, dan file itu tetap ada setelah dracxterm dihapus.</p>
+
+  <p>Untuk berkas yang diunduh aplikasi, versi 1.0.1 memperkuat satu hal. Sidik jari image Debian
+  yang dipin di dalam APK sekarang bisa dicocokkan ulang dengan <code>SHA256SUMS</code> milik
+  sumbernya, jadi rantai kepercayaannya sepanjang tiga image Kali. Sebelumnya rantai itu berhenti di
+  mirror pihak ketiga.</p>
+
+  <h2 id="perubahan">Perubahan pada kebijakan ini</h2>
+
+  <p>Halaman ini menggambarkan dracxterm versi 1.0.1. Kalau ada perubahan yang memengaruhi data
+  Anda, halaman ini diperiksa ulang terhadap kode versi barunya dan diperbarui. Tanggal di bagian
+  atas menunjukkan kapan pembaruan terakhir dilakukan.</p>
+
+  <p>Halaman untuk versi lama tetap disimpan di Privacy Center dan tidak dihapus, supaya Anda bisa
+  membandingkan sendiri apa yang berubah.</p>
+
+  <h2 id="kontak">Kontak</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Kalau ada yang ingin Anda tanyakan soal halaman ini, kirim email ke
+  <a href="mailto:lexyong66@gmail.com">lexyong66@gmail.com</a>. Tombol kontak di dalam
+  <code>xset</code> membuka aplikasi email Anda dengan alamat itu sudah terisi, dan menyalin
+  alamatnya ke papan klip kalau tidak ada aplikasi email yang terpasang.</p>
+
+  <p>Aplikasi tidak melampirkan informasi perangkat, catatan, atau isi terminal secara otomatis.
+  Pengembang dracxterm hanya menerima apa yang Anda tulis dan lampirkan sendiri di email itu.</p>
+
+  <h2 id="situs">Halaman web ini</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Privacy Center dan halaman yang sedang Anda baca seluruhnya statis. Tidak ada analytics,
+  cookie, atau penyimpanan di peramban Anda, dan tidak ada permintaan ke layanan luar. Yang dimuat
+  hanya daftar kebijakan dan file halaman ini, keduanya dari alamat yang sama.</p>
+
+  <p class="sign-off">Kebijakan ini disusun dari pemeriksaan kode sumber dracxterm 1.0.1, termasuk
+  perbandingan berkas demi berkas dengan tag 1.0.0 di repository. Kalau Anda menemukan bagian yang
+  tidak cocok dengan perilaku aplikasi, beri tahu lewat alamat email di atas.</p>
+
+</article>
+</main>
+
+</body>
+</html>

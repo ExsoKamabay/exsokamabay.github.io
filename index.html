@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Privacy center dracXterm. Daftar dan pembaca dokumen Privacy Policy untuk project dracxterm.">
+<meta name="description" content="Privacy center Exso Kamabay. Daftar repository publik dari GitHub, serta pembaca dokumen Privacy Policy per project dan per versi.">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230A0A0C'/%3E%3Cpath d='M3 5l2.5 3L3 11M7.5 11h5.5' stroke='%238A5CF6' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <title>Privacy Center dracXterm</title>
@@ -39,6 +39,10 @@
   }
 
   * { box-sizing: border-box; }
+
+  /* display:none bawaan atribut hidden kalah oleh display:flex di bawah,
+     jadi aturannya dipaksa di sini sekali untuk seluruh halaman. */
+  [hidden] { display: none !important; }
 
   html { -webkit-text-size-adjust: 100%; }
 
@@ -158,10 +162,12 @@
     gap: var(--space-2);
   }
 
-  ul.policy-list a {
+  /* --- Baris project: tombol yang mengungkap daftar versinya --- */
+  .project-btn {
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    width: 100%;
     min-height: var(--tap);
     padding: var(--space-2) var(--space-3);
     border: 1px solid var(--divider);
@@ -169,11 +175,73 @@
     border-radius: var(--radius);
     background: var(--elevated);
     color: var(--text);
-    text-decoration: none;
+    font: inherit;
     font-weight: 500;
+    text-align: left;
+    cursor: pointer;
   }
 
-  ul.policy-list a::before {
+  /* Arah segitiga membawa status buka/tutup tanpa bergantung pada warna. */
+  .project-btn::before {
+    content: "\25B8";
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1;
+    width: 1ch;
+    flex: none;
+    text-align: center;
+  }
+  .project-btn[aria-expanded="true"]::before {
+    content: "\25BE";
+    color: var(--accent-text);
+  }
+
+  .project-btn:hover { border-color: var(--accent); color: #FFFFFF; }
+
+  .project-name { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+
+  .project-count {
+    flex: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* Project yang dokumennya sedang dibaca tetap terbaca walau daftar versinya
+     ditutup lagi. */
+  .project-btn.is-reading {
+    border-left-color: var(--accent);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+
+  ul.version-list {
+    list-style: none;
+    margin: var(--space-2) 0 var(--space-2) var(--space-4);
+    padding: 0 0 0 var(--space-3);
+    border-left: 1px solid var(--divider);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  ul.version-list a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--tap);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid transparent;
+    border-left: 3px solid transparent;
+    border-radius: var(--radius);
+    color: var(--text-2);
+    text-decoration: none;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.92rem;
+  }
+
+  ul.version-list a::before {
     content: "\2022";
     color: var(--muted);
     font-size: 1rem;
@@ -183,17 +251,18 @@
     text-align: center;
   }
 
-  ul.policy-list a:hover { border-color: var(--accent); color: #FFFFFF; }
+  ul.version-list a:hover { border-color: var(--accent); color: #FFFFFF; }
 
-  /* Item aktif ditandai tiga cara sekaligus: glyph penunjuk, huruf tebal, dan
+  /* Versi aktif ditandai tiga cara sekaligus: glyph penunjuk, huruf tebal, dan
      garis kiri. Warna bukan satu-satunya pembeda. */
-  ul.policy-list a[aria-current="true"] {
+  ul.version-list a[aria-current="true"] {
     border-left-color: var(--accent);
     border-color: var(--accent);
     background: #241D3B;
+    color: var(--text);
     font-weight: 700;
   }
-  ul.policy-list a[aria-current="true"]::before {
+  ul.version-list a[aria-current="true"]::before {
     content: "\25B8";
     color: var(--accent-text);
   }
@@ -211,6 +280,21 @@
      di bawah ambang tunda tidak pernah menyentuh opacity, jadi tidak ada kedipan.
      Blok prefers-reduced-motion di bawah mematikan transisinya. */
   .reader.is-pending { opacity: 0.75; }
+
+  /* Animasi masuk. Fill mode "backwards" dipilih supaya keadaan awal berlaku
+     sejak frame pertama tetapi tidak menetap sesudahnya: elemen tidak pernah
+     bisa tertinggal transparan kalau animasinya batal berjalan. */
+  @keyframes enter-rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes enter-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .enter { animation: enter-rise 200ms ease-out backwards; }
+  .enter-soft { animation: enter-fade 160ms ease-out backwards; }
 
   .msg {
     margin: 0;
@@ -358,6 +442,157 @@
 
   .reader .doc-nav { display: none; }
 
+  /* --- Beranda: daftar repository yang diambil langsung dari GitHub ---
+     Ditaruh setelah gaya artikel policy supaya override .reader ul / .reader li
+     di bawah ini menang tanpa perlu menaikkan spesifisitas. */
+  .nav-home {
+    display: block;
+    width: 100%;
+    min-height: var(--tap);
+    margin-bottom: var(--space-4);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--divider);
+    border-left: 3px solid transparent;
+    border-radius: var(--radius);
+    background: var(--elevated);
+    color: var(--text);
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+  }
+  .nav-home:hover { border-color: var(--accent); color: #FFFFFF; }
+  .nav-home[aria-current="true"] {
+    border-color: var(--accent);
+    border-left-color: var(--accent);
+    background: #241D3B;
+    font-weight: 700;
+  }
+
+  .reader .home { max-width: 70ch; }
+
+  .repo-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--divider);
+  }
+  .reader .repo-count { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+  .repo-refresh {
+    min-height: var(--tap);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    background: var(--elevated);
+    color: var(--text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .repo-refresh:hover { border-color: var(--accent); color: #FFFFFF; }
+  .repo-refresh[disabled] { opacity: 0.6; cursor: default; }
+  .repo-refresh { transition: opacity 160ms ease, border-color 120ms ease, color 120ms ease; }
+
+  /* Penanda penyegaran ditumpangkan di atas garis batas yang memang sudah ada,
+     jadi ia tidak menambah tinggi dan tidak ada isi yang bergeser saat muncul. */
+  .repo-bar { position: relative; }
+  .repo-bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    opacity: 0;
+    transition: opacity 160ms ease;
+  }
+  .home.is-refreshing .repo-bar::after {
+    opacity: 1;
+    animation: repo-sweep 1000ms ease-in-out infinite;
+  }
+  @keyframes repo-sweep {
+    0%       { transform: scaleX(0); transform-origin: left center; }
+    49.9%    { transform: scaleX(1); transform-origin: left center; }
+    50%      { transform: scaleX(1); transform-origin: right center; }
+    100%     { transform: scaleX(0); transform-origin: right center; }
+  }
+
+  ul.repo-list { transition: opacity 160ms ease; }
+  .home.is-refreshing ul.repo-list { opacity: 0.65; }
+
+  .repo-state { margin-bottom: var(--space-4); }
+  .repo-state:empty { display: none; margin-bottom: 0; }
+
+  ul.repo-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  li.repo {
+    margin: 0;
+    padding: var(--space-4);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--divider);
+    border-radius: var(--radius);
+    background: var(--elevated);
+  }
+  li.repo:hover { border-left-color: var(--accent); }
+
+  .repo-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+
+  .repo-name {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+
+  /* Penanda jenis repo. Artinya dibawa oleh teksnya, bukan warnanya. */
+  .repo-badge {
+    padding: 1px 8px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .reader .repo-desc { margin: 0 0 var(--space-3); color: var(--text-2); }
+  .reader .repo-desc.is-empty { color: var(--muted); font-style: italic; }
+
+  ul.repo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .reader ul.repo-meta li {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
   @media (max-width: 520px) {
     .layout { padding: var(--space-4); gap: var(--space-4); }
     .reader, nav.index { padding: var(--space-4); }
@@ -387,7 +622,8 @@
 
 <div class="layout">
 
-  <nav class="index" aria-labelledby="index-title">
+  <nav class="index" aria-label="Navigasi dokumen">
+    <button type="button" class="nav-home" id="nav-home" aria-current="true">Beranda</button>
     <h2 class="index-title" id="index-title">Privacy Policy</h2>
     <div id="index-state" role="status" aria-live="polite">
       <p class="msg is-busy"><strong>Memuat daftar</strong>Mengambil config.json.</p>
@@ -395,7 +631,7 @@
     <ul class="policy-list" id="policy-list" hidden></ul>
   </nav>
 
-  <main class="reader" id="reader" tabindex="-1" aria-busy="false" aria-label="Pembaca dokumen">
+  <main class="reader" id="reader" tabindex="-1" aria-busy="false" aria-label="Panel utama">
     <div id="reader-state" role="status" aria-live="polite"></div>
     <div id="reader-content"></div>
   </main>
@@ -406,7 +642,25 @@
 (function () {
   "use strict";
 
-  var PATH_RE = /^Privacy-Policy\/[A-Za-z0-9._-]+\.html$/;
+  // Berkas dokumen selalu di dalam Privacy-Policy/, boleh langsung di sana atau
+  // satu tingkat di dalam folder project. Tidak ada bentuk lain yang diterima.
+  var FILE_RE = /^Privacy-Policy\/(?:[A-Za-z0-9._-]+\/)?[A-Za-z0-9._-]+\.html$/;
+  var DIR_RE = /^Privacy-Policy\/[A-Za-z0-9._-]+$/;
+  var LABEL_RE = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+
+  // Beranda menarik daftar repository publik langsung dari GitHub, jadi repo
+  // baru ikut muncul tanpa halaman ini perlu diubah. Endpoint-nya publik dan
+  // mengirim Access-Control-Allow-Origin: *, jadi tidak butuh proxy atau token.
+  var GH_USER = "ExsoKamabay";
+  var GH_API = "https://api.github.com/users/" + GH_USER + "/repos";
+  var GH_PROFILE = "https://github.com/" + GH_USER;
+  var REPO_URL_RE = /^https:\/\/github\.com\/[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
+  var REPO_PAGE_SIZE = 100;
+  var REPO_MAX_PAGES = 3;
+  // Tanpa token GitHub hanya memberi 60 permintaan per jam per alamat IP.
+  // Cache singkat menahan muat-ulang beruntun tanpa membuat daftarnya basi.
+  var REPO_CACHE_KEY = "privacy-center:repos:" + GH_USER;
+  var REPO_TTL = 10 * 60 * 1000;
 
   var listEl = document.getElementById("policy-list");
   var indexState = document.getElementById("index-state");
@@ -414,12 +668,24 @@
   var readerContent = document.getElementById("reader-content");
   var readerEl = document.getElementById("reader");
 
+  var projects = [];          // project yang sudah dirender, untuk penanda "sedang dibaca"
   var activeLink = null;
   var docController = null;   // AbortController untuk dokumen yang sedang berjalan
   var docToken = 0;           // penanda urutan, supaya respons lama tidak menimpa pilihan terbaru
   var pendingTimer = null;    // penunda indikator muat
   var PENDING_DELAY = 180;    // ms; di bawah ambang ini indikator tidak pernah tampil
   var isFileProtocol = location.protocol === "file:";
+
+  var homeBtn = document.getElementById("nav-home");
+  var homeVisible = false;    // beranda sedang tampil di panel pembaca
+  var repoListEl = null;      // <ul> repo, dibuat ulang tiap beranda dirender
+  var repoStateEl = null;     // slot pesan di dalam beranda
+  var repoCountEl = null;
+  var repoRefreshBtn = null;
+  var repoController = null;
+  var repoToken = 0;
+  var repoPendingTimer = null;   // penunda indikator segar, sama pola dengan pembaca
+  var repoListSignature = "";    // isi daftar yang sedang tampil, untuk memutuskan perlu dirender ulang atau tidak
 
   // ---------------------------------------------------------------- utilitas
 
@@ -432,6 +698,23 @@
     if (className) n.className = className;
     if (text != null) n.textContent = text;
     return n;
+  }
+
+  function prefersReducedMotion() {
+    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+
+  /**
+   * Menandai satu elemen supaya dimunculkan dengan animasi masuk. Kelasnya
+   * dipasang sebelum elemen menyentuh dokumen, jadi keadaan awalnya sudah
+   * berlaku pada frame pertama dan tidak ada satu frame pun yang menampilkannya
+   * penuh lalu menariknya kembali.
+   */
+  function animateIn(node, soft, delayMs) {
+    if (!node || prefersReducedMotion()) return node;
+    node.classList.add(soft ? "enter-soft" : "enter");
+    if (delayMs) node.style.animationDelay = delayMs + "ms";
+    return node;
   }
 
   /**
@@ -448,6 +731,7 @@
       box.appendChild(document.createElement("br"));
       box.appendChild(el("code", null, opts.code));
     }
+    animateIn(box, true);
     target.appendChild(box);
 
     if (opts.onRetry) {
@@ -469,6 +753,63 @@
 
   // ------------------------------------------------------- validasi entri config
 
+  // Dipakai untuk semua path config: relatif, tanpa traversal, tanpa protokol.
+  function pathIsSafe(p) {
+    if (typeof p !== "string" || p === "") return false;
+    if (p.indexOf("\\") !== -1) return false;   // backslash
+    if (p.charAt(0) === "/") return false;      // leading slash
+    if (p.indexOf("..") !== -1) return false;   // traversal
+    if (p.indexOf(":") !== -1) return false;    // protocol atau URL lintas-origin
+    return true;
+  }
+
+  function lastSegment(path) {
+    var i = path.lastIndexOf("/");
+    return i === -1 ? path : path.slice(i + 1);
+  }
+
+  /**
+   * Satu versi. Bentuk yang diterima:
+   *
+   *   "v1.0.0"                                 -> path diturunkan dari folder project
+   *   { "version": "v1.0.0", "path": "..." }   -> path ditulis sendiri
+   *
+   * Bentuk pertama menurunkan path jadi <folder>/<nama folder>-<versi>.html,
+   * yaitu pola penamaan berkas yang dipakai di repo ini.
+   */
+  function validateVersion(item, dir) {
+    var label, path;
+
+    if (typeof item === "string") {
+      label = item.trim();
+      path = dir + "/" + lastSegment(dir) + "-" + label + ".html";
+    } else if (item && typeof item === "object" && !Array.isArray(item)) {
+      label = typeof item.version === "string" ? item.version.trim() : "";
+      path = typeof item.path === "string"
+        ? item.path
+        : dir + "/" + lastSegment(dir) + "-" + label + ".html";
+    } else {
+      return null;
+    }
+
+    if (!LABEL_RE.test(label)) return null;
+    if (!pathIsSafe(path)) return null;
+    if (!FILE_RE.test(path)) return null;        // hanya .html di dalam Privacy-Policy/
+
+    return { label: label, path: path, link: null };
+  }
+
+  /**
+   * Satu project. Bentuk resminya:
+   *
+   *   { "project name": "dracxterm",
+   *     "path": "Privacy-Policy/dracxterm",
+   *     "default version": "v1.0.0",
+   *     "versions": ["v1.0.0"] }
+   *
+   * Entri lama yang "path"-nya langsung menunjuk satu berkas .html tetap
+   * diterima, dan dibaca sebagai project dengan satu versi.
+   */
   function validateEntry(entry) {
     if (!entry || typeof entry !== "object" || Array.isArray(entry)) return null;
 
@@ -476,15 +817,35 @@
     var path = entry.path;
 
     if (typeof name !== "string" || name.trim() === "") return null;
-    if (typeof path !== "string") return null;
+    if (!pathIsSafe(path)) return null;
 
-    if (path.indexOf("\\") !== -1) return null;      // backslash
-    if (path.charAt(0) === "/") return null;         // leading slash
-    if (path.indexOf("..") !== -1) return null;      // traversal
-    if (path.indexOf(":") !== -1) return null;       // protocol atau URL lintas-origin
-    if (!PATH_RE.test(path)) return null;            // hanya .html di dalam Privacy-Policy/
+    var versions = [];
 
-    return { name: name.trim(), path: path };
+    if (Array.isArray(entry.versions) && entry.versions.length > 0) {
+      if (!DIR_RE.test(path)) return null;       // daftar versi butuh path folder project
+      for (var i = 0; i < entry.versions.length; i++) {
+        var v = validateVersion(entry.versions[i], path);
+        if (!v) return null;                     // satu versi cacat membatalkan entrinya
+        versions.push(v);
+      }
+    } else if (FILE_RE.test(path)) {
+      // Project tanpa daftar versi: berkasnya sendiri jadi satu-satunya versi.
+      var only = typeof entry["default version"] === "string" ? entry["default version"].trim() : "v1.0.0";
+      if (!LABEL_RE.test(only)) return null;
+      versions.push({ label: only, path: path, link: null });
+    } else {
+      return null;
+    }
+
+    // Versi bawaan: yang disebut "default version" kalau memang ada di daftar,
+    // kalau tidak, versi pertama. Config repo ini menaruh v1.0.0 di urutan awal.
+    var wanted = typeof entry["default version"] === "string" ? entry["default version"].trim() : "";
+    var defaultIndex = 0;
+    for (var j = 0; j < versions.length; j++) {
+      if (versions[j].label === wanted) { defaultIndex = j; break; }
+    }
+
+    return { name: name.trim(), versions: versions, defaultIndex: defaultIndex, btn: null };
   }
 
   // ---------------------------------------------------------- sanitasi dokumen
@@ -543,7 +904,7 @@
     readerEl.classList.remove("is-pending");
   }
 
-  function startPending(entry) {
+  function startPending(project, version) {
     stopPending();
     pendingTimer = window.setTimeout(function () {
       pendingTimer = null;
@@ -551,18 +912,40 @@
       showMessage(readerState, {
         kind: "busy",
         title: "Memuat dokumen",
-        body: entry.name + " (" + entry.path + ")"
+        body: project.name + " " + version.label + " (" + version.path + ")"
       });
     }, PENDING_DELAY);
+  }
+
+  // Apakah salah satu versi project ini yang sedang tampil di pembaca.
+  function isReading(project) {
+    if (!activeLink) return false;
+    for (var i = 0; i < project.versions.length; i++) {
+      if (project.versions[i].link === activeLink) return true;
+    }
+    return false;
   }
 
   function markActive(link) {
     if (activeLink) activeLink.removeAttribute("aria-current");
     activeLink = link || null;
     if (activeLink) activeLink.setAttribute("aria-current", "true");
+
+    // Beranda dan sebuah versi tidak pernah aktif bersamaan.
+    if (activeLink) {
+      homeVisible = false;
+      homeBtn.removeAttribute("aria-current");
+    }
+
+    // Project yang sedang dibaca tetap ditandai walau daftar versinya ditutup.
+    projects.forEach(function (p) {
+      if (!p.btn) return;
+      if (isReading(p)) p.btn.classList.add("is-reading");
+      else p.btn.classList.remove("is-reading");
+    });
   }
 
-  function loadPolicy(entry, link) {
+  function loadPolicy(project, version) {
     // Klik beruntun: batalkan permintaan sebelumnya dan naikkan token, supaya
     // respons yang datang terlambat tidak menimpa pilihan terbaru.
     if (docController) docController.abort();
@@ -573,11 +956,20 @@
     // Isi lama dibiarkan tampil sampai penggantinya siap. Mengosongkannya lebih
     // dulu membuat panel mengerut dan tinggi halaman melompat sebelum isi baru
     // masuk -- itulah yang terlihat sebagai kedipan.
-    markActive(link);
-    setBusy(true);
-    startPending(entry);
+    // Beranda dibongkar bersama isi pembaca yang lama, jadi permintaan repo yang
+    // masih berjalan dibatalkan dan acuannya dilepas supaya tidak menulis ke
+    // elemen yang sudah tidak ada di dokumen.
+    if (repoController) repoController.abort();
+    repoToken++;
+    stopRepoPending();          // dipanggil selagi acuannya masih ada
+    repoListSignature = "";
+    repoListEl = repoStateEl = repoCountEl = repoRefreshBtn = null;
 
-    fetch(entry.path, { signal: controller.signal, credentials: "omit" })
+    markActive(version.link);
+    setBusy(true);
+    startPending(project, version);
+
+    fetch(version.path, { signal: controller.signal, credentials: "omit" })
       .then(function (res) {
         if (!res.ok) throw new Error("HTTP " + res.status + " " + res.statusText);
         return res.text();
@@ -595,9 +987,9 @@
           showMessage(readerState, {
             kind: "error",
             title: "Dokumen tidak punya bagian yang bisa ditampilkan.",
-            body: entry.path + " berhasil diambil, tetapi di dalamnya tidak ada elemen " +
-                  "[data-policy-content]. Buka berkas itu langsung lewat tautan di daftar untuk membacanya.",
-            onRetry: function () { loadPolicy(entry, link); }
+            body: version.path + " berhasil diambil, tetapi di dalamnya tidak ada elemen " +
+                  "[data-policy-content]. Buka berkas itu langsung lewat tautan versinya untuk membacanya.",
+            onRetry: function () { loadPolicy(project, version); }
           });
           return;
         }
@@ -606,6 +998,7 @@
         stopPending();
         clear(readerState);
         clear(readerContent);
+        animateIn(safe);
         readerContent.appendChild(safe);
         setBusy(false);
 
@@ -634,40 +1027,457 @@
         showMessage(readerState, {
           kind: "error",
           title: "Dokumen gagal dimuat.",
-          body: networkHint(err) + " Berkas yang diminta: " + entry.path + ".",
+          body: networkHint(err) + " Berkas yang diminta: " + version.path + ".",
           code: isFileProtocol ? "python3 -m http.server 8000" : null,
-          onRetry: function () { loadPolicy(entry, link); }
+          onRetry: function () { loadPolicy(project, version); }
         });
       });
   }
 
+  // ------------------------------------------- beranda: daftar repository GitHub
+
+  function formatDate(iso) {
+    var d = new Date(iso);
+    if (!iso || isNaN(d.getTime())) return "";
+    try {
+      return d.toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" });
+    } catch (e) {
+      return String(iso).slice(0, 10);
+    }
+  }
+
+  function formatDateTime(t) {
+    var d = new Date(t);
+    if (isNaN(d.getTime())) return "waktu tidak diketahui";
+    try {
+      return d.toLocaleString("id-ID", {
+        day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
+      });
+    } catch (e) {
+      return d.toISOString().slice(0, 16).replace("T", " ");
+    }
+  }
+
+  // Balasan GitHub diperkecil jadi bentuk milik halaman ini. Hanya html_url yang
+  // pernah dipakai sebagai URL, jadi hanya itu yang perlu lolos pola ketat;
+  // sisanya selalu masuk lewat textContent.
+  function normalizeRepo(r) {
+    if (!r || typeof r !== "object" || Array.isArray(r)) return null;
+    if (typeof r.name !== "string" || r.name.trim() === "") return null;
+
+    var url = typeof r.html_url === "string" && REPO_URL_RE.test(r.html_url) ? r.html_url : null;
+    var desc = typeof r.description === "string" ? r.description.trim() : "";
+
+    return {
+      name: r.name.trim(),
+      url: url,
+      desc: desc,
+      language: typeof r.language === "string" ? r.language : "",
+      stars: typeof r.stargazers_count === "number" ? r.stargazers_count : 0,
+      forks: typeof r.forks_count === "number" ? r.forks_count : 0,
+      isFork: r.fork === true,
+      archived: r.archived === true,
+      updated: typeof r.pushed_at === "string" ? r.pushed_at : ""
+    };
+  }
+
+  // Cache boleh diutak-atik dari luar halaman ini, jadi isinya diperiksa ulang
+  // dengan syarat yang sama seperti data segar sebelum dipakai.
+  function repoIsSane(r) {
+    return !!r && typeof r === "object" && !Array.isArray(r) &&
+           typeof r.name === "string" && r.name !== "" &&
+           (r.url === null || (typeof r.url === "string" && REPO_URL_RE.test(r.url)));
+  }
+
+  function readRepoCache() {
+    try {
+      var raw = window.localStorage.getItem(REPO_CACHE_KEY);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (!obj || typeof obj.time !== "number" || !Array.isArray(obj.repos)) return null;
+      var list = [];
+      for (var i = 0; i < obj.repos.length; i++) {
+        if (repoIsSane(obj.repos[i])) list.push(obj.repos[i]);
+      }
+      return { time: obj.time, repos: list };
+    } catch (e) {
+      return null;   // penyimpanan diblokir, penuh, atau isinya rusak
+    }
+  }
+
+  function writeRepoCache(repos) {
+    try {
+      window.localStorage.setItem(REPO_CACHE_KEY, JSON.stringify({ time: Date.now(), repos: repos }));
+    } catch (e) {
+      // Cache memang opsional; kegagalan menyimpan tidak boleh merusak tampilan.
+    }
+  }
+
+  function fetchRepos(signal) {
+    var out = [];
+
+    function page(n) {
+      var url = GH_API + "?per_page=" + REPO_PAGE_SIZE + "&sort=updated&type=owner&page=" + n;
+      return fetch(url, {
+        signal: signal,
+        credentials: "omit",
+        headers: { "Accept": "application/vnd.github+json" }
+      }).then(function (res) {
+        if (!res.ok) {
+          var err;
+          if ((res.status === 403 || res.status === 429) && res.headers.get("X-RateLimit-Remaining") === "0") {
+            err = new Error("Kuota GitHub API habis.");
+            err.rateLimited = true;
+            var reset = Number(res.headers.get("X-RateLimit-Reset"));
+            err.resetAt = reset ? reset * 1000 : null;
+          } else if (res.status === 404) {
+            err = new Error("Pengguna GitHub tidak ditemukan.");
+            err.notFound = true;
+          } else {
+            err = new Error("HTTP " + res.status + " " + res.statusText);
+          }
+          throw err;
+        }
+        return res.json();
+      }).then(function (data) {
+        if (!Array.isArray(data)) throw new Error("Balasan GitHub bukan daftar repository.");
+        for (var i = 0; i < data.length; i++) {
+          var repo = normalizeRepo(data[i]);
+          if (repo) out.push(repo);
+        }
+        // Halaman penuh berarti masih ada sisa. Batas halaman menjaga supaya akun
+        // dengan sangat banyak repo tidak memicu rentetan permintaan.
+        if (data.length === REPO_PAGE_SIZE && n < REPO_MAX_PAGES) return page(n + 1);
+        return out;
+      });
+    }
+
+    return page(1);
+  }
+
+  function renderRepo(repo) {
+    var li = el("li", "repo");
+
+    var head = el("div", "repo-head");
+    if (repo.url) {
+      var link = el("a", "repo-name", repo.name);
+      link.href = repo.url;               // sudah lolos REPO_URL_RE
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      head.appendChild(link);
+    } else {
+      head.appendChild(el("span", "repo-name", repo.name));
+    }
+    if (repo.isFork) head.appendChild(el("span", "repo-badge", "Fork"));
+    if (repo.archived) head.appendChild(el("span", "repo-badge", "Arsip"));
+    li.appendChild(head);
+
+    // Deskripsi selalu punya baris sendiri, termasuk saat repo-nya belum diberi
+    // deskripsi di GitHub -- barisnya kosong lebih membingungkan daripada jujur.
+    li.appendChild(repo.desc
+      ? el("p", "repo-desc", repo.desc)
+      : el("p", "repo-desc is-empty", "Belum ada deskripsi di GitHub."));
+
+    var meta = el("ul", "repo-meta");
+    if (repo.language) meta.appendChild(el("li", null, repo.language));
+    if (repo.stars > 0) meta.appendChild(el("li", null, repo.stars + " bintang"));
+    if (repo.forks > 0) meta.appendChild(el("li", null, repo.forks + " fork"));
+    var when = formatDate(repo.updated);
+    if (when) meta.appendChild(el("li", null, "Push terakhir " + when));
+    if (meta.firstChild) li.appendChild(meta);
+
+    return li;
+  }
+
+  /**
+   * Tanda tangan isi daftar, dipakai untuk memutuskan apakah DOM-nya benar-benar
+   * perlu dibangun ulang. Waktu pengambilan sengaja tidak ikut: kalau GitHub
+   * mengembalikan repo yang sama persis, tidak ada alasan membongkar daftar yang
+   * sudah tampil di layar.
+   */
+  function reposSignature(repos) {
+    var parts = [];
+    for (var i = 0; i < repos.length; i++) {
+      var r = repos[i];
+      parts.push([
+        r.name, r.url, r.desc, r.language, r.stars, r.forks, r.updated,
+        r.isFork ? 1 : 0, r.archived ? 1 : 0
+      ].join("\u001F"));
+    }
+    return parts.join("\u001E");
+  }
+
+  function renderRepos(repos, fetchedAt) {
+    if (!repoListEl) return;
+
+    repoCountEl.textContent = repos.length + " repository publik \u00B7 data per " + formatDateTime(fetchedAt);
+
+    if (repos.length === 0) {
+      repoListSignature = "";
+      clear(repoListEl);
+      showMessage(repoStateEl, {
+        title: "Belum ada repository publik.",
+        body: "GitHub tidak mengembalikan satu pun repository publik untuk " + GH_USER + "."
+      });
+      return;
+    }
+
+    // Penyegaran yang tidak mengubah apa pun berhenti di sini. Inilah jalur yang
+    // paling sering ditempuh tombol "Muat ulang", dan sekarang ia tidak menyentuh
+    // DOM daftar sama sekali.
+    var signature = reposSignature(repos);
+    if (signature === repoListSignature && repoListEl.firstChild) return;
+    repoListSignature = signature;
+
+    // Kartu disusun di fragment lebih dulu, lalu masuk sekali jalan. Daftar lama
+    // tidak pernah terlihat kosong di antara keduanya.
+    var frag = document.createDocumentFragment();
+    repos.forEach(function (repo, i) {
+      // Jeda bertingkat hanya untuk kartu pertama yang terlihat; sisanya menyusul
+      // bersamaan supaya daftar panjang tidak terasa lambat dibuka.
+      frag.appendChild(animateIn(renderRepo(repo), false, i < 8 ? i * 35 : 0));
+    });
+
+    clear(repoListEl);
+    repoListEl.appendChild(frag);
+  }
+
+  // Indikator penyegaran memakai pola yang sama dengan pembaca dokumen: baru
+  // dipasang setelah ambang tunda. Penyegaran yang selesai lebih cepat dari itu
+  // tidak menampilkan apa pun, jadi tidak ada yang sempat berkedip.
+  function stopRepoPending() {
+    if (repoPendingTimer !== null) {
+      clearTimeout(repoPendingTimer);
+      repoPendingTimer = null;
+    }
+    var home = readerContent.querySelector(".home");
+    if (home) home.classList.remove("is-refreshing");
+    if (repoListEl) repoListEl.removeAttribute("aria-busy");
+  }
+
+  function startRepoPending() {
+    stopRepoPending();
+    if (repoListEl) repoListEl.setAttribute("aria-busy", "true");
+    repoPendingTimer = window.setTimeout(function () {
+      repoPendingTimer = null;
+      var home = readerContent.querySelector(".home");
+      if (home) home.classList.add("is-refreshing");
+    }, PENDING_DELAY);
+  }
+
+  function setRefreshBusy(on) {
+    if (!repoRefreshBtn) return;
+    repoRefreshBtn.disabled = !!on;
+  }
+
+  function showRepoError(err, cached) {
+    var title, body;
+
+    if (err && err.rateLimited) {
+      title = "Kuota GitHub API habis.";
+      body = "GitHub hanya memberi 60 permintaan per jam untuk pengunjung tanpa token, dan jatah alamat IP ini sudah terpakai" +
+             (err.resetAt ? ". Kuotanya terisi lagi sekitar " + formatDateTime(err.resetAt) + "." : ".");
+    } else if (err && err.notFound) {
+      title = "Akun GitHub tidak ditemukan.";
+      body = "GitHub menjawab 404 untuk pengguna " + GH_USER + ".";
+    } else {
+      title = "Daftar repository gagal dimuat.";
+      body = "Permintaan ke GitHub gagal: " + (err && err.message ? err.message : "sebab tidak diketahui") +
+             ". Periksa koneksi internet, lalu coba lagi.";
+    }
+
+    if (cached && cached.repos.length > 0) {
+      body += " Daftar di bawah adalah salinan tersimpan dari " + formatDateTime(cached.time) + ".";
+    }
+
+    showMessage(repoStateEl, {
+      kind: "error",
+      title: title,
+      body: body,
+      onRetry: function () { loadRepos(true); }
+    });
+  }
+
+  function loadRepos(force) {
+    if (!repoListEl) return;
+
+    var cached = readRepoCache();
+    var fresh = !!cached && (Date.now() - cached.time) < REPO_TTL;
+
+    // Salinan tersimpan dipasang supaya beranda tidak pernah kosong, tetapi hanya
+    // kalau daftarnya memang belum ada isinya. Memasang ulang di atas daftar yang
+    // sudah tampil berarti membongkar dan membangun DOM yang sama persis, dan
+    // itulah yang terlihat sebagai kedipan saat "Muat ulang" ditekan.
+    if (cached && !repoListEl.firstChild) renderRepos(cached.repos, cached.time);
+    if (fresh && !force) return;
+
+    if (repoController) repoController.abort();
+    var controller = new AbortController();
+    var token = ++repoToken;
+    repoController = controller;
+
+    setRefreshBusy(true);
+
+    if (repoListEl.firstChild) {
+      // Daftar sudah terbaca. Statusnya cukup lewat aria-busy dan garis progres
+      // yang menumpang di batas bawah bar, keduanya tidak mengubah tinggi apa pun.
+      clear(repoStateEl);
+      startRepoPending();
+    } else {
+      showMessage(repoStateEl, {
+        kind: "busy",
+        title: cached ? "Menyegarkan daftar" : "Memuat daftar repository",
+        body: "Mengambil data publik " + GH_USER + " dari GitHub."
+      });
+    }
+
+    fetchRepos(controller.signal)
+      .then(function (repos) {
+        if (token !== repoToken) return;
+        writeRepoCache(repos);
+        setRefreshBusy(false);
+        stopRepoPending();
+        clear(repoStateEl);
+        renderRepos(repos, Date.now());
+      })
+      .catch(function (err) {
+        if (err && err.name === "AbortError") return;
+        if (token !== repoToken) return;
+        setRefreshBusy(false);
+        stopRepoPending();
+        showRepoError(err, cached);
+      });
+  }
+
+  /**
+   * Beranda: yang tampil di panel pembaca selama belum ada project yang dibuka,
+   * dan yang dituju lagi lewat tombol "Beranda" di daftar.
+   */
+  function showHome(force) {
+    homeVisible = true;
+    markActive(null);
+    homeBtn.setAttribute("aria-current", "true");
+
+    stopPending();
+    stopRepoPending();
+    setBusy(false);
+    clear(readerState);
+    clear(readerContent);
+
+    // Beranda dibangun ulang dari nol, jadi daftar lamanya ikut hilang dan tanda
+    // tangannya harus dilepas. Tanpa ini, render pertama sesudahnya bisa dilewati.
+    repoListSignature = "";
+
+    var section = el("section", "home");
+    section.appendChild(el("h1", null, "Repository " + GH_USER));
+
+    var lead = el("p", "lead");
+    lead.appendChild(document.createTextNode(
+      "Daftar ini ditarik langsung dari GitHub setiap kali beranda dibuka, jadi repository baru " +
+      "muncul dengan sendirinya tanpa halaman ini perlu diubah. Sumbernya "));
+    var profile = el("a", null, "github.com/" + GH_USER);
+    profile.href = GH_PROFILE;
+    profile.target = "_blank";
+    profile.rel = "noopener noreferrer";
+    lead.appendChild(profile);
+    lead.appendChild(document.createTextNode("."));
+    section.appendChild(lead);
+
+    var bar = el("div", "repo-bar");
+    repoCountEl = el("p", "repo-count", "\u2014");
+    repoRefreshBtn = el("button", "repo-refresh", "Muat ulang");
+    repoRefreshBtn.type = "button";
+    repoRefreshBtn.addEventListener("click", function () { loadRepos(true); });
+    bar.appendChild(repoCountEl);
+    bar.appendChild(repoRefreshBtn);
+    section.appendChild(bar);
+
+    repoStateEl = el("div", "repo-state");
+    repoStateEl.setAttribute("role", "status");
+    repoStateEl.setAttribute("aria-live", "polite");
+    section.appendChild(repoStateEl);
+
+    repoListEl = el("ul", "repo-list");
+    section.appendChild(repoListEl);
+
+    animateIn(section);
+    readerContent.appendChild(section);
+    loadRepos(force === true);
+  }
+
   // -------------------------------------------------------------- render daftar
+
+  /**
+   * Satu baris project: tombol pengungkap plus daftar versinya. Tombolnya
+   * <button aria-expanded>/<ul aria-controls> supaya pembaca layar mengumumkan
+   * status buka-tutupnya, dan tiap versi tetap <a href> supaya bisa dibuka di
+   * tab baru lewat Ctrl/Cmd-klik.
+   */
+  function renderProject(project, index) {
+    var li = el("li", "project");
+    var panelId = "versions-" + index;
+
+    var btn = el("button", "project-btn");
+    btn.type = "button";
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", panelId);
+    btn.appendChild(el("span", "project-name", project.name));   // nama dari config, selalu sebagai teks
+    btn.appendChild(el("span", "project-count", project.versions.length + " versi"));
+    project.btn = btn;
+
+    var panel = el("ul", "version-list");
+    panel.id = panelId;
+    panel.hidden = true;
+
+    project.versions.forEach(function (version) {
+      var vli = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = version.path;            // satu-satunya sumber URL adalah path hasil validasi
+      a.textContent = version.label;    // label versi dari config, selalu sebagai teks
+      a.addEventListener("click", function (ev) {
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+        ev.preventDefault();
+        loadPolicy(project, version);
+      });
+      version.link = a;
+      vli.appendChild(a);
+      panel.appendChild(vli);
+    });
+
+    btn.addEventListener("click", function () {
+      var wasOpen = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", wasOpen ? "false" : "true");
+      panel.hidden = wasOpen;
+
+      // Membuka project langsung menampilkan dokumen versi bawaannya. Kalau salah
+      // satu versi project ini memang sedang dibaca, pilihan itu dibiarkan --
+      // menutup lalu membuka lagi tidak boleh melempar pembaca kembali ke awal.
+      if (!wasOpen && !isReading(project)) {
+        loadPolicy(project, project.versions[project.defaultIndex]);
+      }
+    });
+
+    li.appendChild(btn);
+    li.appendChild(panel);
+    return li;
+  }
 
   function renderList(entries) {
     clear(listEl);
     listEl.hidden = false;
+    projects = entries;
 
-    entries.forEach(function (entry) {
-      var li = document.createElement("li");
-      var a = document.createElement("a");
-      a.href = entry.path;              // satu-satunya sumber URL adalah entry.path
-      a.textContent = entry.name;       // nama dari config, selalu sebagai teks
-      a.addEventListener("click", function (ev) {
-        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
-        ev.preventDefault();
-        loadPolicy(entry, a);
-      });
-      li.appendChild(a);
-      listEl.appendChild(li);
+    entries.forEach(function (project, index) {
+      listEl.appendChild(renderProject(project, index));
     });
 
-    // Satu dokumen tidak butuh kotak pencarian, jadi tidak ada. Hitungan hanya
+    // Satu project tidak butuh kotak pencarian, jadi tidak ada. Hitungan hanya
     // ditampilkan saat daftarnya lebih dari satu.
     clear(indexState);
     if (entries.length > 1) {
       var box = el("p", "msg");
-      box.appendChild(el("strong", null, entries.length + " dokumen tersedia"));
-      box.appendChild(document.createTextNode("Pilih salah satu untuk membacanya."));
+      box.appendChild(el("strong", null, entries.length + " project tersedia"));
+      box.appendChild(document.createTextNode("Pilih salah satu untuk melihat daftar versinya."));
       indexState.appendChild(box);
     }
   }
@@ -678,8 +1488,8 @@
     listEl.hidden = true;
     clear(listEl);
     clear(readerState);
-    clear(readerContent);
-    markActive(null);
+    projects = [];
+    markActive(null);   // tautan versi yang lama ikut terbuang bersama daftarnya
     showMessage(indexState, { kind: "busy", title: "Memuat daftar", body: "Mengambil config.json." });
 
     fetch("./config.json", { cache: "no-cache", credentials: "omit" })
@@ -720,9 +1530,9 @@
             kind: "error",
             title: rejected > 0 ? "Tidak ada entri yang valid." : "Daftar masih kosong.",
             body: rejected > 0
-              ? rejected + " entri ditolak. Setiap entri butuh \"project name\" berisi teks dan \"path\" relatif berbentuk:"
+              ? rejected + " entri ditolak. Setiap entri butuh \"project name\" berisi teks, \"path\" ke folder project, dan daftar \"versions\":"
               : "config.json terbaca, tetapi belum berisi satu pun Privacy Policy.",
-            code: rejected > 0 ? "Privacy-Policy/<nama>.html" : null,
+            code: rejected > 0 ? "\"path\": \"Privacy-Policy/<project>\", \"versions\": [\"v1.0.0\"]" : null,
             onRetry: loadConfig
           });
           return;
@@ -734,7 +1544,7 @@
           showMessage(readerState, {
             kind: "error",
             title: rejected + " entri dilewati.",
-            body: "Entri tersebut tidak lolos pemeriksaan path. Sisanya tetap bisa dibuka dari daftar."
+            body: "Entri tersebut tidak lolos pemeriksaan path atau versi. Sisanya tetap bisa dibuka dari daftar."
           });
         }
       })
@@ -750,6 +1560,16 @@
       });
   }
 
+  homeBtn.addEventListener("click", function () { showHome(false); });
+
+  // Kembali ke tab ini adalah saat yang wajar untuk melihat apakah ada repo
+  // baru. Hanya berlaku saat beranda memang sedang tampil, dan loadRepos sendiri
+  // yang memutuskan perlu-tidaknya memanggil GitHub lagi lewat umur cache.
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible" && homeVisible) loadRepos(false);
+  });
+
+  showHome(false);
   loadConfig();
 })();
 </script>
