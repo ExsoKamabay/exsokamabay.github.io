@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kebijakan Privasi VHDP 1.0.0: apa yang dibaca dan ditulis VHDP di perangkat Anda, kapan pihak lain ikut terlibat, dan cara menghapusnya.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230A0A0C'/%3E%3Cpath d='M3 5l2.5 3L3 11M7.5 11h5.5' stroke='%238A5CF6' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>Kebijakan Privasi VHDP</title>
+<style>
+  :root {
+    --bg: #0A0A0C;
+    --surface: #141419;
+    --elevated: #1E1E26;
+    --text: #E6E6E6;
+    --text-2: #CFCFD6;
+    --muted: #9A9AA6;
+    --accent: #8A5CF6;
+    --accent-text: #A98BF9;
+    --wordmark: #008B8B;
+    --divider: #22222A;
+    --amber: #F0B866;
+    --mint: #7BE0B0;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+
+    --radius: 10px;
+    --tap: 44px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-2);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-wrap: break-word;
+  }
+
+  a { color: var(--accent-text); }
+  a:hover { color: #C3AEFB; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .skip {
+    position: absolute;
+    left: var(--space-4);
+    top: -100px;
+    background: var(--elevated);
+    color: var(--text);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    text-decoration: none;
+    z-index: 50;
+    transition: top 120ms ease;
+  }
+  .skip:focus { top: var(--space-4); }
+
+  header.site {
+    border-bottom: 1px solid var(--divider);
+    padding: var(--space-4) var(--space-5);
+  }
+  .head-inner {
+    max-width: 78ch;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-4);
+  }
+  .wordmark {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--wordmark);
+  }
+  .wordmark .x { color: var(--accent-text); }
+
+  .doc-nav { margin: 0; }
+  .doc-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    background: var(--elevated);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .doc-nav a:hover { border-color: var(--accent); color: #FFFFFF; }
+
+  main.wrap {
+    max-width: 78ch;
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-5) var(--space-7);
+  }
+
+  article { max-width: 70ch; }
+
+  h1 {
+    color: var(--text);
+    font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2.1rem);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--space-2);
+  }
+  h2 {
+    color: var(--text);
+    font-size: 1.28rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    margin: var(--space-7) 0 var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--divider);
+    scroll-margin-top: var(--space-4);
+  }
+  h3 {
+    color: var(--text);
+    font-size: 1.02rem;
+    line-height: 1.4;
+    margin: var(--space-5) 0 var(--space-2);
+    scroll-margin-top: var(--space-4);
+  }
+
+  p { margin: 0 0 var(--space-4); }
+  ul, ol { padding-left: 1.25em; margin: 0 0 var(--space-4); }
+  li { margin-bottom: var(--space-2); }
+  li:last-child { margin-bottom: 0; }
+
+  .doc-meta {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: var(--space-5);
+  }
+
+  .lead { color: var(--text); font-size: 1.06rem; }
+
+  /* Ringkasan pembuka */
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    margin: var(--space-5) 0 var(--space-6);
+  }
+  .summary h2 {
+    margin: 0 0 var(--space-3);
+    padding-top: 0;
+    border-top: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .summary ul { margin: 0; padding-left: 1.1em; }
+  .summary li { color: var(--text); margin-bottom: var(--space-3); }
+
+  /* Penanda jenis informasi. Arti dibawa oleh teksnya, bukan warnanya. */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-4);
+    padding: 0;
+    list-style: none;
+  }
+  .tag {
+    display: inline-block;
+    min-width: 0;
+    white-space: nowrap;
+    padding: 3px 10px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: var(--elevated);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+  }
+  .t-lokal { color: var(--accent-text); }
+  .t-luar { color: var(--amber); }
+  .t-kontrol { color: var(--mint); }
+
+  .callout {
+    background: var(--elevated);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+    margin: var(--space-5) 0;
+  }
+  .callout > :last-child { margin-bottom: 0; }
+  .callout p:first-child { color: var(--text); }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+  .toc h2 {
+    margin: 0 0 var(--space-3);
+    padding-top: 0;
+    border-top: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .toc ol { margin: 0; padding-left: 1.4em; }
+  .toc li { margin-bottom: var(--space-1); }
+  .toc a {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    padding: 6px 0;
+    text-decoration-color: rgba(169, 139, 249, 0.4);
+  }
+
+  .scroll-x { overflow-x: auto; margin: 0 0 var(--space-4); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  caption { text-align: left; color: var(--muted); font-size: 0.9rem; padding-bottom: var(--space-2); }
+  th, td {
+    border: 1px solid var(--divider);
+    padding: var(--space-2) var(--space-3);
+    text-align: left;
+    vertical-align: top;
+  }
+  th { color: var(--text); background: var(--elevated); font-weight: 600; }
+
+  code {
+    background: #0F0F14;
+    border: 1px solid var(--divider);
+    border-radius: 5px;
+    padding: 1px 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.88em;
+    color: var(--text);
+  }
+
+  .sign-off {
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--divider);
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 520px) {
+    main.wrap { padding: var(--space-5) var(--space-4) var(--space-6); }
+    .summary, .toc, .callout { padding: var(--space-4); }
+  }
+
+  /* Penanda dijaga satu baris di lebar normal. Pada lebar ekstrem (zoom tinggi di
+     layar kecil) membungkus lebih baik daripada memaksa seluruh halaman menggeser. */
+  @media (max-width: 380px) {
+    .tag { white-space: normal; overflow-wrap: anywhere; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  @media print {
+    body { background: #FFFFFF; color: #1A1A1A; font-size: 10.5pt; line-height: 1.5; }
+    header.site, .skip, .doc-nav { display: none; }
+    main.wrap { max-width: none; padding: 0; }
+    article { max-width: none; }
+    h1, h2, h3 { color: #000000; page-break-after: avoid; }
+    h1 { font-size: 20pt; }
+    h2 { font-size: 13pt; border-top: 1px solid #BBBBBB; margin-top: 22pt; }
+    h3 { font-size: 11pt; }
+    a { color: #000000; text-decoration: underline; }
+    .summary, .toc, .callout { background: #FFFFFF; border: 1px solid #BBBBBB; border-left-width: 3px; page-break-inside: avoid; }
+    .summary li, .callout p:first-child, .lead { color: #000000; }
+    .tag { border: 1px solid #666666; color: #333333; background: #FFFFFF; }
+    .doc-meta, .sign-off, caption { color: #444444; }
+    th { background: #EEEEEE; color: #000000; }
+    th, td { border: 1px solid #999999; }
+    table, .scroll-x { overflow: visible; page-break-inside: avoid; }
+    code { background: #FFFFFF; border: 1px solid #BBBBBB; color: #000000; }
+    p, li { orphans: 3; widows: 3; }
+  }
+</style>
+</head>
+
+<body>
+
+<a class="skip" href="#doc">Lompat ke isi kebijakan</a>
+
+<header class="site">
+  <div class="head-inner">
+    <p class="wordmark">VHDP</p>
+    <p class="doc-nav"><a href="../../index.html">Kembali ke Privacy Center</a></p>
+  </div>
+</header>
+
+<main class="wrap" id="doc">
+<article data-policy-content>
+
+  <h1>Kebijakan Privasi VHDP</h1>
+
+  <p class="doc-meta">Terakhir diperbarui: 19 September 2026 &middot; Berlaku untuk versi 1.0.0
+  (C ABI versi 1), dirilis 19 September 2026</p>
+
+  <p class="lead">VHDP (Virtual Hardware Driver Platform) menjalankan root filesystem distro Linux
+  di host Linux atau Android tanpa hak root. Isinya library <code>libvhdp</code> untuk disematkan
+  di program lain dan program baris perintah <code>phdp</code>.</p>
+
+  <p>Halaman ini menjelaskan apa yang VHDP baca, tulis, dan kirim saat Anda memakainya. Isinya
+  disusun dari pemeriksaan kode sumber VHDP versi 1.0.0. Ini halaman kebijakan pertama untuk VHDP.
+  Versi berikutnya akan mendapat halaman sendiri, dan halaman ini tetap tersedia.</p>
+
+  <section class="summary" aria-labelledby="intinya">
+    <h2 id="intinya">Intinya</h2>
+    <ul>
+      <li>VHDP tidak punya akun, server pengembang, analytics, telemetry, atau pelaporan error.
+      Kodenya sendiri tidak membuka koneksi jaringan.</li>
+      <li>Yang dibaca dan ditulis VHDP ada di perangkat Anda: direktori rootfs, direktori host yang
+      Anda bind, dan direktori sementara di <code>TMPDIR</code>.</li>
+      <li>Program di dalam rootfs memakai jaringan host secara bawaan. Ke mana data mereka pergi
+      ditentukan program itu sendiri. Opsi <code>--network none</code> menolak socket IP.</li>
+      <li>Fungsi <code>vhdp_configure_rootfs</code> mengisi <code>/etc/resolv.conf</code> di rootfs
+      dengan server DNS publik milik Google dan Cloudflare. Setelah itu, nama domain yang dicari
+      program di rootfs sampai ke kedua operator tersebut. <code>phdp</code> tidak memanggil
+      fungsi ini.</li>
+      <li>Dari lingkungan host, hanya <code>TERM</code>, <code>COLORTERM</code>, <code>LANG</code>,
+      <code>LC_ALL</code>, dan <code>TZ</code> yang diteruskan ke program di rootfs, kecuali Anda
+      memakai <code>--clear-env</code>.</li>
+      <li>Menghapus direktori rootfs membuang hampir semua yang pernah ditulis VHDP.</li>
+    </ul>
+  </section>
+
+  <nav class="toc" aria-labelledby="daftar-isi">
+    <h2 id="daftar-isi">Daftar isi</h2>
+    <ol>
+      <li><a href="#ruang-lingkup">Yang dicakup kebijakan ini</a></li>
+      <li><a href="#tidak-dikumpulkan">Yang tidak dikumpulkan pengembang</a></li>
+      <li><a href="#di-perangkat">Data yang dibaca dari perangkat Anda</a></li>
+      <li><a href="#berkas">Berkas yang ditulis VHDP</a></li>
+      <li><a href="#rootfs">Fungsi bantu rootfs di C ABI</a></li>
+      <li><a href="#jaringan">Koneksi jaringan dan DNS</a></li>
+      <li><a href="#diagnostik">Event, log, dan diagnostik</a></li>
+      <li><a href="#hapus">Berapa lama data disimpan dan cara menghapusnya</a></li>
+      <li><a href="#keamanan">Keamanan</a></li>
+      <li><a href="#perubahan">Perubahan pada kebijakan ini</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+      <li><a href="#situs">Halaman web ini</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="ruang-lingkup">Yang dicakup kebijakan ini</h2>
+
+  <p>Kebijakan ini berlaku untuk VHDP versi 1.0.0: library <code>libvhdp</code>, C ABI-nya,
+  program <code>phdp</code>, dan loader <code>vhdp-loader</code>. Halaman web yang sedang Anda baca
+  juga tercakup.</p>
+
+  <p>Ada tiga hal di luar cakupan halaman ini:</p>
+
+  <ul>
+    <li>Program yang Anda jalankan di dalam rootfs. VHDP menerjemahkan syscall mereka, tetapi
+    perilaku programnya sendiri tidak diubah. Kalau Anda memasang paket lewat <code>apt</code>,
+    yang berlaku adalah aturan penyedia paket itu.</li>
+    <li>Sumber rootfs. VHDP tidak mengunduh rootfs. Anda atau aplikasi yang memakai VHDP
+    menyiapkannya sendiri.</li>
+    <li>Aplikasi yang menyematkan <code>libvhdp</code>. Aplikasi itu yang menentukan apa yang
+    dilakukan dengan event, keluaran program, dan pengaturan sesi. Kebijakan privasinya berlaku
+    terpisah.</li>
+  </ul>
+
+  <p>Di bawah setiap judul bagian ada penanda: "Di perangkat Anda", "Melibatkan pihak lain", atau
+  "Anda yang mengatur".</p>
+
+  <h2 id="tidak-dikumpulkan">Yang tidak dikumpulkan pengembang</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Kode VHDP tidak punya saluran untuk mengirim data ke pengembang. Di dalamnya tidak ada:</p>
+
+  <ul>
+    <li>sistem akun atau login, dan tidak ada server milik pengembang;</li>
+    <li>analytics atau telemetry, yaitu perekaman dan pengiriman data pemakaian;</li>
+    <li>pelaporan error otomatis ke server;</li>
+    <li>pemeriksaan pembaruan otomatis;</li>
+    <li>kode yang membuka koneksi jaringan atas nama VHDP sendiri.</li>
+  </ul>
+
+  <p>Selain pustaka standar C dan C++ dari sistem, satu-satunya dependensi build adalah pustaka
+  thread sistem. Tidak ada SDK pihak ketiga.</p>
+
+  <h2 id="di-perangkat">Data yang dibaca dari perangkat Anda</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Saat menjalankan sesi, VHDP membaca dan menulis di dalam direktori rootfs yang Anda berikan
+  atas nama program di rootfs. Opsi <code>--read-only-rootfs</code> membuat setiap penulisan ke
+  rootfs gagal dengan <code>EROFS</code>.</p>
+
+  <p>Program di rootfs hanya melihat bagian host yang Anda izinkan:</p>
+
+  <ul>
+    <li>Direktori yang Anda tambahkan dengan <code>--bind HOST:GUEST</code>. Direktori ini
+    read-only, kecuali Anda menambahkan <code>:rw</code>.</li>
+    <li>Node perangkat <code>/dev/null</code>, <code>zero</code>, <code>full</code>,
+    <code>random</code>, <code>urandom</code>, <code>tty</code>, <code>ptmx</code>, dan
+    <code>/dev/pts</code>. Ini proyeksi bawaan <code>--dev minimal</code>. Dengan
+    <code>--dev none</code>, tidak ada node yang diproyeksikan.</li>
+    <li><code>/proc</code> host, read-only, hanya bila Anda memilih <code>--proc host</code>.
+    Bawaannya <code>none</code>. Lewat <code>/proc</code> host, program di rootfs bisa melihat
+    informasi proses lain milik host.</li>
+  </ul>
+
+  <p>Variabel lingkungan untuk program di rootfs berisi <code>PATH</code>, <code>HOME</code>, dan
+  nilai host untuk <code>TERM</code>, <code>COLORTERM</code>, <code>LANG</code>,
+  <code>LC_ALL</code>, dan <code>TZ</code>. Variabel host lain tidak ikut. Opsi
+  <code>--clear-env</code> mengosongkan semuanya, dan <code>--env KEY=VALUE</code> menambah nilai
+  yang Anda tentukan.</p>
+
+  <p>VHDP juga membaca variabel <code>TMPDIR</code>, <code>VHDP_LOADER</code>, dan
+  <code>VHDP_PROC_STAND_IN</code> untuk mengatur cara kerjanya sendiri. Nilainya tidak dikirim ke
+  mana pun.</p>
+
+  <h2 id="berkas">Berkas yang ditulis VHDP</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Di luar penulisan yang diminta program di rootfs, VHDP menulis berkas berikut atas namanya
+  sendiri:</p>
+
+  <ul>
+    <li>Direktori <code>$TMPDIR/.vhdp-proc.XXXXXX</code> (mode 0700) berisi pengganti berkas
+    <code>/proc</code> seperti <code>uptime</code>, <code>loadavg</code>, dan <code>stat</code>.
+    Direktori ini dibuat hanya kalau host menolak pembacaan berkas <code>/proc</code> aslinya, dan
+    dihapus saat sesi berakhir. Kalau <code>TMPDIR</code> tidak diisi, VHDP memakai
+    <code>/tmp</code>.</li>
+    <li>Berkas probe sesaat <code>.vhdp-link-probe-*</code> dan <code>.vhdp-xmap-*</code> di
+    <code>TMPDIR</code>. Keduanya dipakai untuk menguji kebijakan host dan langsung dihapus.</li>
+    <li>Direktori <code>.vhdp-hardlinks/</code> di rootfs atau di bind <code>:rw</code>, hanya di
+    host yang menolak <code>link(2)</code>. Isinya berkas yang punya lebih dari satu nama, ditambah
+    catatan jumlah link dan path host dari nama-nama itu. Berkas kembali ke nama aslinya begitu
+    tinggal satu nama, jadi direktori ini biasanya kosong kembali.</li>
+  </ul>
+
+  <p>VHDP tidak menulis berkas log, cache, atau konfigurasi di direktori home Anda.</p>
+
+  <h2 id="rootfs">Fungsi bantu rootfs di C ABI</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Tiga fungsi hanya berjalan kalau aplikasi yang menyematkan <code>libvhdp</code>
+  memanggilnya. <code>phdp</code> tidak memakai ketiganya.</p>
+
+  <p><code>vhdp_configure_rootfs</code> menyiapkan rootfs yang baru diekstrak. Fungsi ini membuat
+  direktori mountpoint (<code>dev</code>, <code>proc</code>, <code>sys</code>, <code>tmp</code>,
+  <code>root</code>, <code>etc</code>) dan entri pengisi di <code>/dev</code>. Ia menulis ulang
+  <code>/etc/resolv.conf</code> setiap kali dipanggil, lalu menulis <code>/etc/nsswitch.conf</code>,
+  <code>/etc/hosts</code>, <code>/root/.profile</code>, dan <code>/root/.hushlogin</code> kalau
+  berkas itu belum ada. Pada rootfs yang punya <code>/etc/passwd</code>, fungsi ini menambahkan
+  pengguna <code>dracos</code> (uid dan gid 1000) dengan login dinonaktifkan di
+  <code>/etc/shadow</code>, berkas <code>/etc/sudoers.d/dracos</code> berisi sudo tanpa kata sandi,
+  dan direktori <code>/home/dracos</code>.</p>
+
+  <p><code>vhdp_dpkg_plan_json</code> dan <code>vhdp_projection_plan_json</code> hanya
+  mengembalikan rencana dalam bentuk JSON. Rencana dari <code>vhdp_dpkg_plan_json</code> berisi
+  script pemulihan dpkg. Kalau script itu dijalankan, ia membuat salinan cadangan
+  <code>/var/lib/dpkg/status.vhdp-bak</code> di dalam rootfs.</p>
+
+  <h2 id="jaringan">Koneksi jaringan dan DNS</h2>
+
+  <ul class="tags">
+    <li class="tag t-luar">Melibatkan pihak lain</li>
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>VHDP sendiri tidak menghubungi server mana pun. Program di dalam rootfs lain ceritanya. Secara
+  bawaan (<code>--network host</code>) mereka memakai jaringan host seperti program biasa milik
+  pengguna Anda, dan bisa terhubung ke alamat mana pun yang mereka pilih. Dengan
+  <code>--network none</code>, VHDP menolak socket IP dan hanya mengizinkan socket
+  <code>AF_UNIX</code>.</p>
+
+  <p>Kalau <code>vhdp_configure_rootfs</code> pernah dipanggil untuk sebuah rootfs, berkas
+  <code>/etc/resolv.conf</code> di rootfs itu berisi server DNS publik berikut:</p>
+
+  <ul>
+    <li>Google Public DNS: <code>8.8.8.8</code> dan <code>2001:4860:4860::8888</code>;</li>
+    <li>Cloudflare: <code>1.1.1.1</code> dan <code>2606:4700:4700::1111</code>.</li>
+  </ul>
+
+  <p>Setiap kali program di rootfs mencari alamat sebuah nama domain, server itu menerima nama
+  domain yang dicari dan alamat IP jaringan Anda. Kebijakan privasi operatornya yang berlaku untuk
+  data tersebut. Anda bisa mengganti isi <code>/etc/resolv.conf</code> di rootfs dengan server DNS
+  pilihan Anda. Ingat bahwa <code>vhdp_configure_rootfs</code> menulis ulang berkas itu setiap kali
+  dipanggil lagi.</p>
+
+  <h2 id="diagnostik">Event, log, dan diagnostik</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p><code>phdp</code> menulis event dan pesan error ke <code>stderr</code>, atau ke descriptor
+  yang Anda pilih dengan <code>--event-fd</code>. Opsi <code>--trace</code> menambahkan event untuk
+  setiap syscall. Event itu bisa memuat path dan argumen yang dipakai program di rootfs. Event
+  tidak disimpan ke berkas kecuali Anda sendiri mengalihkannya ke berkas.</p>
+
+  <p>Di C ABI, event dikirim ke fungsi callback milik aplikasi yang menyematkan
+  <code>libvhdp</code>. Apa yang dilakukan aplikasi itu dengan event diatur oleh kebijakan aplikasi
+  tersebut.</p>
+
+  <p><code>phdp doctor</code> memeriksa host (versi VHDP, profil host, status seccomp, kebijakan
+  penyimpanan, dukungan KVM, dan sebagainya), lalu mencetak hasilnya ke layar. Probe aktifnya
+  berjalan di proses anak sekali pakai. Opsi <code>--no-active</code> mematikan probe aktif itu.
+  <code>phdp inspect</code> membaca rootfs, termasuk <code>/etc/os-release</code>, dan juga hanya
+  mencetak hasilnya. Keduanya tidak menyimpan atau mengirim laporan.</p>
+
+  <h2 id="hapus">Berapa lama data disimpan dan cara menghapusnya</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>VHDP tidak punya jadwal penghapusan otomatis dan tidak menyimpan data di luar tempat yang
+  disebut di halaman ini.</p>
+
+  <ul>
+    <li>Menghapus direktori rootfs membuang isi rootfs, <code>.vhdp-hardlinks/</code> di dalamnya,
+    dan semua yang ditulis <code>vhdp_configure_rootfs</code>.</li>
+    <li>Direktori <code>.vhdp-hardlinks/</code> di bind <code>:rw</code> berada di direktori host
+    Anda dan perlu dihapus sendiri kalau masih berisi.</li>
+    <li>Direktori <code>$TMPDIR/.vhdp-proc.*</code> dihapus saat sesi berakhir normal. Kalau
+    proses VHDP dihentikan paksa, direktori itu bisa tertinggal dan boleh Anda hapus.</li>
+  </ul>
+
+  <h2 id="keamanan">Keamanan</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Engine rootless VHDP memberi isolasi kompatibilitas lewat penerjemahan path. Engine ini tidak
+  dirancang sebagai sandbox keamanan. Program di rootfs berjalan dengan hak pengguna host Anda, jadi
+  jangan menjalankan rootfs yang tidak Anda percayai.</p>
+
+  <p>VHDP tidak pernah memberi hak tambahan di host. <code>no_new_privs</code> selalu aktif, dan
+  <code>--uid</code> serta <code>--gid</code> hanya mengubah identitas yang dilihat program di
+  rootfs.</p>
+
+  <p>Kalau <code>vhdp_configure_rootfs</code> dipakai, pengguna <code>dracos</code> di rootfs bisa
+  memakai sudo tanpa kata sandi. Hak root itu hanya berlaku di dalam rootfs dan tetap dibatasi hak
+  pengguna host Anda. Fungsi yang sama juga membuat <code>/tmp</code> (mode 0777) dan
+  <code>/dev/shm</code> (mode 1777) di rootfs bisa ditulis semua pengguna rootfs.</p>
+
+  <p>VHDP tidak mengenkripsi rootfs atau berkas sementaranya. Perlindungannya bergantung pada izin
+  berkas dan enkripsi penyimpanan dari sistem operasi Anda.</p>
+
+  <h2 id="perubahan">Perubahan pada kebijakan ini</h2>
+
+  <p>Halaman ini menggambarkan VHDP versi 1.0.0. Kalau versi baru mengubah cara VHDP menangani
+  data, kebijakannya diperiksa ulang terhadap kode versi itu dan diterbitkan sebagai halaman baru.
+  Tanggal di bagian atas menunjukkan kapan halaman ini terakhir diperbarui.</p>
+
+  <p>Halaman untuk versi lama tetap disimpan di Privacy Center, supaya Anda bisa membandingkan
+  sendiri apa yang berubah.</p>
+
+  <h2 id="kontak">Kontak</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Kalau ada pertanyaan soal halaman ini, kirim email ke
+  <a href="mailto:lexyong66@gmail.com">lexyong66@gmail.com</a>. VHDP tidak punya tombol kontak
+  atau pengiriman laporan otomatis. Pengembang hanya menerima apa yang Anda tulis dan lampirkan
+  sendiri di email itu.</p>
+
+  <h2 id="situs">Halaman web ini</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Privacy Center dan halaman yang sedang Anda baca seluruhnya statis. Tidak ada analytics,
+  cookie, atau penyimpanan di peramban Anda, dan tidak ada permintaan ke layanan luar. Yang dimuat
+  hanya daftar kebijakan dan file halaman ini, keduanya dari alamat yang sama.</p>
+
+  <p class="sign-off">Kebijakan ini disusun dari pemeriksaan kode sumber VHDP 1.0.0 pada tag
+  <code>v1.0.0</code> di repository. Kalau Anda menemukan bagian yang tidak cocok dengan perilaku
+  VHDP, beri tahu lewat alamat email di atas.</p>
+
+</article>
+</main>
+
+</body>
+</html>
