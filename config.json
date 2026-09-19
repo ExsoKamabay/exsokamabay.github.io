@@ -2,8 +2,9 @@
   {
     "project name": "dracxterm",
     "path": "Privacy-Policy/dracxterm",
-    "default version": "v1.0.5",
+    "default version": "v1.0.6",
     "versions": [
+      "v1.0.6",
       "v1.0.5",
       "v1.0.1",
       "v1.0.0"
