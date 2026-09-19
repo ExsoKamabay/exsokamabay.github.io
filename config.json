@@ -2,11 +2,13 @@
   {
     "project name": "dracxterm",
     "path": "Privacy-Policy/dracxterm",
-    "default version": "v1.0.1",
+    "default version": "v1.0.5",
     "versions": [
+      "v1.0.5",
       "v1.0.1",
       "v1.0.0"
-    ]
+    ],
+    "repository": "ExsoKamabay/dxterm"
   },
   {
     "project name": "vhdp",
