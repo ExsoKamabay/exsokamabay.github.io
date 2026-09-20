@@ -408,43 +408,39 @@
   jaringan, alamat unduhan, izin Android, papan klip, layanan latar belakang, maupun alamat
   kontak. Seluruh perubahan di bawah terjadi di dalam ponsel Anda.</p>
 
-  <h3>Terminal menjawab pertanyaan program tentang terminal</h3>
+  <h3>Kali Linux terbuka sampai prompt</h3>
 
   <p>Di versi 1.0.5, distro seperti Kali Linux terbuka sampai banner lalu diam tanpa prompt.
-  Penyebabnya, pustaka sistem yang baru menanyakan keadaan terminal dengan panggilan yang tidak
-  diizinkan kebijakan keamanan Android untuk sebuah aplikasi, sehingga program di dalam Linux
-  menyimpulkan tidak ada terminal. Versi ini menjalankan pertanyaan itu sebagai panggilan versi
-  lama yang diizinkan, lalu menjawabnya. Semua ini terjadi di dalam ponsel; tidak ada data yang
-  dibaca, disimpan, atau dikirim karenanya.</p>
+  Versi ini memperbaikinya, jadi terminal bisa dipakai seperti biasa. Perbaikan itu bekerja di
+  dalam ponsel Anda: tidak ada data yang dibaca, disimpan, atau dikirim karenanya, dan tidak ada
+  koneksi baru yang dibuka.</p>
 
-  <h3>Antarmuka SELinux Android tidak lagi terlihat dari dalam Linux</h3>
+  <h3>Satu keterangan ponsel tidak lagi terlihat dari dalam Linux</h3>
 
-  <p>Android memasang antarmuka SELinux di <code>/sys/fs/selinux</code>. Sebuah aplikasi tidak
-  boleh membaca isinya, tetapi sampai versi 1.0.5 keberadaannya tetap terlihat dari dalam Linux,
-  dan itu membuat pemasangan paket berhenti dengan pesan error. Sekarang Linux di dalam aplikasi
-  melihat sistem tanpa SELinux, sesuai yang memang bisa dipakai dari sana. Efeknya untuk Anda:
-  program di dalam Linux memperoleh satu keterangan lebih sedikit tentang ponsel Anda.</p>
+  <p>Sampai versi 1.0.5, program di dalam Linux bisa melihat keberadaan pengaturan keamanan
+  bawaan Android, meski isinya memang tidak boleh dibaca aplikasi. Keberadaan itu juga yang
+  membuat pemasangan paket di Kali Full berhenti dengan pesan error. Sekarang keterangan itu tidak
+  lagi diperlihatkan, jadi pemasangan paket berjalan dan program di dalam Linux memperoleh satu
+  keterangan lebih sedikit tentang ponsel Anda.</p>
 
   <h3>Dua nilai acak untuk program yang menanyakannya</h3>
 
-  <p>Sebagian ponsel menutup berkas <code>/proc/sys/kernel/random/boot_id</code> dan
-  <code>/proc/sys/kernel/random/uuid</code> untuk aplikasi. Program di dalam Linux, termasuk skrip
-  prompt bawaan distro, membacanya setiap kali prompt muncul dan mencetak pesan penolakan berulang
-  kali. Di ponsel seperti itu, aplikasi kini menjawab sendiri: <code>uuid</code> berisi nilai acak
-  baru tiap kali dibaca, dan <code>boot_id</code> berisi nilai yang dihitung dari perkiraan waktu
-  ponsel terakhir dinyalakan, sehingga tetap sama sampai ponsel dimatikan. Keduanya tidak diambil
-  dari nomor seri, nomor IMEI, atau identitas perangkat mana pun, tidak disimpan ke berkas, dan
-  tidak dikirim ke mana pun oleh aplikasi. Program yang Anda jalankan sendiri tentu bisa
-  mengirimkan apa saja yang dibacanya, seperti dijelaskan di bagian
+  <p>Sebagian ponsel menutup dua berkas sistem yang biasa dibaca program Linux setiap kali prompt
+  muncul, dan penolakan itu tercetak berulang kali di layar. Di ponsel seperti itu, aplikasi kini
+  menjawab sendiri dengan dua nilai: satu nilai acak baru setiap kali dibaca, dan satu nilai yang
+  tetap sama sampai ponsel dimatikan lalu dinyalakan lagi. Keduanya tidak diambil dari nomor seri,
+  nomor IMEI, atau identitas perangkat mana pun, tidak disimpan ke berkas, dan tidak dikirim ke
+  mana pun oleh aplikasi. Program yang Anda jalankan sendiri tentu bisa mengirimkan apa saja yang
+  dibacanya, seperti dijelaskan di bagian
   <a href="#pihak-ketiga">Linux, Ollama, DNS, dan layanan pihak ketiga</a>.</p>
 
   <h3>Hak berkas di dalam Linux mengikuti kebiasaan Linux</h3>
 
-  <p>Berkas yang dibuat di dalam terminal dulu mewarisi mask 077 milik proses aplikasi Android:
-  hanya pemiliknya yang bisa membacanya. Sekarang mask-nya 022, sama seperti login Linux biasa,
-  sehingga pengguna lain di dalam sistem Linux yang sama bisa membaca berkas yang baru dibuat.
-  Semua berkas itu tetap berada di folder privat aplikasi di dalam ponsel Anda, yang tidak bisa
-  dibaca aplikasi lain, dan hak akses Android untuk folder itu tidak berubah.</p>
+  <p>Berkas yang dibuat di dalam terminal dulu hanya bisa dibaca oleh pemiliknya. Sekarang hak
+  bacanya mengikuti kebiasaan login Linux, sehingga pengguna lain di dalam sistem Linux yang sama
+  bisa membaca berkas yang baru dibuat. Semua berkas itu tetap berada di folder privat aplikasi di
+  dalam ponsel Anda, yang tidak bisa dibaca aplikasi lain, dan hak akses Android untuk folder itu
+  tidak berubah.</p>
 
   <h3>Nama paket aplikasi</h3>
 
