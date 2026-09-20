@@ -469,13 +469,15 @@
     layar, papan klip, dan mouse tracking. Semuanya berjalan di dalam ponsel.</li>
     <li>Sampai lima workspace sekaligus, masing-masing dengan shell, direktori kerja, dan riwayat
     sendiri.</li>
-    <li>Shell BusyBox yang ikut di dalam APK dan langsung jalan tanpa root maupun jaringan.</li>
+    <li>Shell BusyBox yang ikut di dalam APK dan jalan tanpa root maupun jaringan. Di perangkat
+    yang menolak menjalankannya, terminal memakai shell bawaan perangkat, dan itu pun tidak butuh
+    jaringan.</li>
     <li>Sistem Linux yang dijalankan VHDP, dengan PRoot sebagai cadangan otomatis. Keduanya ada di
     dalam APK.</li>
     <li>Katalog lima image Linux: untuk arm64, Debian 13 (trixie) sebagai bawaan serta Kali Linux
     nano, minimal, dan full pentesting; untuk x86_64, Debian 13. Katalognya ikut dikemas di dalam
     APK, jadi membukanya tidak butuh koneksi.</li>
-    <li>Pemasangan Ollama atas permintaan Anda, dari rilis resmi Ollama v0.32.14-rc0 yang dihosting
+    <li>Pemasangan Ollama atas permintaan Anda, dari rilis resmi Ollama v0.34.2 yang dihosting
     di GitHub. Hanya untuk arm64.</li>
     <li>Dasbor pengaturan <code>xset</code> yang digambar di dalam terminal: tema dan warna, font,
     ukuran teks, bentuk kursor, kedalaman scrollback, padding, sakelar akses penyimpanan, halaman
@@ -625,8 +627,9 @@
   <p>Ollama adalah perangkat lunak untuk menjalankan model AI secara lokal. Runtime-nya tidak ikut
   dikemas dalam aplikasi karena ukurannya besar, sekitar 1,5 GB. File itu baru diunduh setelah Anda
   mengetik perintah <code>ollama</code> di terminal dan menjawab pertanyaan konfirmasi. Sumbernya
-  adalah rilis resmi Ollama v0.32.14-rc0 yang dihosting di GitHub. Di perangkat x86_64 aplikasi
-  menolak mengunduhnya, karena runtime yang dipin hanya untuk arm64. Kalau Anda tidak pernah
+  adalah rilis resmi Ollama v0.34.2 yang dihosting di GitHub. Di perangkat x86_64 aplikasi
+  menjawab begitu perintah itu diketik dan tidak mengunduh apa pun, karena rilis yang dipakai hanya
+  tersedia untuk arm64. Kalau Anda tidak pernah
   menjalankan perintah itu, tidak ada yang diunduh.</p>
 
   <h3>Apa yang diketahui server unduhan</h3>
