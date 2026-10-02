@@ -5,6 +5,76 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var root = document.documentElement;
 
+  // ---- hero backdrop: matrix-style falling code on the <canvas class="matrix"> ----
+  var canvas = document.querySelector(".matrix");
+  if (canvas && canvas.getContext) {
+    var ctx = canvas.getContext("2d");
+    var glyphs = "01<>/\\|#%&*+=:ABCDEF0123456789$abcdef{}[]".split("");
+    var fontSize = 14, cols = 0, drops = [], dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0;
+
+    function resize() {
+      var r = canvas.getBoundingClientRect();
+      w = Math.max(1, Math.floor(r.width));
+      h = Math.max(1, Math.floor(r.height));
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.font = fontSize + "px 'JetBrains Mono', monospace";
+      ctx.textBaseline = "top";
+      cols = Math.ceil(w / fontSize);
+      drops = [];
+      for (var i = 0; i < cols; i++) drops.push(Math.floor(Math.random() * (h / fontSize)));
+    }
+
+    function draw() {
+      // Trail: paint a translucent dark layer over the last frame so glyphs fade out.
+      ctx.fillStyle = "rgba(4, 8, 10, 0.08)";
+      ctx.fillRect(0, 0, w, h);
+      for (var i = 0; i < cols; i++) {
+        var x = i * fontSize;
+        var y = drops[i] * fontSize;
+        var ch = glyphs[(Math.random() * glyphs.length) | 0];
+        ctx.fillStyle = "rgba(190, 255, 220, 0.95)"; // bright leading glyph
+        ctx.fillText(ch, x, y);
+        ctx.fillStyle = "rgba(57, 255, 140, 0.55)"; // green trail
+        ctx.fillText(glyphs[(Math.random() * glyphs.length) | 0], x, y - fontSize);
+        if (y > h && Math.random() > 0.975) drops[i] = 0;
+        else drops[i]++;
+      }
+    }
+
+    resize();
+    var rsz;
+    window.addEventListener("resize", function () { clearTimeout(rsz); rsz = setTimeout(resize, 200); });
+
+    if (reduce) {
+      // One static frame instead of an animation loop.
+      ctx.fillStyle = "#04080a";
+      ctx.fillRect(0, 0, w, h);
+      for (var p = 0; p < 6; p++) draw();
+    } else {
+      var running = true, acc = 0, last = 0;
+      function loop(ts) {
+        if (!running) return;
+        if (!last) last = ts;
+        acc += ts - last; last = ts;
+        if (acc >= 55) { draw(); acc = 0; } // ~18fps is plenty for code rain, and cheap
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+      // Pause the loop while the hero is off-screen, to save battery.
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (ents) {
+          ents.forEach(function (e) {
+            if (e.isIntersecting && !running) { running = true; last = 0; requestAnimationFrame(loop); }
+            else if (!e.isIntersecting) { running = false; }
+          });
+        }, { threshold: 0 }).observe(canvas);
+      }
+    }
+  }
+
   // ---- hero: pointer tilts the stage, scroll pulls the layers apart ----
   var hero = document.querySelector(".hero");
   if (hero && !reduce) {

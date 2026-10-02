@@ -20,7 +20,7 @@
 
   <link rel="preload" as="font" type="font/woff2" href="./fonts/chakra-petch-700-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="./fonts/chakra-petch-400-latin.woff2" crossorigin>
-  <link rel="preload" as="image" href="./img/claw-chat-720.webp" type="image/webp">
+  <link rel="preload" as="image" href="./img/msfconsole-720.webp" type="image/webp">
   <link rel="stylesheet" href="./styles.css">
 
   <meta property="og:type" content="website">
@@ -94,12 +94,14 @@
         "isAccessibleForFree": true,
         "image": "https://exsokamabay.github.io/dxterm/icon-512.png",
         "screenshot": [
+          "https://exsokamabay.github.io/dxterm/img/msfconsole-720.webp",
           "https://exsokamabay.github.io/dxterm/img/claw-chat-720.webp",
           "https://exsokamabay.github.io/dxterm/img/xset-claw-720.webp",
           "https://exsokamabay.github.io/dxterm/img/debian-terminal-720.webp",
           "https://exsokamabay.github.io/dxterm/img/pick-distro-720.webp"
         ],
         "featureList": [
+          "Run Kali tools without root: nmap, and the Metasploit console (msfconsole)",
           "Debian 13 and Kali Linux (Nano, Minimal, Full) without root",
           "claw assistant: chat and give tasks in the terminal using free model services",
           "Up to five workspaces, each with its own shell",
@@ -173,35 +175,16 @@
       </div>
 
       <div class="scene">
+        <canvas class="matrix" aria-hidden="true"></canvas>
+        <div class="scanlines" aria-hidden="true"></div>
         <div class="stage">
-          <div class="layer sun" aria-hidden="true"></div>
-          <div class="layer city" aria-hidden="true">
-            <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" role="presentation">
-              <g fill="#1d0f3d">
-                <path d="M0 400V250h60v-60h40v80h50V160h70v110h30V210h60v190zM330 400V120h80v60h30v220zM470 400V230h50V90h90v140h40v170zM680 400V180h60v-50h50v270zM820 400V240h70V140h60v260zM980 400V200h50v-60h70v260zM1120 400V230h80v170z"/>
-              </g>
-              <g fill="#2a1656">
-                <path d="M20 400V300h90v-40h60v140zM200 400V280h70v-50h60v170zM380 400V310h110v90zM540 400V270h90v-60h40v190zM720 400V300h80v-40h50v140zM900 400V280h70v-30h80v150zM1080 400V310h120v90z"/>
-              </g>
-              <g fill="#3ee8ff" opacity=".75">
-                <rect x="352" y="150" width="8" height="5"/><rect x="372" y="190" width="8" height="5"/><rect x="500" y="120" width="8" height="5"/>
-                <rect x="560" y="160" width="8" height="5"/><rect x="700" y="210" width="8" height="5"/><rect x="845" y="170" width="8" height="5"/>
-                <rect x="1000" y="230" width="8" height="5"/><rect x="130" y="190" width="8" height="5"/>
-              </g>
-              <g fill="#ff3d9a" opacity=".8">
-                <rect x="388" y="230" width="8" height="5"/><rect x="590" y="110" width="8" height="5"/><rect x="760" y="160" width="8" height="5"/>
-                <rect x="930" y="190" width="8" height="5"/><rect x="1060" y="170" width="8" height="5"/><rect x="250" y="240" width="8" height="5"/>
-              </g>
-            </svg>
-          </div>
-          <div class="layer horizon" aria-hidden="true"></div>
-          <div class="layer floor" aria-hidden="true"></div>
+          <div class="layer glow" aria-hidden="true"></div>
           <div class="layer chip chip-a cut" aria-hidden="true"><b>$</b> claw chat</div>
-          <div class="layer chip chip-b cut" aria-hidden="true"><b>$</b> sudo nmap -sn 192.168.1.0/24</div>
+          <div class="layer chip chip-b cut" aria-hidden="true"><b>$</b> msfconsole</div>
           <div class="layer chip chip-c cut" aria-hidden="true"><b>$</b> xset claw</div>
           <figure class="layer phone">
             <div class="phone-frame">
-              <img src="./img/claw-chat-720.webp" srcset="./img/claw-chat-360.webp 360w, ./img/claw-chat-720.webp 720w" sizes="(max-width: 560px) 58vw, 300px" width="720" height="1440" alt="claw chat in dracxterm on an Android phone, answering a question about disk space commands" fetchpriority="high">
+              <img src="./img/msfconsole-720.webp" srcset="./img/msfconsole-360.webp 360w, ./img/msfconsole-720.webp 720w" sizes="(max-width: 560px) 60vw, 300px" width="720" height="1440" alt="The Metasploit Framework console (msfconsole) running in dracxterm on Kali Linux on an Android phone" fetchpriority="high">
             </div>
           </figure>
         </div>
@@ -323,8 +306,8 @@ Alternatif lain: <span class="p">df -h</span> (umum), <span class="p">df -i</spa
             </ul>
           </article>
           <article class="panel panel-third cut">
-            <h3>Tools that used to fail now run</h3>
-            <p><code>sudo nmap</code> scans, <code>sudo</code> stops warning about the host name, packages with services install cleanly, and <code>date</code> follows the phone's clock.</p>
+            <h3>Kali tools that used to fail now run</h3>
+            <p><code>msfconsole</code> opens the Metasploit Framework, <code>sudo nmap</code> scans, <code>sudo</code> stops warning about the host name, and <code>date</code> follows the phone's clock.</p>
           </article>
         </div>
       </div>
@@ -338,6 +321,7 @@ Alternatif lain: <span class="p">df -h</span> (umum), <span class="p">df -i</spa
         </div>
       </div>
       <div class="shots" tabindex="0" aria-label="Screenshots, scroll horizontally">
+        <figure class="shot"><img src="./img/msfconsole-360.webp" srcset="./img/msfconsole-360.webp 360w, ./img/msfconsole-720.webp 720w" sizes="270px" width="360" height="720" loading="lazy" alt="The Metasploit console (msfconsole) running in dracxterm on Kali Linux"><figcaption>Metasploit's msfconsole on Kali, no root.</figcaption></figure>
         <figure class="shot"><img src="./img/claw-chat-360.webp" srcset="./img/claw-chat-360.webp 360w, ./img/claw-chat-720.webp 720w" sizes="270px" width="360" height="720" loading="lazy" alt="claw chat answering a question in dracxterm"><figcaption>claw chat, new in 1.1.0.</figcaption></figure>
         <figure class="shot"><img src="./img/xset-claw-360.webp" srcset="./img/xset-claw-360.webp 360w, ./img/xset-claw-720.webp 720w" sizes="270px" width="360" height="720" loading="lazy" alt="The AI (claw) page in xset, listing what claw is allowed to do"><figcaption>The AI (claw) permissions page in xset.</figcaption></figure>
         <figure class="shot"><img src="./img/debian-terminal-360.webp" srcset="./img/debian-terminal-360.webp 360w, ./img/debian-terminal-720.webp 720w" sizes="270px" width="360" height="683" loading="lazy" alt="Debian 13 running fastfetch and apt commands inside dracxterm"><figcaption>Debian 13 with apt, git, Python and curl.</figcaption></figure>

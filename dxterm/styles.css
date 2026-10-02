@@ -75,6 +75,7 @@
   --magenta: #ff3d9a;
   --cyan: #3ee8ff;
   --hazard: #ffe14d;
+  --neon: #39ff8c;
   --fog: #f1ecff;
   --smog: #b6abd9;
   --ink: #150b26;
@@ -266,24 +267,41 @@ code {
   transform: rotate(45deg);
 }
 
-/* ---------- the 3D scene ---------- */
+/* ---------- the hacker scene: matrix rain behind a tilted phone ---------- */
 .scene {
   position: relative;
   height: min(78svh, 720px);
   perspective: 1100px;
-  perspective-origin: 50% 40%;
+  perspective-origin: 50% 42%;
   overflow: hidden;
-  /* fade the scene into the page so the grid never runs under the copy */
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 92%, transparent 100%),
-                      linear-gradient(180deg, #000 0%, #000 86%, transparent 100%);
-  -webkit-mask-composite: source-in;
-          mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 92%, transparent 100%),
-                      linear-gradient(180deg, #000 0%, #000 86%, transparent 100%);
-          mask-composite: intersect;
+  border-radius: 16px;
+  background:
+    radial-gradient(120% 85% at 50% 40%, rgba(57, 255, 140, 0.10), transparent 60%),
+    #04080a;
+}
+/* Falling-code canvas, drawn by app.js. Faded at the edges so it never fights the copy. */
+.matrix {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(135% 115% at 50% 45%, #000 52%, transparent 100%);
+          mask-image: radial-gradient(135% 115% at 50% 45%, #000 52%, transparent 100%);
+}
+.scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0 2px, rgba(0, 0, 0, 0.22) 2px 4px);
+  opacity: 0.5;
 }
 .stage {
   position: absolute;
   inset: 0;
+  z-index: 2;
   transform-style: preserve-3d;
   transform: rotateX(calc(var(--rx) * 1deg)) rotateY(calc(var(--ry) * 1deg));
   transition: transform 0.25s ease-out;
@@ -293,97 +311,63 @@ code {
   transform-style: preserve-3d;
   will-change: transform;
 }
-.sun {
+.glow {
   left: 50%;
-  top: 6%;
-  width: min(440px, 70%);
-  aspect-ratio: 1;
+  top: 50%;
+  width: 72%;
+  height: 72%;
   border-radius: 50%;
-  background: linear-gradient(180deg, var(--hazard) 0%, #ff8a5c 38%, var(--magenta) 70%, #7c1d9e 100%);
-  -webkit-mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 20px) bottom / 100% 55% no-repeat,
-                linear-gradient(#000, #000) top / 100% 45% no-repeat;
-          mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 20px) bottom / 100% 55% no-repeat,
-                linear-gradient(#000, #000) top / 100% 45% no-repeat;
-  filter: drop-shadow(0 0 40px rgba(255, 61, 154, 0.55));
-  opacity: 0.9;
-  transform: translate3d(-50%, calc(var(--scroll) * 120px), -420px) scale(1.6);
-}
-.city {
-  left: -10%;
-  right: -10%;
-  bottom: 30%;
-  height: 46%;
-  transform: translate3d(0, calc(var(--scroll) * 70px), -260px) scale(1.25);
-}
-.city svg { width: 100%; height: 100%; }
-.floor {
-  left: -40%;
-  right: -40%;
-  bottom: -12%;
-  height: 62%;
-  transform-origin: 50% 0;
-  transform: translate3d(0, 0, -120px) rotateX(74deg);
-  background-image:
-    linear-gradient(rgba(255, 61, 154, 0.8) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(62, 232, 255, 0.55) 2px, transparent 2px);
-  background-size: 64px 64px;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 70%, transparent 100%);
-          mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 70%, transparent 100%);
-  animation: floor-run 2.6s linear infinite;
-}
-@keyframes floor-run { to { background-position: 0 64px, 0 0; } }
-.horizon {
-  left: -20%;
-  right: -20%;
-  bottom: 50%;
-  height: 2px;
-  background: var(--hazard);
-  box-shadow: 0 0 22px 4px rgba(255, 225, 77, 0.55);
-  transform: translateZ(-200px);
+  background: radial-gradient(closest-side, rgba(57, 255, 140, 0.28), transparent 70%);
+  filter: blur(26px);
+  transform: translate3d(-50%, -50%, -200px);
 }
 
 .phone {
-  left: 52%;
-  top: 46%;
-  width: min(280px, 44%);
-  transform: translate3d(-50%, calc(-50% + var(--scroll) * -60px), 90px) rotateY(-20deg) rotateX(7deg) rotateZ(-2deg);
+  left: 50%;
+  top: 48%;
+  width: min(300px, 58%);
+  transform: translate3d(-50%, calc(-50% + var(--scroll) * -50px), 60px) rotateY(-14deg) rotateX(6deg) rotateZ(-1.5deg);
 }
 .phone-frame {
   position: relative;
   padding: 12px;
   border-radius: 30px;
-  background: linear-gradient(160deg, #2a1c52, #0f0820 60%);
-  border: 2px solid var(--cyan);
+  background: linear-gradient(160deg, #0d2a22, #05100b 60%);
+  border: 2px solid var(--neon);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.04) inset,
-    0 0 40px rgba(62, 232, 255, 0.45),
-    -30px 40px 80px rgba(0, 0, 0, 0.55);
+    0 0 42px rgba(57, 255, 140, 0.40),
+    -26px 40px 80px rgba(0, 0, 0, 0.6);
 }
-.phone-frame img { border-radius: 20px; width: 100%; }
+.phone-frame img { border-radius: 20px; width: 100%; display: block; }
 .phone-frame::after {
   /* glass sheen */
   content: "";
   position: absolute;
   inset: 12px;
   border-radius: 20px;
-  background: linear-gradient(115deg, rgba(255, 255, 255, 0.13) 0%, transparent 35%);
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.10) 0%, transparent 35%);
   pointer-events: none;
 }
 
 .chip {
   font-family: var(--mono);
-  font-size: clamp(0.72rem, 1.1vw, 0.88rem);
+  font-size: clamp(0.72rem, 1.05vw, 0.85rem);
   white-space: nowrap;
-  padding: 10px 14px;
-  background: rgba(21, 11, 38, 0.86);
-  border: 1px solid var(--magenta);
+  padding: 9px 13px;
+  background: rgba(4, 12, 9, 0.9);
+  border: 1px solid var(--neon);
   color: var(--fog);
-  box-shadow: 0 0 24px rgba(255, 61, 154, 0.35);
+  box-shadow: 0 0 22px rgba(57, 255, 140, 0.35);
 }
-.chip b { color: var(--cyan); font-weight: 500; }
-.chip-a { left: 14%; top: 16%; transform: translate3d(0, calc(var(--scroll) * -140px), 180px) rotateY(-14deg); }
-.chip-b { left: 40%; bottom: 24%; transform: translate3d(0, calc(var(--scroll) * -90px), 200px) rotateY(-18deg); border-color: var(--cyan); box-shadow: 0 0 24px rgba(62, 232, 255, 0.35); }
-.chip-c { left: 12%; bottom: 22%; transform: translate3d(0, calc(var(--scroll) * -200px), 240px) rotateY(-10deg); border-color: var(--hazard); box-shadow: 0 0 24px rgba(255, 225, 77, 0.3); }
+.chip b { color: var(--neon); font-weight: 500; }
+/* Chips float in the side gutters, clear of the phone screen. Z is kept small so the
+   perspective does not push them off the edge, and each is inset from the border. */
+.chip-a { left: 24px; top: 12%; transform: translate3d(0, calc(var(--scroll) * -110px), 40px) rotateY(7deg); }
+.chip-b { right: 24px; top: 46%; transform: translate3d(0, calc(var(--scroll) * -70px), 50px) rotateY(-7deg); border-color: var(--cyan); box-shadow: 0 0 22px rgba(62, 232, 255, 0.35); }
+.chip-b b { color: var(--cyan); }
+.chip-c { left: 24px; bottom: 12%; transform: translate3d(0, calc(var(--scroll) * -150px), 60px) rotateY(7deg); border-color: var(--hazard); box-shadow: 0 0 22px rgba(255, 225, 77, 0.3); }
+.chip-c b { color: var(--hazard); }
 
 /* ---------- sections ---------- */
 section { scroll-margin-top: 80px; }
@@ -637,18 +621,14 @@ pre.cmd .p { color: var(--magenta); }
 }
 @media (max-width: 560px) {
   body { font-size: 1rem; }
-  .scene {
-    height: 460px;
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 88%, transparent 100%);
-            mask-image: linear-gradient(180deg, #000 0%, #000 88%, transparent 100%);
-  }
+  .scene { height: 480px; }
   .phone {
     left: 50%;
-    width: 54%;
-    transform: translate3d(-50%, calc(-50% + var(--scroll) * -40px), 60px) rotateY(-12deg) rotateX(6deg);
+    width: 60%;
+    transform: translate3d(-50%, calc(-50% + var(--scroll) * -40px), 40px) rotateY(-10deg) rotateX(5deg);
   }
-  .chip-a { left: 8%; top: 8%; transform: translate3d(0, calc(var(--scroll) * -60px), 60px); }
-  .chip-c { left: auto; right: 6%; bottom: 12%; transform: translate3d(0, calc(var(--scroll) * -80px), 120px); }
+  .chip-a { left: 0; top: 7%; transform: translate3d(0, calc(var(--scroll) * -60px), 60px); }
+  .chip-c { left: 0; bottom: 9%; transform: translate3d(0, calc(var(--scroll) * -80px), 90px); }
   .chip-b { display: none; }
   .section { padding-block: 72px; }
   .callout { padding: 36px 22px; }
@@ -659,8 +639,9 @@ pre.cmd .p { color: var(--magenta); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .floor, .caret { animation: none; }
+  .caret { animation: none; }
   .stage, .shot { transition: none; }
+  .matrix { opacity: 0.35; }
 }
 
 .sr-only {
