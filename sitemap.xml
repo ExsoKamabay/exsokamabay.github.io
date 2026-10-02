@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://exsokamabay.github.io/</loc>
     <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://exsokamabay.github.io/dxterm/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://exsokamabay.github.io/dxterm/" />
     <xhtml:link rel="alternate" hreflang="id" href="https://exsokamabay.github.io/dxterm/id.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://exsokamabay.github.io/dxterm/" />
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/og-image.png</image:loc></image:image>
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/img/claw-chat-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/img/xset-claw-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/img/debian-terminal-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/img/pick-distro-720.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://exsokamabay.github.io/dxterm/id.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://exsokamabay.github.io/dxterm/" />
     <xhtml:link rel="alternate" hreflang="id" href="https://exsokamabay.github.io/dxterm/id.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://exsokamabay.github.io/dxterm/" />
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/og-image.png</image:loc></image:image>
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/img/claw-chat-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/img/xset-claw-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/img/debian-terminal-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://exsokamabay.github.io/dxterm/img/pick-distro-720.webp</image:loc></image:image>
   </url>
 </urlset>

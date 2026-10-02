@@ -2,184 +2,404 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>dracxterm (dxterm) — Terminal Linux Android tanpa root</title>
-  <meta name="description" content="Jalankan Debian 13 atau Kali Linux di Android tanpa root. dracxterm adalah emulator terminal open-source untuk ARM64 dan x86_64, tanpa iklan atau pelacakan.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>dracxterm | Terminal Linux Android tanpa root, dengan asisten AI</title>
+  <meta name="description" content="Jalankan Debian atau Kali Linux di Android tanpa root. dracxterm 1.1.0 adalah terminal gratis dan open source dengan asisten claw, lima ruang kerja, tanpa iklan dan pelacak.">
+  <meta name="keywords" content="dracxterm, dxterm, terminal Android, Linux di Android, tanpa root, Kali Linux Android, Debian Android, emulator terminal, asisten AI terminal, claw">
+  <meta name="author" content="ExsoKamabay">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <meta name="theme-color" content="#07100d">
+  <meta name="theme-color" content="#120a26">
+  <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://exsokamabay.github.io/dxterm/id.html">
   <link rel="alternate" hreflang="en" href="https://exsokamabay.github.io/dxterm/">
   <link rel="alternate" hreflang="id" href="https://exsokamabay.github.io/dxterm/id.html">
   <link rel="alternate" hreflang="x-default" href="https://exsokamabay.github.io/dxterm/">
+  <link rel="icon" type="image/png" sizes="48x48" href="./favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+  <link rel="preload" as="font" type="font/woff2" href="./fonts/chakra-petch-700-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="./fonts/chakra-petch-400-latin.woff2" crossorigin>
+  <link rel="preload" as="image" href="./img/claw-chat-720.webp" type="image/webp">
   <link rel="stylesheet" href="./styles.css">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="dracxterm">
-  <meta property="og:title" content="dracxterm — Linux di Android tanpa root">
-  <meta property="og:description" content="Terminal Android open-source yang menjalankan Debian atau Kali di ruang aplikasi. ARM64 dan x86_64, tanpa akun, iklan, analitik, atau pelacak.">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="dracxterm: Linux di Android tanpa root, dengan asisten claw">
+  <meta property="og:description" content="Terminal Android gratis dan open source yang menjalankan Debian atau Kali di penyimpanan aplikasi. Versi 1.1.0 menambah claw, asisten yang bisa diajak mengobrol di terminal.">
   <meta property="og:url" content="https://exsokamabay.github.io/dxterm/id.html">
-  <meta property="og:image" content="https://raw.githubusercontent.com/ExsoKamabay/dxterm/main/Screenshot/03-terminal-debian-dracxterm.jpg">
-  <meta property="og:image:width" content="1080">
-  <meta property="og:image:height" content="2049">
-  <meta property="og:image:alt" content="Debian 13 berjalan di dalam dracxterm pada Android">
+  <meta property="og:image" content="https://exsokamabay.github.io/dxterm/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wordmark dracxterm di samping ponsel yang menjalankan claw chat">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="dracxterm — Terminal Linux Android tanpa root">
-  <meta name="twitter:description" content="Jalankan Debian atau Kali di Android tanpa me-root ponsel.">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/ExsoKamabay/dxterm/main/Screenshot/03-terminal-debian-dracxterm.jpg">
+  <meta name="twitter:title" content="dracxterm: terminal Linux untuk Android, tanpa root">
+  <meta name="twitter:description" content="Jalankan Debian atau Kali di Android tanpa me-root ponsel, lalu tanya asisten claw yang sudah ada di dalamnya.">
+  <meta name="twitter:image" content="https://exsokamabay.github.io/dxterm/og-image.png">
+  <meta name="twitter:image:alt" content="Wordmark dracxterm di samping ponsel yang menjalankan claw chat">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "dracxterm",
-    "alternateName": "dxterm",
-    "applicationCategory": "DeveloperApplication",
-    "applicationSubCategory": "Emulator terminal dan lingkungan Linux rootless",
-    "operatingSystem": "Android 7.0 atau lebih baru",
-    "softwareVersion": "1.0.6",
-    "description": "Emulator terminal Android open-source yang dapat menjalankan Debian 13 dan Kali Linux tanpa root pada perangkat ARM64 dan x86_64.",
-    "url": "https://exsokamabay.github.io/dxterm/id.html",
-    "downloadUrl": "https://github.com/ExsoKamabay/dxterm/releases/latest",
-    "codeRepository": "https://github.com/ExsoKamabay/dxterm",
-    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
-    "image": "https://raw.githubusercontent.com/ExsoKamabay/dxterm/main/Screenshot/03-terminal-debian-dracxterm.jpg",
-    "inLanguage": ["id", "en"],
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://exsokamabay.github.io/dxterm/id.html#webpage",
+        "url": "https://exsokamabay.github.io/dxterm/id.html",
+        "name": "dracxterm | Terminal Linux Android tanpa root, dengan asisten AI",
+        "isPartOf": { "@id": "https://exsokamabay.github.io/#website" },
+        "about": { "@id": "https://exsokamabay.github.io/dxterm/#app" },
+        "primaryImageOfPage": "https://exsokamabay.github.io/dxterm/og-image.png",
+        "inLanguage": "id",
+        "dateModified": "2026-10-03",
+        "breadcrumb": { "@id": "https://exsokamabay.github.io/dxterm/id.html#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://exsokamabay.github.io/dxterm/id.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "ExsoKamabay", "item": "https://exsokamabay.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "dracxterm", "item": "https://exsokamabay.github.io/dxterm/id.html" }
+        ]
+      },
+      {
+        "@type": "MobileApplication",
+        "@id": "https://exsokamabay.github.io/dxterm/#app",
+        "name": "dracxterm",
+        "alternateName": ["dxterm", "drac-Xterm"],
+        "description": "Terminal Android open source yang menjalankan Debian 13 dan Kali Linux tanpa root di perangkat ARM64 dan x86_64, dengan asisten claw di dalamnya.",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Emulator terminal dan lingkungan Linux tanpa root",
+        "operatingSystem": "Android 7.0 atau lebih baru",
+        "processorRequirements": "arm64-v8a atau x86_64",
+        "softwareVersion": "1.1.0",
+        "fileSize": "33 MB",
+        "datePublished": "2026-10-03",
+        "url": "https://exsokamabay.github.io/dxterm/id.html",
+        "downloadUrl": "https://github.com/ExsoKamabay/dxterm/releases/latest",
+        "installUrl": "https://github.com/ExsoKamabay/dxterm/releases/latest",
+        "releaseNotes": "https://github.com/ExsoKamabay/dxterm/releases/tag/v1.1.0",
+        "codeRepository": "https://github.com/ExsoKamabay/dxterm",
+        "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+        "isAccessibleForFree": true,
+        "image": "https://exsokamabay.github.io/dxterm/icon-512.png",
+        "screenshot": [
+          "https://exsokamabay.github.io/dxterm/img/claw-chat-720.webp",
+          "https://exsokamabay.github.io/dxterm/img/xset-claw-720.webp",
+          "https://exsokamabay.github.io/dxterm/img/debian-terminal-720.webp",
+          "https://exsokamabay.github.io/dxterm/img/pick-distro-720.webp"
+        ],
+        "inLanguage": ["id", "en"],
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "IDR" },
+        "author": { "@type": "Person", "name": "ExsoKamabay", "url": "https://github.com/ExsoKamabay" },
+        "sameAs": [
+          "https://github.com/ExsoKamabay/dxterm",
+          "https://sourceforge.net/projects/dxterm/"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://exsokamabay.github.io/dxterm/id.html#faq",
+        "inLanguage": "id",
+        "mainEntity": [
+          { "@type": "Question", "name": "Apakah dracxterm butuh root?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Tidak. Linux berjalan di dalam penyimpanan aplikasi lewat mesin tanpa root. Akun root yang terlihat di dalam distro sifatnya tiruan dan hanya berlaku di sana." } },
+          { "@type": "Question", "name": "Ponsel apa saja yang bisa menjalankan dracxterm?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Android 7.0 atau lebih baru dengan prosesor ARM 64-bit (arm64-v8a) atau x86_64. Itu mencakup sebagian besar ponsel, emulator, WayDroid, dan ChromeOS. Perangkat 32-bit tidak didukung." } },
+          { "@type": "Question", "name": "Bisakah menjalankan Kali Linux di Android dengan dracxterm?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Bisa. Kali Nano, Kali Minimal, dan Kali Full ada di katalog untuk ARM64. Kali Full butuh sekitar 9,5 GB setelah terpasang. nmap jalan dengan pemindaian koneksi biasa; pilihan yang butuh socket mentah seperti -sS dan -O tidak tersedia." } },
+          { "@type": "Question", "name": "Apakah asisten claw gratis? Perlu kunci API?",
+            "acceptedAnswer": { "@type": "Answer", "text": "claw memakai layanan model gratis yang bisa dipakai tanpa akun, jadi tidak perlu kunci. Kalau punya kunci dari Groq, OpenRouter, Google AI Studio, Cerebras, atau NVIDIA, isi variabelnya dan model dari layanan itu ikut dipakai. Layanan gratis bisa penuh atau berubah tanpa pemberitahuan." } },
+          { "@type": "Question", "name": "Data apa yang keluar dari ponsel saya?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Tidak ada analitik, iklan, atau pelacak, dan tidak ada yang dikirim ke pengembang. Aplikasi membuka jaringan untuk mengunduh distro yang Anda pilih, menyiapkan Python dan Scrapling untuk browsing claw (bisa dimatikan), dan mengirim pesan Anda ke layanan model saat Anda memakai claw." } },
+          { "@type": "Question", "name": "Bisakah memperbarui dari 1.0.6 tanpa kehilangan berkas?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Bisa. Versi 1.1.0 ditandatangani dengan kunci yang sama, jadi terpasang menimpa 1.0.6 dan distro serta folder home tetap ada." } }
+        ]
+      }
+    ]
   }
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Lewati ke isi</a>
+  <a class="skip-link" href="#main">Langsung ke isi</a>
 
   <header class="site-header">
     <nav class="nav wrap" aria-label="Navigasi utama">
       <a class="brand" href="./id.html" aria-label="Beranda dracxterm">drac<span>x</span>term</a>
       <div class="nav-links">
-        <a class="optional" href="#fitur">Fitur</a>
-        <a class="optional" href="#tangkapan-layar">Tangkapan layar</a>
-        <a href="https://github.com/ExsoKamabay/dxterm">GitHub</a>
-        <a href="./" lang="en">English</a>
+        <a class="optional" href="#claw">Yang baru</a>
+        <a class="optional" href="#features">Fitur</a>
+        <a class="optional" href="#screenshots">Screenshot</a>
+        <a class="optional" href="#install">Pasang</a>
+        <a class="optional" href="#faq">Tanya jawab</a>
+        <a class="lang" href="./" hreflang="en" lang="en">English</a>
       </div>
     </nav>
   </header>
 
   <main id="main">
     <section class="hero wrap" aria-labelledby="hero-title">
-      <div>
-        <p class="eyebrow">Terminal Android open-source</p>
-        <h1 id="hero-title">Linux di Android. Tanpa root.</h1>
-        <p class="lead">dracxterm langsung memberi Anda shell yang siap dipakai, lalu memasang Debian 13 atau Kali Linux di ruang aplikasi saat Anda memerlukan distro lengkap. Tanpa akun, iklan, analitik, atau pelacak.</p>
+      <div class="hero-copy">
+        <h1 id="hero-title">Jalankan Debian atau Kali di ponsel Android. Tanpa root.</h1>
+        <p class="lead">dracxterm langsung membuka shell begitu dijalankan. Kalau butuh lebih, ia memasang distro Linux lengkap di dalam penyimpanannya sendiri, dan versi 1.1.0 menambah claw: asisten yang bisa diajak mengobrol dan disuruh bekerja di terminal yang sama.</p>
         <div class="actions">
-          <a class="button" href="https://github.com/ExsoKamabay/dxterm/releases/latest">Unduh APK terbaru</a>
-          <a class="button secondary" href="https://github.com/ExsoKamabay/dxterm">Lihat kode di GitHub</a>
+          <a class="btn btn-primary cut" href="https://github.com/ExsoKamabay/dxterm/releases/latest">Unduh APK <small>v1.1.0, 33 MB</small></a>
+          <a class="btn cut" href="https://sourceforge.net/projects/dxterm/files/">Mirror SourceForge</a>
+          <a class="btn cut" href="https://github.com/ExsoKamabay/dxterm">Kode sumber</a>
         </div>
-        <ul class="facts" aria-label="Ringkasan kompatibilitas">
-          <li>Android 7.0+</li>
+        <ul class="specs" aria-label="Kebutuhan">
+          <li>Android 7.0 ke atas</li>
           <li>ARM64 dan x86_64</li>
-          <li>GPL-3.0</li>
-          <li>Versi 1.0.6</li>
+          <li>Gratis dan open source, GPL-3.0</li>
+          <li>Tanpa iklan, tanpa akun</li>
         </ul>
       </div>
-      <figure class="phone">
-        <img src="https://raw.githubusercontent.com/ExsoKamabay/dxterm/main/Screenshot/03-terminal-debian-dracxterm.jpg" width="1080" height="2049" alt="Terminal Debian 13 menjalankan fastfetch dan perintah apt di dalam dracxterm pada Android" fetchpriority="high">
-      </figure>
+
+      <div class="scene">
+        <div class="stage">
+          <div class="layer sun" aria-hidden="true"></div>
+          <div class="layer city" aria-hidden="true">
+            <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" role="presentation">
+              <g fill="#1d0f3d">
+                <path d="M0 400V250h60v-60h40v80h50V160h70v110h30V210h60v190zM330 400V120h80v60h30v220zM470 400V230h50V90h90v140h40v170zM680 400V180h60v-50h50v270zM820 400V240h70V140h60v260zM980 400V200h50v-60h70v260zM1120 400V230h80v170z"/>
+              </g>
+              <g fill="#2a1656">
+                <path d="M20 400V300h90v-40h60v140zM200 400V280h70v-50h60v170zM380 400V310h110v90zM540 400V270h90v-60h40v190zM720 400V300h80v-40h50v140zM900 400V280h70v-30h80v150zM1080 400V310h120v90z"/>
+              </g>
+              <g fill="#3ee8ff" opacity=".75">
+                <rect x="352" y="150" width="8" height="5"/><rect x="372" y="190" width="8" height="5"/><rect x="500" y="120" width="8" height="5"/>
+                <rect x="560" y="160" width="8" height="5"/><rect x="700" y="210" width="8" height="5"/><rect x="845" y="170" width="8" height="5"/>
+                <rect x="1000" y="230" width="8" height="5"/><rect x="130" y="190" width="8" height="5"/>
+              </g>
+              <g fill="#ff3d9a" opacity=".8">
+                <rect x="388" y="230" width="8" height="5"/><rect x="590" y="110" width="8" height="5"/><rect x="760" y="160" width="8" height="5"/>
+                <rect x="930" y="190" width="8" height="5"/><rect x="1060" y="170" width="8" height="5"/><rect x="250" y="240" width="8" height="5"/>
+              </g>
+            </svg>
+          </div>
+          <div class="layer horizon" aria-hidden="true"></div>
+          <div class="layer floor" aria-hidden="true"></div>
+          <div class="layer chip chip-a cut" aria-hidden="true"><b>$</b> claw chat</div>
+          <div class="layer chip chip-b cut" aria-hidden="true"><b>$</b> sudo nmap -sn 192.168.1.0/24</div>
+          <div class="layer chip chip-c cut" aria-hidden="true"><b>$</b> xset claw</div>
+          <figure class="layer phone">
+            <div class="phone-frame">
+              <img src="./img/claw-chat-720.webp" srcset="./img/claw-chat-360.webp 360w, ./img/claw-chat-720.webp 720w" sizes="(max-width: 560px) 58vw, 300px" width="720" height="1440" alt="claw chat di dracxterm pada ponsel Android, menjawab pertanyaan tentang perintah ruang disk" fetchpriority="high">
+            </div>
+          </figure>
+        </div>
+      </div>
     </section>
 
-    <section class="section" id="fitur" aria-labelledby="features-title">
+    <hr class="rule">
+
+    <section class="section" id="claw" aria-labelledby="claw-title">
       <div class="wrap">
-        <div class="section-intro">
-          <p class="eyebrow">Ruang kerja Linux di saku</p>
-          <h2 id="features-title">Terminal sungguhan sejak awal. Linux lengkap saat dibutuhkan.</h2>
-          <p>Mesin terminal, parser ANSI/VT, buffer layar, penanganan PTY, dan render UTF-8 dibuat dengan C++. Antarmuka Android ditulis dengan Kotlin.</p>
+        <div class="section-head">
+          <h2 id="claw-title">Baru di 1.1.0: tanya claw langsung di terminal</h2>
+          <p>Ketik <code>claw chat</code> di distro yang sudah terpasang, lalu tulis kebutuhan Anda dengan kalimat biasa. Jawabannya muncul di terminal yang sama, dan selama model bekerja, layar memberi tahu apa yang sedang dikerjakan, misalnya berkas mana yang sedang ditulis.</p>
         </div>
-        <div class="feature-list">
-          <article class="feature">
-            <span class="feature-index">01 / ROOTLESS</span>
+        <div class="claw">
+          <div>
+            <div class="term cut">
+              <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>dracxterm, ruang kerja 1</span></div>
+              <pre data-replay="replay-id" aria-label="Rekaman sesi claw chat"><span class="p">┌─[dracOS@Xterm]─[~]</span>
+<span class="c">└─➤$</span> claw chat
+claw chat · 33 model · model chat: auto · 2 agen (obrolan + pekerja)
+perintah: /models /use /skills /activity /reset /exit
+
+<span class="m">┌[</span><span class="p">assistant</span> <span class="c">(auto)</span><span class="m">]─[</span><span class="y">01:24:00</span><span class="m">]</span>
+<span class="m">└─</span> <span class="g">&gt;</span> <span class="c">sebutkan tiga perintah linux untuk melihat ruang disk, jawab singkat</span>
+
+Tiga perintah Linux untuk melihat ruang disk:
+
+<span class="g">  df -h      # ruang disk per partisi (human-readable)
+  df -h /    # ruang disk partisi root
+  du -sh /*  # ukuran total tiap direktori langsung di root</span>
+
+Alternatif lain: <span class="p">df -h</span> (umum), <span class="p">df -i</span> (ruang inode), atau <span class="p">du -h --max-depth=1</span> untuk detail per folder.</pre>
+              <template id="replay-id">
+                <span data-line="typed" data-text="claw chat"><span class="p">┌─[dracOS@Xterm]─[~]</span>
+<span class="c">└─➤$</span> </span>
+                <span data-line="out" data-pause="400">claw chat · 33 model · model chat: auto · 2 agen (obrolan + pekerja)</span>
+                <span data-line="out">perintah: /models /use /skills /activity /reset /exit</span>
+                <span data-line="out"></span>
+                <span data-line="typed" data-text="sebutkan tiga perintah linux untuk melihat ruang disk, jawab singkat"><span class="m">┌[</span><span class="p">assistant</span> <span class="c">(auto)</span><span class="m">]─[</span><span class="y">01:24:00</span><span class="m">]</span>
+<span class="m">└─</span> <span class="g">&gt;</span> </span>
+                <span data-line="out" data-pause="1400"></span>
+                <span data-line="out">Tiga perintah Linux untuk melihat ruang disk:</span>
+                <span data-line="out"></span>
+                <span data-line="out" class="g">  df -h      # ruang disk per partisi (human-readable)</span>
+                <span data-line="out" class="g">  df -h /    # ruang disk partisi root</span>
+                <span data-line="out" class="g">  du -sh /*  # ukuran total tiap direktori langsung di root</span>
+                <span data-line="out"></span>
+                <span data-line="out">Alternatif lain: <span class="p">df -h</span> (umum), <span class="p">df -i</span> (ruang inode), atau <span class="p">du -h --max-depth=1</span> untuk detail per folder.</span>
+              </template>
+            </div>
+            <p class="term-note">Sesi sungguhan, direkam pada 3 Oktober 2026 di ponsel Android 15 yang menjalankan dracxterm 1.1.0.</p>
+          </div>
+          <ul class="points">
+            <li>
+              <h3>Tidak perlu membuat akun</h3>
+              <p>claw memakai layanan model gratis yang bisa dipakai tanpa daftar: LLM7, Kilo Gateway, Pollinations, OVHcloud AI Endpoints, dan OpenCode Zen. Kalau satu model sedang penuh, ia pindah ke model lain. Di ponsel uji kami ada 33 model yang bisa dipilih.</p>
+            </li>
+            <li>
+              <h3>Anda yang menentukan batasnya</h3>
+              <p><code>xset claw</code> mengatur apakah claw boleh membuka halaman web, membaca dan mengubah berkas sekaligus menjalankan perintah, menjangkau jaringan lokal, atau memakai skill. Akses berkas dan perintah mati sejak awal, dan membuka halaman web harus minta izin dulu.</p>
+            </li>
+            <li>
+              <h3>Mode Humanizer untuk tujuan besar</h3>
+              <p><code>claw humanizer "tujuan"</code> membagi satu tujuan ke beberapa agen dan terus bekerja sampai Anda mematikannya. Tab laporan terbuka di samping pekerjaan Anda supaya Anda bisa melihat apa yang mereka kerjakan.</p>
+            </li>
+            <li>
+              <h3>Ketahui ke mana pesan Anda pergi</h3>
+              <p>Yang Anda ketik ke claw dikirim ke layanan model tadi. Jangan menulis kata sandi atau data pribadi di obrolan.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="features-title">Terminal sungguhan dulu, sistem Linux lengkap saat dibutuhkan</h2>
+          <p>Program layar penuh seperti nano, vim, dan htop tampil seperti di komputer. Linux berjalan lewat mesin tanpa root yang sudah ada di dalam APK, jadi tidak ada lagi yang perlu dipasang.</p>
+        </div>
+        <div class="grid">
+          <article class="panel panel-wide cut">
             <h3>Debian dan Kali tanpa me-root Android</h3>
-            <p>Pasang Debian 13 atau Kali Nano, Minimal, maupun Full di dalam aplikasi. Gunakan <code>apt</code>, <code>dpkg</code>, <code>sudo</code>, dan perkakas Linux tanpa mengubah sistem ponsel.</p>
+            <p>Pilih distro saat aplikasi pertama dibuka. Tiap unduhan dicocokkan dengan sidik jari SHA-256 yang tersimpan di aplikasi sebelum dibongkar, lalu <code>sudo</code>, <code>apt</code>, dan <code>dpkg</code> jalan seperti biasa.</p>
+            <table class="distros">
+              <caption class="sr-only">Distro di katalog</caption>
+              <thead><tr><th scope="col">Distro</th><th scope="col">Unduhan</th><th scope="col">Terpasang</th></tr></thead>
+              <tbody>
+                <tr><td>Debian 13 (trixie) <span class="arch">arm64</span></td><td>35 MB</td><td>400 MB</td></tr>
+                <tr><td>Kali Linux Nano <span class="arch">arm64</span></td><td>198 MB</td><td>1,0 GB</td></tr>
+                <tr><td>Kali Linux Minimal <span class="arch">arm64</span></td><td>137 MB</td><td>1,0 GB</td></tr>
+                <tr><td>Kali Linux Full <span class="arch">arm64</span></td><td>1,8 GB</td><td>9,5 GB</td></tr>
+                <tr><td>Debian 13 (trixie) <span class="arch">x86_64</span></td><td>89 MB</td><td>sekitar 700 MB</td></tr>
+              </tbody>
+            </table>
+            <p>Anda masuk sebagai pengguna biasa <code>dracos</code>. <code>sudo -i</code> membuka shell root yang hanya berlaku di dalam aplikasi.</p>
           </article>
-          <article class="feature">
-            <span class="feature-index">02 / TERMINAL</span>
-            <h3>Dibuat untuk kerja baris perintah interaktif</h3>
-            <p>Truecolor, UTF-8 dan teks CJK, scrollback, alternate screen, seleksi, pencarian, clipboard, bracketed paste, dan mouse tracking sudah didukung.</p>
+          <article class="panel panel-tall cut">
+            <h3>Privat sejak awal</h3>
+            <p>Tidak ada iklan, analitik, pelacak, atau akun, dan tidak ada yang dikirim ke pengembang.</p>
+            <p>Aplikasi membuka jaringan untuk tiga hal: distro yang Anda pilih untuk diunduh, penyiapan Python dan Scrapling supaya claw bisa membuka halaman web (bisa dimatikan), dan pesan claw Anda ke layanan model.</p>
+            <p>Akses penyimpanan ponsel tidak pernah diminta saat aplikasi dibuka. Nyalakan di <code>xset</code>, lalu isinya muncul di <code>~/sdcard</code>.</p>
+            <p><a href="../Privacy-Policy/dracxterm/dracxterm-v1.1.0.html">Baca kebijakan privasi 1.1.0</a></p>
           </article>
-          <article class="feature">
-            <span class="feature-index">03 / WORKSPACE</span>
-            <h3>Lima sesi yang berdiri sendiri</h3>
-            <p>Setiap workspace memiliki shell, PTY, direktori, dan riwayat sendiri. Sesi tetap hidup saat Anda pindah aplikasi, sementara baris tombol menyediakan Ctrl, Alt, Esc, panah, dan navigasi.</p>
+          <article class="panel panel-third cut">
+            <h3>Dibuat untuk kerja di baris perintah</h3>
+            <p>Truecolor, UTF-8 termasuk CJK, mouse untuk htop dan mc, dan papan ketik fisik yang mengirim Ctrl, Alt, Shift, serta F1 sampai F12. Anda bisa menggulir ke atas dan membaca selagi program masih mencetak.</p>
           </article>
-          <article class="feature">
-            <span class="feature-index">04 / PRIVASI</span>
-            <h3>Tanpa akun, iklan, analitik, atau telemetri</h3>
-            <p>Jaringan hanya dipakai untuk unduhan yang Anda minta. Image distro diambil lewat HTTPS dan diperiksa dengan SHA-256 yang sudah dipin sebelum diekstrak.</p>
+          <article class="panel panel-third cut">
+            <h3>Lima ruang kerja</h3>
+            <p>Masing-masing punya shell, direktori, dan riwayat sendiri. Usap untuk berpindah. Sesi tetap jalan saat Anda keluar dari aplikasi.</p>
+          </article>
+          <article class="panel panel-wide cut">
+            <h3>Pengaturan di dalam terminal, dalam enam bahasa</h3>
+            <p>Ketik <code>xset</code> untuk tema, huruf, kursor, scrollback, akses penyimpanan, izin claw, dan diagnostik. Perubahan langsung terlihat, dan tombol Back menutup panelnya.</p>
+            <ul class="langs" aria-label="Bahasa xset">
+              <li lang="id">Indonesia</li><li lang="en">English</li><li lang="zh">中文</li><li lang="vi">Tiếng Việt</li><li lang="ru">Русский</li><li lang="hi">हिन्दी</li>
+            </ul>
+          </article>
+          <article class="panel panel-third cut">
+            <h3>Perintah yang dulu gagal kini jalan</h3>
+            <p><code>sudo nmap</code> memindai, <code>sudo</code> berhenti mengeluh soal nama host, paket yang membawa layanan terpasang tanpa galat, dan <code>date</code> mengikuti jam ponsel.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="tangkapan-layar" aria-labelledby="screenshots-title">
+    <section class="section" id="screenshots" aria-labelledby="shots-title">
       <div class="wrap">
-        <div class="section-intro">
-          <p class="eyebrow">Bukti dari perangkat</p>
-          <h2 id="screenshots-title">Dari peluncuran pertama hingga ruang kerja Linux multi-sesi.</h2>
+        <div class="section-head">
+          <h2 id="shots-title">Tangkapan layar dari ponsel sungguhan</h2>
+          <p>Geser ke samping. Semua gambar adalah screenshot aplikasi yang dipotong ke area aplikasinya.</p>
         </div>
-        <div class="gallery">
-          <figure class="shot">
-            <img src="https://raw.githubusercontent.com/ExsoKamabay/dxterm/main/Screenshot/01-pilih-distro-dracxterm.jpg" width="1080" height="2049" alt="Layar pemilihan distro dracxterm yang menampilkan image Linux sesuai perangkat Android">
-            <figcaption>Pilih image Debian atau Kali yang kompatibel.</figcaption>
-          </figure>
-          <figure class="shot">
-            <img src="https://raw.githubusercontent.com/ExsoKamabay/dxterm/main/Screenshot/04-warna-utf8-dracxterm.jpg" width="1080" height="2049" alt="Warna ANSI, truecolor, emoji, CJK, dan combining character dirender di dracxterm">
-            <figcaption>Warna ANSI, truecolor, dan render UTF-8 penuh.</figcaption>
-          </figure>
-          <figure class="shot">
-            <img src="https://raw.githubusercontent.com/ExsoKamabay/dxterm/main/Screenshot/06-htop-multi-workspace-dracxterm.jpg" width="1080" height="2049" alt="htop berjalan layar penuh di workspace kedua dracxterm">
-            <figcaption>Program layar penuh di workspace terpisah.</figcaption>
-          </figure>
-          <figure class="shot">
-            <img src="https://raw.githubusercontent.com/ExsoKamabay/dxterm/main/Screenshot/07-xset-appearance-dracxterm.jpg" width="1080" height="2049" alt="Pengaturan tampilan dracxterm untuk tema, font, kursor, dan padding terminal">
-            <figcaption>Atur tema, font, kursor, dan jarak secara langsung.</figcaption>
-          </figure>
-        </div>
+      </div>
+      <div class="shots" tabindex="0" aria-label="Screenshot, geser ke samping">
+        <figure class="shot"><img src="./img/claw-chat-360.webp" srcset="./img/claw-chat-360.webp 360w, ./img/claw-chat-720.webp 720w" sizes="270px" width="360" height="720" loading="lazy" alt="claw chat menjawab pertanyaan di dracxterm"><figcaption>claw chat, baru di 1.1.0.</figcaption></figure>
+        <figure class="shot"><img src="./img/xset-claw-360.webp" srcset="./img/xset-claw-360.webp 360w, ./img/xset-claw-720.webp 720w" sizes="270px" width="360" height="720" loading="lazy" alt="Halaman AI (claw) di xset yang mengatur izin claw"><figcaption>Halaman izin AI (claw) di xset.</figcaption></figure>
+        <figure class="shot"><img src="./img/debian-terminal-360.webp" srcset="./img/debian-terminal-360.webp 360w, ./img/debian-terminal-720.webp 720w" sizes="270px" width="360" height="683" loading="lazy" alt="Debian 13 menjalankan fastfetch dan perintah apt di dracxterm"><figcaption>Debian 13 dengan apt, git, Python, dan curl.</figcaption></figure>
+        <figure class="shot"><img src="./img/pick-distro-360.webp" srcset="./img/pick-distro-360.webp 360w, ./img/pick-distro-720.webp 720w" sizes="270px" width="360" height="683" loading="lazy" alt="Layar pemilihan distro yang cocok dengan prosesor ponsel"><figcaption>Pilih distro yang cocok dengan ponsel Anda.</figcaption></figure>
+        <figure class="shot"><img src="./img/sudo-deb-360.webp" srcset="./img/sudo-deb-360.webp 360w, ./img/sudo-deb-720.webp 720w" sizes="270px" width="360" height="683" loading="lazy" alt="Shell root lewat sudo -i memasang paket .deb dengan dpkg"><figcaption>Shell root dan paket .deb yang dipasang dengan dpkg.</figcaption></figure>
+        <figure class="shot"><img src="./img/htop-workspace-360.webp" srcset="./img/htop-workspace-360.webp 360w, ./img/htop-workspace-720.webp 720w" sizes="270px" width="360" height="683" loading="lazy" alt="htop layar penuh di ruang kerja kedua"><figcaption>htop di ruang kerja kedua.</figcaption></figure>
+        <figure class="shot"><img src="./img/color-utf8-360.webp" srcset="./img/color-utf8-360.webp 360w, ./img/color-utf8-720.webp 720w" sizes="270px" width="360" height="683" loading="lazy" alt="Warna ANSI, truecolor, emoji, dan teks CJK di dracxterm"><figcaption>Truecolor dan UTF-8 penuh.</figcaption></figure>
+        <figure class="shot"><img src="./img/xset-appearance-360.webp" srcset="./img/xset-appearance-360.webp 360w, ./img/xset-appearance-720.webp 720w" sizes="270px" width="360" height="683" loading="lazy" alt="Halaman tampilan xset dengan pengaturan tema, huruf, dan kursor"><figcaption>Tema, huruf, dan kursor di xset.</figcaption></figure>
       </div>
     </section>
 
-    <section class="section" id="pasang" aria-labelledby="install-title">
+    <section class="section" id="install" aria-labelledby="install-title">
       <div class="install wrap">
-        <div class="install-copy">
-          <p class="eyebrow">Pasang dengan aman</p>
-          <h2 id="install-title">Unduh, periksa, pasang.</h2>
-          <p>Setiap rilis GitHub menyediakan APK universal untuk ARM64 dan x86_64 beserta berkas SHA-256. Pemasangan lama bisa diperbarui tanpa menghapus root filesystem Linux atau isi direktori home.</p>
-          <p class="note">Android akan meminta izin memasang dari browser atau pengelola berkas karena APK dibagikan di luar toko aplikasi.</p>
+        <div>
+          <div class="section-head">
+            <h2 id="install-title">Unduh, periksa, pasang</h2>
+            <p>Tiap rilis punya satu APK untuk ARM64 dan x86_64, ditambah berkas SHA-256 di sebelahnya.</p>
+          </div>
+          <ol class="steps">
+            <li><div><h3>Unduh APK</h3><p>Dari <a href="https://github.com/ExsoKamabay/dxterm/releases/latest">GitHub Releases</a> atau <a href="https://sourceforge.net/projects/dxterm/files/">mirror SourceForge</a>.</p></div></li>
+            <li><div><h3>Periksa berkasnya</h3><p>Cocokkan dengan berkas <code>.sha256</code> supaya Anda tahu berkasnya utuh.</p></div></li>
+            <li><div><h3>Pasang</h3><p>Buka APK di ponsel dan izinkan pemasangan dari aplikasi itu, atau pakai <code>adb</code>. Memasang di atas 1.0.6 tidak menghapus distro dan folder home.</p></div></li>
+          </ol>
         </div>
-        <pre class="terminal" role="region" aria-label="Perintah pemasangan"><span class="comment"># Unduh kedua berkas dari rilis GitHub terbaru</span>
-<span class="prompt">$</span> sha256sum -c dracxterm-1.0.6-vc6-release.apk.sha256
-<span class="prompt">$</span> adb install -r dracxterm-1.0.6-vc6-release.apk</pre>
+        <pre class="cmd cut" aria-label="Perintah pemasangan"><span class="c"># setelah kedua berkas diunduh</span>
+<span class="p">$</span> sha256sum -c dracxterm-1.1.0-vc7-release.apk.sha256
+dracxterm-1.1.0-vc7-release.apk: OK
+<span class="p">$</span> adb install -r dracxterm-1.1.0-vc7-release.apk
+Success
+
+<span class="c"># lalu, di dalam aplikasi, setelah distro terpasang</span>
+<span class="p">$</span> claw chat</pre>
+      </div>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head"><h2 id="faq-title">Pertanyaan yang sering muncul</h2></div>
+        <div class="faq">
+          <details><summary>Apakah dracxterm butuh root?</summary><p>Tidak. Linux berjalan di dalam penyimpanan aplikasi lewat mesin tanpa root. Akun root yang terlihat di dalam distro sifatnya tiruan dan hanya berlaku di sana.</p></details>
+          <details><summary>Ponsel apa saja yang bisa menjalankan dracxterm?</summary><p>Android 7.0 atau lebih baru dengan prosesor ARM 64-bit (arm64-v8a) atau x86_64. Itu mencakup sebagian besar ponsel, emulator, WayDroid, dan ChromeOS. Perangkat 32-bit tidak didukung.</p></details>
+          <details><summary>Bisakah menjalankan Kali Linux di Android dengan dracxterm?</summary><p>Bisa. Kali Nano, Kali Minimal, dan Kali Full ada di katalog untuk ARM64. Kali Full butuh sekitar 9,5 GB setelah terpasang. <code>nmap</code> jalan dengan pemindaian koneksi biasa; pilihan yang butuh socket mentah seperti <code>-sS</code> dan <code>-O</code> tidak tersedia.</p></details>
+          <details><summary>Apakah asisten claw gratis? Perlu kunci API?</summary><p>claw memakai layanan model gratis yang bisa dipakai tanpa akun, jadi tidak perlu kunci. Kalau punya kunci dari Groq, OpenRouter, Google AI Studio, Cerebras, atau NVIDIA, isi variabelnya (misalnya <code>GROQ_API_KEY</code>) dan model dari layanan itu ikut dipakai. Layanan gratis bisa penuh atau berubah tanpa pemberitahuan.</p></details>
+          <details><summary>Data apa yang keluar dari ponsel saya?</summary><p>Tidak ada analitik, iklan, atau pelacak, dan tidak ada yang dikirim ke pengembang. Aplikasi membuka jaringan untuk mengunduh distro yang Anda pilih, menyiapkan Python dan Scrapling untuk browsing claw (bisa dimatikan di <code>xset claw</code>), dan mengirim pesan Anda ke layanan model saat Anda memakai claw. Rinciannya ada di <a href="../Privacy-Policy/dracxterm/dracxterm-v1.1.0.html">kebijakan privasi</a>.</p></details>
+          <details><summary>Bisakah memperbarui dari 1.0.6 tanpa kehilangan berkas?</summary><p>Bisa. Versi 1.1.0 ditandatangani dengan kunci yang sama, jadi terpasang menimpa 1.0.6 dan distro serta folder home tetap ada.</p></details>
+        </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="callout wrap">
-        <h2>Jadikan perangkat Android Anda terminal Linux privat tanpa root.</h2>
-        <a class="button" href="https://github.com/ExsoKamabay/dxterm/releases/latest">Ambil dracxterm 1.0.6</a>
+      <div class="wrap">
+        <div class="callout cut">
+          <h2>Bawa baris perintah Linux dan asistennya di ponsel Anda.</h2>
+          <div class="actions">
+            <a class="btn btn-primary cut" href="https://github.com/ExsoKamabay/dxterm/releases/latest">Unduh dracxterm 1.1.0</a>
+            <a class="btn cut" href="https://github.com/ExsoKamabay/dxterm/blob/main/CHANGELOG.md">Baca catatan perubahan</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-row wrap">
-      <p>dracxterm adalah perangkat lunak bebas berlisensi GPL-3.0.</p>
-      <nav class="footer-links" aria-label="Navigasi kaki halaman">
-        <a href="https://github.com/ExsoKamabay/dxterm">github.com/ExsoKamabay/dxterm</a>
-        <a href="https://github.com/ExsoKamabay/dxterm/releases">Rilis</a>
+      <p>dracxterm adalah perangkat lunak bebas dengan lisensi GPL-3.0.</p>
+      <nav class="footer-links" aria-label="Navigasi bawah">
+        <a href="https://github.com/ExsoKamabay/dxterm">GitHub</a>
+        <a href="https://sourceforge.net/projects/dxterm/">SourceForge</a>
         <a href="https://github.com/ExsoKamabay/dxterm/blob/main/README.md">Dokumentasi</a>
-        <a href="../">Pusat privasi</a>
+        <a href="../Privacy-Policy/dracxterm/dracxterm-v1.1.0.html">Kebijakan privasi</a>
+        <a href="../">Privacy Center</a>
+        <a href="./" hreflang="en" lang="en">English</a>
       </nav>
     </div>
   </footer>
+
+  <script src="./app.js" defer></script>
 </body>
 </html>
