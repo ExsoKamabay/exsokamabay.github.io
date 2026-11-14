@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kebijakan Privasi LX-LAUNCHER 1.0.0: apa yang tinggal di ponsel Anda, kapan Tedit menghubungi internet, apa yang dilakukan LX Bridge, dan cara menghapus data.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230A0A0C'/%3E%3Cpath d='M3 5l2.5 3L3 11M7.5 11h5.5' stroke='%238A5CF6' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>Kebijakan Privasi LX-LAUNCHER</title>
+<style>
+  :root {
+    --bg: #0A0A0C;
+    --surface: #141419;
+    --elevated: #1E1E26;
+    --text: #E6E6E6;
+    --text-2: #CFCFD6;
+    --muted: #9A9AA6;
+    --accent: #8A5CF6;
+    --accent-text: #A98BF9;
+    --wordmark: #008B8B;
+    --divider: #22222A;
+    --amber: #F0B866;
+    --mint: #7BE0B0;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+
+    --radius: 10px;
+    --tap: 44px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-2);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-wrap: break-word;
+  }
+
+  a { color: var(--accent-text); }
+  a:hover { color: #C3AEFB; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .skip {
+    position: absolute;
+    left: var(--space-4);
+    top: -100px;
+    background: var(--elevated);
+    color: var(--text);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    text-decoration: none;
+    z-index: 50;
+    transition: top 120ms ease;
+  }
+  .skip:focus { top: var(--space-4); }
+
+  header.site {
+    border-bottom: 1px solid var(--divider);
+    padding: var(--space-4) var(--space-5);
+  }
+  .head-inner {
+    max-width: 78ch;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-4);
+  }
+  .wordmark {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--wordmark);
+  }
+  .wordmark .x { color: var(--accent-text); }
+
+  .doc-nav { margin: 0; }
+  .doc-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    background: var(--elevated);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .doc-nav a:hover { border-color: var(--accent); color: #FFFFFF; }
+
+  main.wrap {
+    max-width: 78ch;
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-5) var(--space-7);
+  }
+
+  article { max-width: 70ch; }
+
+  h1 {
+    color: var(--text);
+    font-size: clamp(1.6rem, 1.2rem + 1.7vw, 2.1rem);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--space-2);
+  }
+  h2 {
+    color: var(--text);
+    font-size: 1.28rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    margin: var(--space-7) 0 var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--divider);
+    scroll-margin-top: var(--space-4);
+  }
+  h3 {
+    color: var(--text);
+    font-size: 1.02rem;
+    line-height: 1.4;
+    margin: var(--space-5) 0 var(--space-2);
+    scroll-margin-top: var(--space-4);
+  }
+
+  p { margin: 0 0 var(--space-4); }
+  ul, ol { padding-left: 1.25em; margin: 0 0 var(--space-4); }
+  li { margin-bottom: var(--space-2); }
+  li:last-child { margin-bottom: 0; }
+
+  .doc-meta {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: var(--space-5);
+  }
+
+  .lead { color: var(--text); font-size: 1.06rem; }
+
+  /* Ringkasan pembuka */
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    margin: var(--space-5) 0 var(--space-6);
+  }
+  .summary h2 {
+    margin: 0 0 var(--space-3);
+    padding-top: 0;
+    border-top: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .summary ul { margin: 0; padding-left: 1.1em; }
+  .summary li { color: var(--text); margin-bottom: var(--space-3); }
+
+  /* Penanda jenis informasi. Arti dibawa oleh teksnya, bukan warnanya. */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-4);
+    padding: 0;
+    list-style: none;
+  }
+  .tag {
+    display: inline-block;
+    min-width: 0;
+    white-space: nowrap;
+    padding: 3px 10px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: var(--elevated);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+  }
+  .t-lokal { color: var(--accent-text); }
+  .t-luar { color: var(--amber); }
+  .t-kontrol { color: var(--mint); }
+
+  .callout {
+    background: var(--elevated);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+    margin: var(--space-5) 0;
+  }
+  .callout > :last-child { margin-bottom: 0; }
+  .callout p:first-child { color: var(--text); }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+  .toc h2 {
+    margin: 0 0 var(--space-3);
+    padding-top: 0;
+    border-top: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .toc ol { margin: 0; padding-left: 1.4em; }
+  .toc li { margin-bottom: var(--space-1); }
+  .toc a {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    padding: 6px 0;
+    text-decoration-color: rgba(169, 139, 249, 0.4);
+  }
+
+  .scroll-x { overflow-x: auto; margin: 0 0 var(--space-4); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  caption { text-align: left; color: var(--muted); font-size: 0.9rem; padding-bottom: var(--space-2); }
+  th, td {
+    border: 1px solid var(--divider);
+    padding: var(--space-2) var(--space-3);
+    text-align: left;
+    vertical-align: top;
+  }
+  th { color: var(--text); background: var(--elevated); font-weight: 600; }
+
+  code {
+    background: #0F0F14;
+    border: 1px solid var(--divider);
+    border-radius: 5px;
+    padding: 1px 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.88em;
+    color: var(--text);
+  }
+
+  .sign-off {
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--divider);
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 520px) {
+    main.wrap { padding: var(--space-5) var(--space-4) var(--space-6); }
+    .summary, .toc, .callout { padding: var(--space-4); }
+  }
+
+  /* Penanda dijaga satu baris di lebar normal. Pada lebar ekstrem (zoom tinggi di
+     layar kecil) membungkus lebih baik daripada memaksa seluruh halaman menggeser. */
+  @media (max-width: 380px) {
+    .tag { white-space: normal; overflow-wrap: anywhere; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  @media print {
+    body { background: #FFFFFF; color: #1A1A1A; font-size: 10.5pt; line-height: 1.5; }
+    header.site, .skip, .doc-nav { display: none; }
+    main.wrap { max-width: none; padding: 0; }
+    article { max-width: none; }
+    h1, h2, h3 { color: #000000; page-break-after: avoid; }
+    h1 { font-size: 20pt; }
+    h2 { font-size: 13pt; border-top: 1px solid #BBBBBB; margin-top: 22pt; }
+    h3 { font-size: 11pt; }
+    a { color: #000000; text-decoration: underline; }
+    .summary, .toc, .callout { background: #FFFFFF; border: 1px solid #BBBBBB; border-left-width: 3px; page-break-inside: avoid; }
+    .summary li, .callout p:first-child, .lead { color: #000000; }
+    .tag { border: 1px solid #666666; color: #333333; background: #FFFFFF; }
+    .doc-meta, .sign-off, caption { color: #444444; }
+    th { background: #EEEEEE; color: #000000; }
+    th, td { border: 1px solid #999999; }
+    table, .scroll-x { overflow: visible; page-break-inside: avoid; }
+    code { background: #FFFFFF; border: 1px solid #BBBBBB; color: #000000; }
+    p, li { orphans: 3; widows: 3; }
+  }
+</style>
+</head>
+
+<body>
+
+<a class="skip" href="#doc">Lompat ke isi kebijakan</a>
+
+<header class="site">
+  <div class="head-inner">
+    <p class="wordmark">LX-LAUNCHER</p>
+    <p class="doc-nav"><a href="../../index.html">Kembali ke Privacy Center</a></p>
+  </div>
+</header>
+
+<main class="wrap" id="doc">
+<article data-policy-content>
+
+  <h1>Kebijakan Privasi LX-LAUNCHER</h1>
+
+  <p class="doc-meta">Terakhir diperbarui: 15 November 2026 &middot; Berlaku untuk versi 1.0.0
+  (<code>versionCode</code> 3, paket <code>com.lxlauncher</code>), dirilis 15 November 2026</p>
+
+  <p class="lead">LX-LAUNCHER adalah aplikasi Home untuk Android yang membuat layar utama terasa
+  seperti desktop Linux, dengan workspace, taskbar, dan jendela. Di dalamnya ada Tedit, editor kode
+  dengan terminal dan Debian 13, serta File Explorer.</p>
+
+  <p>Halaman ini menjelaskan apa yang terjadi pada data Anda ketika memakai LX-LAUNCHER. Isinya
+  disusun dari pemeriksaan langsung terhadap kode sumber versi 1.0.0. Ini halaman pertama
+  LX-LAUNCHER di Privacy Center.</p>
+
+  <section class="summary" aria-labelledby="intinya">
+    <h2 id="intinya">Intinya</h2>
+    <ul>
+      <li>Tidak ada akun, iklan, analytics, atau pelaporan crash. Pengembang LX-LAUNCHER tidak
+      menerima tata letak, berkas, catatan, atau informasi perangkat Anda.</li>
+      <li>Launcher dan alat bawaannya tidak menghubungi internet. Izin internet dipakai LX Bridge
+      untuk berbicara dengan ponsel Anda sendiri lewat alamat <code>127.0.0.1</code>.</li>
+      <li>Tedit menghubungi internet hanya karena tindakan Anda: panel Ekstensi ke open-vsx.org
+      setelah Anda mengizinkannya, unduhan Debian dari GitHub di ponsel x86_64, dan program yang
+      Anda jalankan di Debian, seperti <code>apt</code>.</li>
+      <li>LX Bridge memberi LX hak yang sama seperti <code>adb shell</code>. Selama LX Bridge
+      tersambung, LX memberi dirinya izin akses semua file tanpa menanyakannya lagi. Izin itu bisa
+      Anda cabut di Setelan Android.</li>
+      <li>Semua data tinggal di penyimpanan pribadi LX dan tidak ikut backup Android. Semuanya
+      terhapus lewat "Hapus penyimpanan" atau saat aplikasinya dihapus.</li>
+    </ul>
+  </section>
+
+  <nav class="toc" aria-labelledby="daftar-isi">
+    <h2 id="daftar-isi">Daftar isi</h2>
+    <ol>
+      <li><a href="#ruang-lingkup">Yang dicakup kebijakan ini</a></li>
+      <li><a href="#tidak-dikumpulkan">Yang tidak dikumpulkan pengembang</a></li>
+      <li><a href="#di-perangkat">Data yang diproses dan disimpan di perangkat</a></li>
+      <li><a href="#jaringan">Koneksi jaringan dan unduhan</a></li>
+      <li><a href="#bridge">LX Bridge dan lxdb</a></li>
+      <li><a href="#izin">Izin Android yang diminta</a></li>
+      <li><a href="#penyimpanan">Akses ke penyimpanan ponsel</a></li>
+      <li><a href="#clipboard">Papan klip</a></li>
+      <li><a href="#background">Proses yang berjalan di latar belakang</a></li>
+      <li><a href="#backup">Backup bawaan Android</a></li>
+      <li><a href="#hapus">Berapa lama data disimpan dan cara menghapusnya</a></li>
+      <li><a href="#keamanan">Keamanan</a></li>
+      <li><a href="#perubahan">Perubahan pada kebijakan ini</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+      <li><a href="#situs">Halaman web ini</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="ruang-lingkup">Yang dicakup kebijakan ini</h2>
+
+  <p>Kebijakan ini berlaku untuk LX-LAUNCHER versi 1.0.0. Cakupannya meliputi launcher-nya, alat
+  bawaan seperti Pengaturan LX, File Explorer, Monitor Sistem, Catatan, dan Pembersih, editor Tedit
+  beserta terminal dan Debian-nya, LX Bridge dengan program pembantunya <code>lxdb</code>, serta
+  halaman web yang sedang Anda baca. Engine VHDP yang menjalankan Debian ikut tercakup sejauh
+  dipakai LX. VHDP sebagai library terpisah punya halamannya sendiri,
+  <a href="https://exsokamabay.github.io/Privacy-Policy/vhdp/vhdp-v1.0.0.html">Kebijakan Privasi
+  VHDP 1.0.0</a>.</p>
+
+  <p>Yang tidak tercakup adalah aplikasi lain yang Anda buka dari LX, widget milik aplikasi lain
+  yang Anda taruh di desktop, dan program yang Anda jalankan di Debian. Semuanya mengikuti
+  aturannya sendiri. Kalau Anda memasang paket lewat <code>apt</code>, yang berlaku adalah aturan
+  penyedia paketnya.</p>
+
+  <p>Di bawah setiap judul bagian ada penanda yang menunjukkan apa yang tinggal di perangkat Anda,
+  apa yang melibatkan pihak lain, dan apa yang Anda atur sendiri.</p>
+
+  <h2 id="tidak-dikumpulkan">Yang tidak dikumpulkan pengembang</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>LX-LAUNCHER tidak punya akun, iklan, analytics, atau pelaporan crash, dan tidak memakai SDK
+  pihak ketiga untuk hal-hal itu. Aplikasi ini juga tidak memeriksa pembaruan sendiri. Pengembang
+  LX-LAUNCHER tidak menerima data apa pun dari aplikasi yang terpasang di ponsel Anda.</p>
+
+  <h2 id="di-perangkat">Data yang diproses dan disimpan di perangkat</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Semua yang di bawah ini disimpan di penyimpanan pribadi LX di ponsel Anda:</p>
+
+  <ul>
+    <li>Tata letak dan pengaturan: workspace, ikon di desktop, dock, dan taskbar, folder, widget,
+    jendela yang terbuka, daftar Favorit, daftar aplikasi yang terakhir Anda buka, serta pilihan
+    tema, font, dan gaya jendela.</li>
+    <li>Isi Catatan dan widget catatan.</li>
+    <li>Salinan foto yang Anda pilih sebagai wallpaper, supaya wallpaper tetap ada walau foto
+    aslinya dihapus.</li>
+    <li>Cache yang bisa dibuat ulang, misalnya nama aplikasi, data wallpaper, dan ikon ekstensi.</li>
+    <li>Dari Tedit: berkas dan folder terbaru, riwayat run, perintah terbaru, salinan perubahan yang
+    belum disimpan, pengaturan Tedit, dan ekstensi yang Anda pasang.</li>
+    <li>Debian 13 beserta folder home dan paket yang Anda pasang di dalamnya.</li>
+    <li>Kunci LX Bridge, yang dibuat LX sendiri di ponsel Anda untuk dipasangkan dengan Debug
+    nirkabel.</li>
+    <li>Catatan langkah LX Bridge (<code>lx-bridge.log</code>) yang berisi status, port, dan pesan
+    galat, tanpa isi data Anda. Hanya 300 baris terakhir yang disimpan.</li>
+  </ul>
+
+  <p>Ikon dan nama aplikasi datang dari layanan launcher Android. Untuk menyusun menu Aplikasi, LX
+  melihat aplikasi yang punya ikon di layar Home dan aplikasi yang menyediakan widget. Widget dari
+  aplikasi lain digambar oleh aplikasi pemiliknya, memakai data aplikasi itu sendiri.</p>
+
+  <p>Widget media hanya mengirim tombol putar, jeda, maju, dan mundur ke Android. Widget itu tidak
+  membaca sesi media aplikasi lain.</p>
+
+  <p>Pembersih membaca jenis dan ukuran berkas di penyimpanan bersama untuk mencari folder kosong
+  dan gambar yang isinya persis sama. Hasilnya hanya ditampilkan di layar, dan gambar ganda baru
+  dihapus setelah Anda mengonfirmasinya.</p>
+
+  <h2 id="jaringan">Koneksi jaringan dan unduhan</h2>
+
+  <ul class="tags">
+    <li class="tag t-luar">Melibatkan pihak lain</li>
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Launcher, File Explorer, dan alat bawaan lain tidak menghubungi internet. LX Bridge memakai izin
+  internet untuk berbicara dengan layanan Debug nirkabel di ponsel Anda sendiri, lewat alamat
+  <code>127.0.0.1</code>. Sambungan itu tidak keluar dari ponsel.</p>
+
+  <p>Tedit menghubungi internet dalam tiga keadaan:</p>
+
+  <ul>
+    <li>Panel Ekstensi. Bawaannya, Tedit menanyakan dulu apakah boleh menghubungi open-vsx.org, dan
+    tidak mengirim permintaan apa pun sebelum Anda mengizinkannya. Setelah diizinkan, Tedit
+    mengirim kata pencarian, kategori, urutan, dan nama ekstensi yang Anda buka, dengan identitas
+    <code>Tedit (LX-LAUNCHER)</code>. Daftar, ikon, README, dan berkas ekstensi diambil dari alamat
+    yang diberikan Open VSX. Seperti server mana pun, Open VSX melihat alamat IP Anda. Pilihannya
+    ada di Settings Tedit, bagian Privasi dan izin, pada Marketplace ekstensi: Tanya dulu, Diizinkan,
+    atau Tidak pernah.</li>
+    <li>Pemasangan Debian di ponsel x86_64. Di ponsel ARM64, image Debian sudah ada di dalam APK
+    dan tidak diunduh. Di ponsel x86_64, Tedit mengunduhnya dari rilis proyek proot-distro di
+    GitHub saat Anda memasang Debian.</li>
+    <li>Program yang Anda jalankan di Debian. <code>apt</code>, <code>pip</code>, <code>npm</code>,
+    dan program lain menghubungi server mereka sendiri. Debian di dalam LX mencari alamat lewat
+    8.8.8.8 dan 1.1.1.1, layanan DNS publik milik Google dan Cloudflare.</li>
+  </ul>
+
+  <p>Server bahasa seperti pylsp, clangd, dan gopls berjalan di dalam Debian di ponsel Anda. Tedit
+  tidak mengirim isi berkas ke mana pun.</p>
+
+  <h2 id="bridge">LX Bridge dan lxdb</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>LX Bridge adalah fitur pilihan yang membuat aplikasi Android bisa terbuka di jendela LX. Fitur
+  ini memakai Debug nirkabel milik ponsel Anda sendiri. LX dipasangkan sebagai perangkat debug,
+  lalu menjalankan program <code>lxdb</code> dengan hak yang sama seperti <code>adb shell</code>.</p>
+
+  <p>Saat memasang LX Bridge, LX bisa memakai layanan aksesibilitasnya untuk membuka halaman Debug
+  nirkabel, membaca kode pairing yang tampil di layar Setelan, dan mengetuk tombol yang diperlukan.
+  Layanan itu hanya menerima kejadian dari aplikasi Setelan dan System UI, dan mematikan dirinya
+  sendiri setelah tugasnya selesai. Kalau Anda memilih mengetik kode sendiri, LX menampilkan
+  notifikasi tempat kode itu diketik.</p>
+
+  <p>Dengan hak shell, <code>lxdb</code> bisa memasang aplikasi, membaca log sistem, dan membuka
+  folder seperti <code>Android/data</code>, tetapi tidak bisa membuka data pribadi aplikasi lain. LX
+  memakainya untuk jendela aplikasi, File Explorer, dan Pembersih. Setelah tersambung, LX juga
+  mendapat izin mengubah setelan keamanan, dan memakainya hanya untuk menyalakan dan mematikan
+  Debug nirkabel.</p>
+
+  <div class="callout">
+    <p>Selama LX Bridge tersambung, LX memberi dirinya izin akses semua file lewat
+    <code>lxdb</code> tanpa menanyakannya kepada Anda. File Explorer dan Tedit juga memakai hak
+    shell untuk membuka folder yang biasanya tertutup bagi aplikasi.</p>
+    <p>Izin akses semua file tetap bisa Anda cabut di halaman izin Android, dan hak shell berhenti
+    saat LX Bridge mati. Pasangan LX di daftar perangkat Debug nirkabel bisa Anda hapus dari Setelan
+    Android.</p>
+  </div>
+
+  <h2 id="izin">Izin Android yang diminta</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <div class="scroll-x">
+    <table>
+      <caption>Izin yang dideklarasikan aplikasi dan alasannya</caption>
+      <thead>
+        <tr><th scope="col">Izin</th><th scope="col">Untuk apa</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><code>INTERNET</code></th>
+          <td>Sambungan LX Bridge ke Debug nirkabel di <code>127.0.0.1</code>, panel Ekstensi Tedit
+          setelah Anda mengizinkannya, unduhan Debian di ponsel x86_64, dan program yang Anda
+          jalankan di Debian. Diberikan otomatis saat pemasangan, tanpa dialog.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>ACCESS_NETWORK_STATE</code></th>
+          <td>Menampilkan status koneksi di widget jaringan.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>MANAGE_EXTERNAL_STORAGE</code></th>
+          <td>Akses semua file untuk File Explorer, Tedit, dan Pembersih. Diminta lewat halaman izin
+          Android setelah Anda mengetuk "Izinkan akses semua file", atau diberikan LX untuk dirinya
+          sendiri selama LX Bridge tersambung.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>READ_EXTERNAL_STORAGE</code>, <code>WRITE_EXTERNAL_STORAGE</code></th>
+          <td>Jalur yang sama untuk Android 8 sampai 10. Tidak berlaku di Android 11 ke atas.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>WRITE_SECURE_SETTINGS</code></th>
+          <td>Tidak bisa didapat aplikasi biasa. LX baru memilikinya setelah LX Bridge tersambung,
+          dan memakainya hanya untuk menyalakan dan mematikan Debug nirkabel.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>POST_NOTIFICATIONS</code></th>
+          <td>Notifikasi tempat Anda mengetik kode pairing, kalau Anda memilih cara itu saat memasang
+          LX Bridge.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>KILL_BACKGROUND_PROCESSES</code></th>
+          <td>Pembersih meminta Android menutup pekerjaan latar aplikasi lain.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>REQUEST_DELETE_PACKAGES</code></th>
+          <td>Meneruskan permintaan uninstall ke dialog Android, yang tetap meminta konfirmasi
+          Anda.</td>
+        </tr>
+        <tr>
+          <th scope="row">Layanan aksesibilitas</th>
+          <td>Membantu memasang LX Bridge di aplikasi Setelan, seperti dijelaskan di atas. Layanan
+          ini hanya aktif kalau Anda menyalakannya.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Tidak ada izin untuk lokasi, kamera, mikrofon, kontak, SMS, atau riwayat panggilan.</p>
+
+  <h2 id="penyimpanan">Akses ke penyimpanan ponsel</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Tanpa izin tambahan, File Explorer hanya membuka folder yang Anda pilih sendiri lewat pemilih
+  folder Android, dan Tedit membuka berkas yang Anda pilih. Akses ke folder pilihan itu bisa
+  dicabut di Pengaturan LX, bagian Privasi, pada daftar "Folder yang Anda bagikan ke File
+  Explorer".</p>
+
+  <p>Kalau Anda mengetuk "Izinkan akses semua file" di File Explorer, LX menjelaskan izinnya lebih
+  dulu, lalu Android membuka halaman izinnya. Dengan izin itu, File Explorer, Tedit, dan Pembersih
+  bisa membaca dan mengubah berkas di penyimpanan bersama. Folder <code>Android/data</code> dan
+  <code>Android/obb</code> tetap tertutup kecuali LX Bridge tersambung.</p>
+
+  <h2 id="clipboard">Papan klip</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>LX menulis ke papan klip saat Anda menyalin teks di editor Tedit, atau menyalin jalur berkas
+  dari File Explorer dan panel Berkas di Tedit. Papan klip dibaca hanya saat Anda menekan Tempel di
+  editor Tedit.</p>
+
+  <h2 id="background">Proses yang berjalan di latar belakang</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Selama LX Bridge tersambung, <code>lxdb</code> tetap berjalan sebagai proses shell di ponsel
+  Anda. Shell dan program di terminal Tedit berjalan sebagai bagian dari LX selama sesinya terbuka.
+  LX tidak menjadwalkan pekerjaan latar yang mengirim data ke luar ponsel.</p>
+
+  <h2 id="backup">Backup bawaan Android</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>LX mematikan backup bawaan Android, baik backup ke cloud maupun pemindahan ke ponsel baru.
+  Tata letak, pengaturan, catatan, Tedit, dan Debian Anda tidak ikut ke layanan backup mana pun.</p>
+
+  <p>Kalau Anda ingin memindahkan tata letak, pakai "Ekspor tata letak" di Pengaturan LX. Berkas JSON
+  itu berisi workspace, pintasan, widget, jendela, dan pengaturan, disimpan di tempat yang Anda
+  pilih, dan tidak dikirim ke mana pun oleh LX.</p>
+
+  <h2 id="hapus">Berapa lama data disimpan dan cara menghapusnya</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Data bertahan di ponsel selama LX terpasang, kecuali catatan LX Bridge yang hanya menyimpan 300
+  baris terakhir dan cache yang bisa dibuat ulang.</p>
+
+  <ul>
+    <li>"Hapus penyimpanan" untuk LX di Setelan Android, atau menghapus aplikasinya, membuang semua
+    data di atas, termasuk Debian dan kunci LX Bridge.</li>
+    <li>Di Settings Tedit, bagian Privasi dan izin, "Simpan daftar terbaru" mengatur apakah daftar
+    berkas, folder, riwayat run, dan perintah terbaru disimpan.</li>
+    <li>"Hapus Debian" di Tedit membuang Debian dan semua paket di dalamnya. Berkas Anda di
+    penyimpanan internal tetap ada.</li>
+    <li>Akses folder pilihan dicabut di Pengaturan LX, bagian Privasi. Akses semua file dan pasangan
+    Debug nirkabel dicabut di Setelan Android.</li>
+  </ul>
+
+  <p>Yang tidak ikut terhapus dan perlu Anda urus sendiri: berkas di penyimpanan bersama, termasuk
+  berkas ekspor tata letak, isi papan klip Android, dan data yang sudah diterima Open VSX, GitHub,
+  atau server yang dihubungi program Anda di Debian.</p>
+
+  <h2 id="keamanan">Keamanan</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Data LX dilindungi oleh dua lapis bawaan Android: pemisahan antar-aplikasi dan enkripsi
+  penyimpanan perangkat. LX tidak menambahkan lapisan enkripsi sendiri.</p>
+
+  <p>LX Bridge berbicara dengan Debug nirkabel lewat TLS di alamat <code>127.0.0.1</code>, memakai
+  kunci yang dibuat LX di ponsel Anda. Pintu tempat <code>lxdb</code> menyerahkan sambungannya ke LX
+  hanya bisa dipanggil oleh proses dengan hak shell atau sistem.</p>
+
+  <p>Berkas ekstensi dari Open VSX dicocokkan dengan sidik jari SHA-256 yang diterbitkan Open VSX,
+  kalau tersedia. Image Debian untuk x86_64 dicocokkan dengan sidik jari SHA-256 yang tertanam di
+  APK sebelum dipasang.</p>
+
+  <p>Debian dan terminal Tedit berjalan dengan hak aplikasi LX, tanpa root. Program di dalamnya
+  bisa melihat dirinya sebagai root, tetapi di mata Android tetap berjalan sebagai LX.</p>
+
+  <h2 id="perubahan">Perubahan pada kebijakan ini</h2>
+
+  <p>Halaman ini menggambarkan LX-LAUNCHER versi 1.0.0. Kalau ada perubahan yang memengaruhi data
+  Anda, halaman ini diperiksa ulang terhadap kode versi barunya, dan versi baru mendapat halamannya
+  sendiri. Tanggal di bagian atas menunjukkan kapan pembaruan terakhir dilakukan.</p>
+
+  <p>Halaman untuk versi lama tetap disimpan di Privacy Center dan tidak dihapus, supaya Anda bisa
+  membandingkan sendiri apa yang berubah.</p>
+
+  <h2 id="kontak">Kontak</h2>
+
+  <ul class="tags">
+    <li class="tag t-kontrol">Anda yang mengatur</li>
+  </ul>
+
+  <p>Kalau ada yang ingin Anda tanyakan soal halaman ini, kirim email ke
+  <a href="mailto:lexyong66@gmail.com">lexyong66@gmail.com</a>. LX tidak mengirim informasi
+  perangkat, catatan, atau berkas secara otomatis. Pengembang hanya menerima apa yang Anda tulis
+  dan lampirkan sendiri di email itu.</p>
+
+  <h2 id="situs">Halaman web ini</h2>
+
+  <ul class="tags">
+    <li class="tag t-lokal">Di perangkat Anda</li>
+  </ul>
+
+  <p>Privacy Center dan halaman yang sedang Anda baca seluruhnya statis. Tidak ada analytics,
+  cookie, atau penyimpanan di peramban Anda, dan tidak ada permintaan ke layanan luar.</p>
+
+  <p class="sign-off">Kebijakan ini disusun dari pemeriksaan kode sumber LX-LAUNCHER 1.0.0 pada
+  commit <code>580d23b</code> di repository ExsoKamabay/LX-Launcher. Kalau Anda menemukan bagian
+  yang tidak cocok dengan perilaku aplikasi, beri tahu lewat alamat email di atas.</p>
+
+</article>
+
+</main>
+
+</body>
+</html>
